@@ -7,21 +7,25 @@ import {
   FileText, 
   Settings, 
   Clock, 
-  Download
+  Download,
+  HelpCircle
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface SidebarItemProps {
   icon: React.ReactNode;
   label: string;
+  to: string;
   active?: boolean;
 }
 
-const SidebarItem = ({ icon, label, active }: SidebarItemProps) => {
+const SidebarItem = ({ icon, label, to, active }: SidebarItemProps) => {
   return (
     <li>
-      <a 
-        href="#" 
+      <Link 
+        to={to} 
         className={cn(
           "flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors",
           active 
@@ -31,12 +35,15 @@ const SidebarItem = ({ icon, label, active }: SidebarItemProps) => {
       >
         {icon}
         <span>{label}</span>
-      </a>
+      </Link>
     </li>
   );
 };
 
 const Sidebar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <aside className="hidden lg:block w-60 h-[calc(100vh-64px)] border-r bg-white p-3 sticky top-16">
       <nav>
@@ -44,37 +51,50 @@ const Sidebar = () => {
           <SidebarItem 
             icon={<LineChart size={20} />} 
             label="Desempenho" 
-            active={false} 
+            to="/"
+            active={currentPath === "/"} 
           />
           <SidebarItem 
             icon={<BookText size={20} />} 
             label="Disciplinas" 
-            active={true} 
+            to="/courses"
+            active={currentPath === "/courses"} 
           />
           <SidebarItem 
             icon={<Calendar size={20} />} 
             label="Calendário" 
-            active={false} 
+            to="/calendar"
+            active={currentPath === "/calendar"} 
           />
           <SidebarItem 
             icon={<FileText size={20} />} 
             label="Materiais" 
-            active={false} 
+            to="/materials"
+            active={currentPath === "/materials"} 
           />
           <SidebarItem 
             icon={<Clock size={20} />} 
             label="Histórico" 
-            active={false} 
+            to="/history"
+            active={currentPath === "/history"} 
           />
           <SidebarItem 
             icon={<Download size={20} />} 
             label="Downloads" 
-            active={false} 
+            to="/downloads"
+            active={currentPath === "/downloads"} 
+          />
+          <SidebarItem 
+            icon={<HelpCircle size={20} />} 
+            label="Suporte" 
+            to="/support"
+            active={currentPath === "/support"} 
           />
           <SidebarItem 
             icon={<Settings size={20} />} 
             label="Configurações" 
-            active={false} 
+            to="/settings"
+            active={currentPath === "/settings"} 
           />
         </ul>
       </nav>
