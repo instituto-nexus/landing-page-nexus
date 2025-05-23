@@ -1,11 +1,12 @@
-
 import React, { useState } from "react";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import CourseCard from "@/components/CourseCard";
-import CardPreview from "@/components/CardPreview"; // Importando o novo componente
+import CardPreview from "@/components/CardPreview";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const coursesData = [
   {
@@ -104,7 +105,14 @@ const Index = () => {
         <Sidebar />
         <main className="flex-1 p-4 md:p-6">
           <div className="max-w-7xl mx-auto">
-            {/* Adicionando o novo CardPreview */}
+            <div className="flex justify-end mb-4">
+              <Link to="/">
+                <Button variant="outline" size="sm">
+                  Voltar para Landing Page
+                </Button>
+              </Link>
+            </div>
+            
             <div className="mb-8 bg-white rounded-lg shadow p-4">
               <h2 className="text-xl font-semibold mb-4">Preview do Card Vue Convertido para React</h2>
               <CardPreview color="bg-blue-500" />
