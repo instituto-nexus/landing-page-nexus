@@ -1,53 +1,97 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Linkedin } from "lucide-react";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 // Membros da governança
 const teamMembers = [
   {
     id: 1,
-    name: "Ana Silva",
-    role: "Diretoria Geral",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop",
-    linkedin: "https://linkedin.com/in/anasilva"
+    name: "Gabriel Monteiro",
+    description: "Fundador do nexus, coordenador do projeto ufabc next e nas horas vagas engenheiro de software.",
+    role: "Presidente e Fundador",
+    image: "/members/profile-picture-gabriel.jpeg",
+    linkedin: "https://www.linkedin.com/in/gabriel-monteiro-rocha7/"
   },
   {
     id: 2,
-    name: "Pedro Santos",
-    role: "Produto",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop",
-    linkedin: "https://linkedin.com/in/pedrosantos"
+    name: "Joabe Varjão",
+    description: "Cofundador do nexus, principal enginner do projeto ufabc next, fundador do projeto ufabc parser, apaixonado por softwares",
+    role: "Vice-Presidente e cofundador",
+    image: "/members/joabe-profile.jpeg",
+    linkedin: "https://www.linkedin.com/in/joabesv/s"
   },
   {
     id: 3,
-    name: "Mariana Costa",
-    role: "Comunidade",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&h=200&auto=format&fit=crop",
-    linkedin: "https://linkedin.com/in/marianacosta"
+    name: "Nicolas Greco",
+    role: "Gerente geral e desenvolvedor",
+    image: "/members/profile-picture-nicolas.jpeg",
+    linkedin: "https://www.linkedin.com/in/nicolas-greco-160a5b258/"
   },
   {
     id: 4,
-    name: "João Oliveira",
-    role: "Comunicação",
-    image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=200&h=200&auto=format&fit=crop",
+    name: "Mateus Braga",
+    role: "Especialista front-end",
+    description: "Líder de iniciativas open source e front-end developer apaixonado por criar experiências digitais incríveis.",
+    image: "/members/foto-mateus.jpg",
     linkedin: "https://linkedin.com/in/joaooliveira"
   },
   {
     id: 5,
-    name: "Carla Mendes",
-    role: "Mentoria",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&h=200&auto=format&fit=crop",
+    name: "Igor Santos",
+    role: "Especilista back-end",
+    image: "/members/profile-picture-igor.jpeg",
     linkedin: "https://linkedin.com/in/carlamendes"
   },
   {
     id: 6,
-    name: "Lucas Lima",
-    role: "Técnica",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&h=200&auto=format&fit=crop",
-    linkedin: "https://linkedin.com/in/lucaslima"
+    name: "Pedro  Rodrigues",
+    role: "Especilista devops",
+    image: "/members/profile-pedro.png",
+    linkedin: "https://linkedin.com/in/carlamendes"
+  }
+];
+
+const formerMembers = [
+  {
+    id: 1,
+    name: "Felipe Silva",
+    role: "Diretoria Geral",
+    image: "/members/profile-picture-gabriel.jpeg",
+    linkedin: "https://linkedin.com/in/anasilva"
+  },
+  {
+    id: 2,
+    name: "Felipe Tiozo",
+    role: "Produto",
+    image: "/members/profile-picture-joabe.jpeg",
+    linkedin: "https://linkedin.com/in/pedrosantos"
+  },
+  {
+    id: 3,
+    name: "Felipe Augusto",
+    role: "Comunidade",
+    image: "/members/profile-picture-nicolas.jpeg",
+    linkedin: "https://linkedin.com/in/marianacosta"
   }
 ];
 
@@ -55,27 +99,33 @@ const teamMembers = [
 const pillars = [
   {
     id: 1,
-    title: "Comunidade",
-    description: "Construímos uma rede de apoio onde estudantes se ajudam mutuamente ao longo da jornada acadêmica.",
-    icon: "👥"
+    title: "Ufabc next",
+    description: "Construimos uma plataforma de avaliação de professores, disciplinas e cursos baseada na experiência dos alunoss",
+    icon: "./members/logo_next_2.png"
   },
   {
     id: 2,
-    title: "Técnica",
-    description: "Disponibilizamos materiais de estudo, simulados e recursos para melhor preparação acadêmica.",
-    icon: "📚"
+    title: "Ufabc parser",
+    description: "Disponibilizamos em formato de Api todas as informações relevantes para o desenvolvimento universitário da UFABC",
+    icon: "./members/parser-logo.webp"
   },
   {
     id: 3,
-    title: "Mentoria",
-    description: "Conectamos calouros com veteranos experientes para orientação personalizada durante o curso.",
-    icon: "🤝"
+    title: "Ufabc next Wpp Bot",
+    description: "Criamos um bot no WhatsApp para facilitar o acesso dos estudantes a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
+    icon: "./members/wpp-bot-project.webp"
   },
   {
     id: 4,
-    title: "Aulões",
-    description: "Organizamos sessões coletivas de revisão e aprofundamento em disciplinas-chave da graduação.",
-    icon: "🎓"
+    title: "Ufabc next Wpp Bot AI",
+    description: "Criamos um bot no WhatsApp para facilitar o acesso dos estudantes a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
+    icon: "./members/wpp-bot-project.webp"
+  },
+  {
+    id: 4,
+    title: "Aulões next",
+    description: "criamos auloes para conectar veterano e calouros",
+    icon: "./members/logo-aulao.png"
   }
 ];
 
@@ -99,7 +149,7 @@ const LandingPage = () => {
                     d="M12 15V8l-5 3v7l5 3 5-3v-7l-5-3z" 
                   />
                 </svg>
-                UFABC<span className="text-edu-light-blue font-light">next</span>
+                Nexus
               </span>
             </Link>
           </div>
@@ -113,17 +163,10 @@ const LandingPage = () => {
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link to="#iniciativas">
+               <NavigationMenuItem>
+                <Link to="#projetos">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Iniciativas
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link to="#comunidade">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Comunidade
+                    Projetos
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -134,6 +177,22 @@ const LandingPage = () => {
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
+          
+              <NavigationMenuItem>
+                <Link to="#comunidade">
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Comunidade
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link to="#galeria">
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    Galeria
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              
               <NavigationMenuItem>
                 <Link to="#contato">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -141,13 +200,14 @@ const LandingPage = () => {
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link to="/">
+             
+              {/* <NavigationMenuItem>
+                <Link to="https://ufabcnext.com/">
                   <Button variant="outline" className="ml-2">
                     Acessar Plataforma
                   </Button>
                 </Link>
-              </NavigationMenuItem>
+              </NavigationMenuItem> */}
             </NavigationMenuList>
           </NavigationMenu>
         </div>
@@ -158,24 +218,23 @@ const LandingPage = () => {
         <section className="bg-[#0a2e4f] text-white py-20">
           <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl font-bold mb-6">UFABC Next</h1>
+              <h1 className="text-4xl font-bold mb-6">O ecossistema de inovação e transformação</h1>
               <h2 className="text-2xl mb-6">Iniciativa acadêmica para potencializar sua trajetória universitária</h2>
               <p className="text-lg mb-8 text-gray-300">
                 Uma plataforma feita por e para estudantes da Universidade Federal do ABC, 
                 promovendo mentorias, conteúdos acadêmicos e apoio comunitário ao longo da graduação.
               </p>
-              <div className="flex gap-4">
-                <Button className="bg-edu-green hover:bg-edu-light-green text-white">
-                  Conheça Nosso Trabalho
-                </Button>
-                <Button variant="outline" className="text-white border-white hover:bg-white/10">
+              <div style={{ paddingLeft: "11.5rem" }} className="max-w-7xl mx-auto px-6  flex gap-4">
+                
+                <Button variant="default" size="lg" className="">
                   Seja Voluntário
                 </Button>
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className=" flex justify-center">
               <img 
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=500&h=400" 
+              style={{  height: "520px" }}
+                src="/members/team-photo.jpeg" 
                 alt="Estudantes UFABC Next" 
                 className="rounded-lg shadow-lg" 
               />
@@ -223,10 +282,50 @@ const LandingPage = () => {
           </div>
         </section>
 
+
+           {/* Pilares Section */}
+        <section id="iniciativas" className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-4 text-center">Projetos</h2>
+            <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12">
+              O UFABC Next atua em diversas frentes para garantir uma experiência universitária mais completa e enriquecedora.
+            </p>
+            
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full max-w-5xl mx-auto"
+            >
+              <CarouselContent>
+                {pillars.map((pillar) => (
+                  <CarouselItem key={pillar.id} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="bg-gray-50 rounded-lg p-6 shadow-sm text-center h-full">
+                      <div className="text-4xl mb-4">
+                        <img 
+                          src={pillar.icon}
+                          height={270}
+                          alt={pillar.title} 
+                          className="w-full h-64 object-contain"
+                        />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-3 text-primary">{pillar.title}</h3>
+                      <p className="text-gray-700">{pillar.description}</p>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-2" />
+              <CarouselNext className="right-2" />
+            </Carousel>
+          </div>
+        </section>
+
         {/* Governance Section */}
         <section className="py-20 bg-gray-100">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-4 text-center">Governança UFABC Next</h2>
+            <h2 className="text-3xl font-bold mb-4 text-center">Governança Nexus</h2>
             <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12">
               A estrutura organizacional do UFABC Next assegura planejamento, execução e impacto contínuo. 
               Cada área é liderada por estudantes com alta responsabilidade e engajamento.
@@ -237,6 +336,7 @@ const LandingPage = () => {
                 <div key={member.id} className="bg-white rounded-lg shadow-sm overflow-hidden flex">
                   <div className="w-1/3">
                     <img 
+                    style={{  height: "131px" }}
                       src={member.image} 
                       alt={member.name} 
                       className="w-full h-full object-cover"
@@ -292,12 +392,103 @@ const LandingPage = () => {
               dos estudantes da UFABC, seja como mentor, voluntário ou parceiro.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-edu-green hover:bg-edu-light-green text-white">
-                Quero ser mentor
-              </Button>
-              <Button className="bg-white text-primary hover:bg-gray-100">
-                Quero ser voluntário
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="bg-edu-green hover:bg-edu-light-green text-white">
+                    Quero ser mentor
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Cadastro de Mentor</DialogTitle>
+                    <DialogDescription>
+                      Preencha os dados abaixo para se cadastrar como mentor no UFABC Next.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="name">Nome completo</Label>
+                      <Input
+                        id="name"
+                        placeholder="Digite seu nome"
+                        className="col-span-3"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="email">Email</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="seu.email@exemplo.com"
+                        className="col-span-3"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="phone">Telefone</Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="(11) 99999-9999"
+                        className="col-span-3"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-end">
+                    <Button type="submit" className="bg-primary text-white hover:bg-primary/90">
+                      Enviar cadastro
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+              
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="bg-white text-primary hover:bg-gray-100">
+                    Quero ser voluntário
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Cadastro de Voluntário</DialogTitle>
+                    <DialogDescription>
+                      Preencha os dados abaixo para se cadastrar como voluntário no UFABC Next.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="name-vol">Nome completo</Label>
+                      <Input
+                        id="name-vol"
+                        placeholder="Digite seu nome"
+                        className="col-span-3"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="email-vol">Email</Label>
+                      <Input
+                        id="email-vol"
+                        type="email"
+                        placeholder="seu.email@exemplo.com"
+                        className="col-span-3"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="phone-vol">Telefone</Label>
+                      <Input
+                        id="phone-vol"
+                        type="tel"
+                        placeholder="(11) 99999-9999"
+                        className="col-span-3"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-end">
+                    <Button type="submit" className="bg-primary text-white hover:bg-primary/90">
+                      Enviar cadastro
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </section>
@@ -321,7 +512,7 @@ const LandingPage = () => {
                   />
                 </svg>
                 <span className="text-xl font-bold">
-                  UFABC<span className="text-edu-light-blue font-light">next</span>
+                  Nexus
                 </span>
               </div>
               <p className="text-gray-400 mb-4">
@@ -342,7 +533,7 @@ const LandingPage = () => {
             
             <div>
               <h3 className="text-lg font-semibold mb-4">Contato</h3>
-              <p className="text-gray-400 mb-2">contato@ufabcnext.com.br</p>
+              <p className="text-gray-400 mb-2">contato@nexus.com.br</p>
               <p className="text-gray-400 mb-4">Santo André, SP - Brasil</p>
               <div className="flex space-x-4">
                 <a href="#" className="text-gray-400 hover:text-white">
@@ -368,7 +559,7 @@ const LandingPage = () => {
           </div>
           
           <div className="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400">&copy; 2025 UFABC Next. Todos os direitos reservados.</p>
+            <p className="text-gray-400">&copy; 2025 Nexus. Todos os direitos reservados.</p>
             <div className="mt-4 md:mt-0">
               <Link to="#" className="text-gray-400 hover:text-white mr-6">Política de Privacidade</Link>
               <Link to="#" className="text-gray-400 hover:text-white">Termos de Uso</Link>
