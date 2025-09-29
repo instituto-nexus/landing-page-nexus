@@ -60,6 +60,36 @@ const teamMembers = [
   }
 ];
 
+const formerMembers = [
+  {
+    id: 1,
+    name: "Ana Carolina Lima",
+    role: "Ex-Coordenadora de Produto",
+    period: "2022-2023",
+    image: "/members/profile-picture-ana.jpeg",
+    linkedin: "#",
+    email: "ana@alumni.ufabcnext.com"
+  },
+  {
+    id: 2,
+    name: "Rafael Souza",
+    role: "Ex-Diretor Geral",
+    period: "2021-2022",
+    image: "/members/profile-picture-rafael.jpeg", 
+    linkedin: "#",
+    email: "rafael@alumni.ufabcnext.com"
+  },
+  {
+    id: 3,
+    name: "Marina Santos",
+    role: "Ex-Coordenadora de Comunidade",
+    period: "2022-2023",
+    image: "/members/profile-picture-marina.jpeg",
+    linkedin: "#",
+    email: "marina@alumni.ufabcnext.com"
+  }
+];
+
 export default function Members() {
   return (
     <div className="min-h-screen bg-background">
@@ -105,7 +135,58 @@ export default function Members() {
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
-                </div>
+        </div>
+
+        {/* Former Members Section */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Ex-membros
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Reconhecemos e agradecemos a todos que contribuíram para construir 
+              o UFABC Next ao longo de sua jornada.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {formerMembers.map((member) => (
+              <Card key={member.id} className="group hover:shadow-lg transition-all duration-300 border-border bg-card opacity-90">
+                <CardContent className="p-6 text-center">
+                  <div className="mb-4">
+                    <Avatar className="w-20 h-20 mx-auto mb-4 ring-2 ring-border group-hover:ring-muted-foreground transition-all duration-300">
+                      <AvatarImage src={member.image} alt={member.name} />
+                      <AvatarFallback className="bg-muted text-muted-foreground">
+                        {member.name.split(' ').map(n => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                  <h3 className="font-semibold text-lg text-card-foreground mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-1">
+                    {member.role}
+                  </p>
+                  <p className="text-muted-foreground text-xs mb-4">
+                    {member.period}
+                  </p>
+                  <div className="flex justify-center space-x-2">
+                    <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                        <Linkedin className="h-4 w-4" />
+                      </a>
+                    </Button>
+                    <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+                      <a href={`mailto:${member.email}`}>
+                        <Mail className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
                 <h3 className="font-semibold text-lg text-card-foreground mb-1">
                   {member.name}
                 </h3>
