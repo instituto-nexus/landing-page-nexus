@@ -53,28 +53,35 @@ const teamMembers = [
     role: "Especialista front-end",
     description: "Líder de iniciativas open source e front-end developer apaixonado por criar experiências digitais incríveis.",
     image: "/members/foto-mateus.jpg",
-    linkedin: "https://linkedin.com/in/joaooliveira"
+    linkedin: "https://www.linkedin.com/in/mateusbrg/"
   },
   {
     id: 5,
     name: "Igor Santos",
     role: "Especilista back-end",
     image: "/members/profile-picture-igor.jpeg",
-    linkedin: "https://linkedin.com/in/carlamendes"
+    linkedin: "https://www.linkedin.com/in/igor-santos-ufabc/"
   },
   {
     id: 6,
-    name: "Pedro  Rodrigues",
+    name: "Pedro Rodrigues",
     role: "Especilista devops",
     image: "/members/profile-pedro.png",
-    linkedin: "https://linkedin.com/in/carlamendes"
+    linkedin: "https://www.linkedin.com/in/pedroprg/"
   },
   {
     id: 7,
     name: "Rafael Guerra",
     role: "Engenheiro de Software",
     image: "/members/rafa-profile-pic.jpeg",
-    linkedin: "https://linkedin.com/in/carlamendes"
+    linkedin: "https://www.linkedin.com/in/rafaelguerra/"
+  },
+  {
+    id: 8,
+    name: "Carlos Alencar",
+    role: "Engenheiro de Software",
+    image: "/members/carlos-profile-pic.jpeg",
+    linkedin: "https://www.linkedin.com/in/alencarlima/"
   }
 ];
 
@@ -288,6 +295,37 @@ const LandingPage = () => {
             </div>
           </div>
         </section>
+         {/* Impact Numbers Section */}
+        <section className="py-20 bg-gradient-to-br from-primary to-primary/80">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-white">Nosso Impacto</h2>
+            <p className="text-lg text-white/90 text-center max-w-3xl mx-auto mb-16">
+              Números que mostram o alcance e impacto do UFABC Next na comunidade acadêmica
+            </p>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">15k+</div>
+                <p className="text-white/90 text-lg">Pessoas Impactadas</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">3+</div>
+                <p className="text-white/90 text-lg">Projetos Desenvolvidos</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">5+</div>
+                <p className="text-white/90 text-lg">Aulões Realizados</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">100+</div>
+                <p className="text-white/90 text-lg">Membros Ativos</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
 
            {/* Pilares Section */}
@@ -372,37 +410,7 @@ const LandingPage = () => {
 
 
 
-        {/* Impact Numbers Section */}
-        <section className="py-20 bg-gradient-to-br from-primary to-primary/80">
-          <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-white">Nosso Impacto</h2>
-            <p className="text-lg text-white/90 text-center max-w-3xl mx-auto mb-16">
-              Números que mostram o alcance e impacto do UFABC Next na comunidade acadêmica
-            </p>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-white mb-2">10k+</div>
-                <p className="text-white/90 text-lg">Pessoas Impactadas</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-white mb-2">50+</div>
-                <p className="text-white/90 text-lg">Projetos Desenvolvidos</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-white mb-2">15+</div>
-                <p className="text-white/90 text-lg">Aulões Realizados</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-white mb-2">100+</div>
-                <p className="text-white/90 text-lg">Membros Ativos</p>
-              </div>
-            </div>
-          </div>
-        </section>
+       
 
         {/* Join Us Section */}
         <section id="comunidade" className="py-20 bg-[#0a2e4f] text-white text-center">
