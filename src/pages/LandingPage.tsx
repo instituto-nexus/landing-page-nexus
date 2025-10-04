@@ -365,6 +365,38 @@ const LandingPage = () => {
 
 
 
+        {/* Impact Numbers Section */}
+        <section className="py-20 bg-gradient-to-br from-primary to-primary/80">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-white">Nosso Impacto</h2>
+            <p className="text-lg text-white/90 text-center max-w-3xl mx-auto mb-16">
+              Números que mostram o alcance e impacto do UFABC Next na comunidade acadêmica
+            </p>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">10k+</div>
+                <p className="text-white/90 text-lg">Pessoas Impactadas</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">50+</div>
+                <p className="text-white/90 text-lg">Projetos Desenvolvidos</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">15+</div>
+                <p className="text-white/90 text-lg">Aulões Realizados</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">100+</div>
+                <p className="text-white/90 text-lg">Membros Ativos</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Join Us Section */}
         <section id="comunidade" className="py-20 bg-[#0a2e4f] text-white text-center">
           <div className="max-w-3xl mx-auto px-6">
