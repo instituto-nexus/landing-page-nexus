@@ -134,6 +134,97 @@ export default function Members() {
           ))}
         </div>
 
+        {/* Former Members Timeline Section */}
+        <div className="mt-32 mb-20">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
+              Ex-Membros
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Agradecemos a todos que fizeram parte da jornada do UFABC Next e 
+              contribuíram para construir o que somos hoje.
+            </p>
+          </div>
+
+          {/* Vertical Timeline */}
+          <div className="max-w-4xl mx-auto relative">
+            {/* Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-border"></div>
+
+            {/* Timeline Items */}
+            <div className="space-y-12">
+              {/* 2024 */}
+              <div className="relative">
+                <div className="flex items-center justify-center mb-8">
+                  <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-lg z-10">
+                    2024
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <Card className="border-border bg-card">
+                    <CardContent className="p-6">
+                      <p className="text-muted-foreground text-sm mb-2">Janeiro - Junho 2024</p>
+                      <h3 className="font-semibold text-lg text-card-foreground mb-1">
+                        Lucas Martins
+                      </h3>
+                      <p className="text-muted-foreground text-sm">
+                        Ex-Coordenador de Tecnologia
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <div className="hidden md:block"></div>
+                </div>
+              </div>
+
+              {/* 2023 */}
+              <div className="relative">
+                <div className="flex items-center justify-center mb-8">
+                  <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-lg z-10">
+                    2023
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="hidden md:block"></div>
+                  <Card className="border-border bg-card">
+                    <CardContent className="p-6">
+                      <p className="text-muted-foreground text-sm mb-2">2023</p>
+                      <h3 className="font-semibold text-lg text-card-foreground mb-1">
+                        Ana Paula Silva
+                      </h3>
+                      <p className="text-muted-foreground text-sm">
+                        Ex-Coordenadora de Comunicação
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+
+              {/* 2022 */}
+              <div className="relative">
+                <div className="flex items-center justify-center mb-8">
+                  <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-bold text-lg z-10">
+                    2022
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <Card className="border-border bg-card">
+                    <CardContent className="p-6">
+                      <p className="text-muted-foreground text-sm mb-2">2022</p>
+                      <h3 className="font-semibold text-lg text-card-foreground mb-1">
+                        Rafael Costa
+                      </h3>
+                      <p className="text-muted-foreground text-sm">
+                        Ex-Coordenador de Produto
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <div className="hidden md:block"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Join Section */}
         <div className="text-center mt-20 py-16 bg-muted/50 rounded-lg">
           <h2 className="text-3xl font-bold text-foreground mb-4">
