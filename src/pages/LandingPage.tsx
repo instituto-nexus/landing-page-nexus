@@ -68,6 +68,13 @@ const teamMembers = [
     role: "Especilista devops",
     image: "/members/profile-pedro.png",
     linkedin: "https://linkedin.com/in/carlamendes"
+  },
+  {
+    id: 7,
+    name: "Rafael Guerra",
+    role: "Engenheiro de Software",
+    image: "/members/rafa-profile-pic.jpeg",
+    linkedin: "https://linkedin.com/in/carlamendes"
   }
 ];
 
