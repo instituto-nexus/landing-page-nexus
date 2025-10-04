@@ -122,7 +122,7 @@ const pillars = [
     icon: "./members/wpp-bot-project.webp"
   },
   {
-    id: 4,
+    id: 5,
     title: "Aulões next",
     description: "criamos auloes para conectar veterano e calouros",
     icon: "./members/logo-aulao.png"
@@ -363,25 +363,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        {/* Pilares Section */}
-        <section id="iniciativas" className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-4 text-center">Nossos Pilares</h2>
-            <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12">
-              O UFABC Next atua em diversas frentes para garantir uma experiência universitária mais completa e enriquecedora.
-            </p>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {pillars.map((pillar) => (
-                <div key={pillar.id} className="bg-gray-50 rounded-lg p-6 shadow-sm text-center">
-                  <div className="text-4xl mb-4">{pillar.icon}</div>
-                  <h3 className="text-xl font-semibold mb-3 text-primary">{pillar.title}</h3>
-                  <p className="text-gray-700">{pillar.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+
 
         {/* Join Us Section */}
         <section id="comunidade" className="py-20 bg-[#0a2e4f] text-white text-center">
