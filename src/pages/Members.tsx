@@ -161,15 +161,28 @@ export default function Members() {
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
-                  <Card className="border-border bg-card">
+                  <Card className="border-border bg-card hover:shadow-lg transition-all duration-300">
                     <CardContent className="p-6">
-                      <p className="text-muted-foreground text-sm mb-2">Janeiro - Junho 2024</p>
-                      <h3 className="font-semibold text-lg text-card-foreground mb-1">
-                        Lucas Martins
-                      </h3>
-                      <p className="text-muted-foreground text-sm">
-                        Ex-Coordenador de Tecnologia
-                      </p>
+                      <div className="flex items-start gap-4">
+                        <Avatar className="w-16 h-16 ring-2 ring-border">
+                          <AvatarImage src="/members/profile-picture-mateus.jpeg" alt="Lucas Martins" />
+                          <AvatarFallback className="bg-muted text-muted-foreground">LM</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <p className="text-muted-foreground text-xs mb-1">Janeiro - Junho 2024</p>
+                          <h3 className="font-semibold text-lg text-card-foreground mb-1">
+                            Lucas Martins
+                          </h3>
+                          <p className="text-muted-foreground text-sm mb-3">
+                            Ex-Coordenador de Tecnologia
+                          </p>
+                          <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+                            <a href="#" target="_blank" rel="noopener noreferrer">
+                              <Linkedin className="h-4 w-4" />
+                            </a>
+                          </Button>
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                   <div className="hidden md:block"></div>
@@ -185,15 +198,28 @@ export default function Members() {
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="hidden md:block"></div>
-                  <Card className="border-border bg-card">
+                  <Card className="border-border bg-card hover:shadow-lg transition-all duration-300">
                     <CardContent className="p-6">
-                      <p className="text-muted-foreground text-sm mb-2">2023</p>
-                      <h3 className="font-semibold text-lg text-card-foreground mb-1">
-                        Ana Paula Silva
-                      </h3>
-                      <p className="text-muted-foreground text-sm">
-                        Ex-Coordenadora de Comunicação
-                      </p>
+                      <div className="flex items-start gap-4">
+                        <Avatar className="w-16 h-16 ring-2 ring-border">
+                          <AvatarImage src="/members/profile-picture-nicolas.jpeg" alt="Ana Paula Silva" />
+                          <AvatarFallback className="bg-muted text-muted-foreground">AS</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <p className="text-muted-foreground text-xs mb-1">2023</p>
+                          <h3 className="font-semibold text-lg text-card-foreground mb-1">
+                            Ana Paula Silva
+                          </h3>
+                          <p className="text-muted-foreground text-sm mb-3">
+                            Ex-Coordenadora de Comunicação
+                          </p>
+                          <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+                            <a href="#" target="_blank" rel="noopener noreferrer">
+                              <Linkedin className="h-4 w-4" />
+                            </a>
+                          </Button>
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
@@ -207,15 +233,28 @@ export default function Members() {
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
-                  <Card className="border-border bg-card">
+                  <Card className="border-border bg-card hover:shadow-lg transition-all duration-300">
                     <CardContent className="p-6">
-                      <p className="text-muted-foreground text-sm mb-2">2022</p>
-                      <h3 className="font-semibold text-lg text-card-foreground mb-1">
-                        Rafael Costa
-                      </h3>
-                      <p className="text-muted-foreground text-sm">
-                        Ex-Coordenador de Produto
-                      </p>
+                      <div className="flex items-start gap-4">
+                        <Avatar className="w-16 h-16 ring-2 ring-border">
+                          <AvatarImage src="/members/profile-picture-igor.jpeg" alt="Rafael Costa" />
+                          <AvatarFallback className="bg-muted text-muted-foreground">RC</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <p className="text-muted-foreground text-xs mb-1">2022</p>
+                          <h3 className="font-semibold text-lg text-card-foreground mb-1">
+                            Rafael Costa
+                          </h3>
+                          <p className="text-muted-foreground text-sm mb-3">
+                            Ex-Coordenador de Produto
+                          </p>
+                          <Button variant="ghost" size="icon" className="h-8 w-8" asChild>
+                            <a href="#" target="_blank" rel="noopener noreferrer">
+                              <Linkedin className="h-4 w-4" />
+                            </a>
+                          </Button>
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
                   <div className="hidden md:block"></div>
