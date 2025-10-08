@@ -9,12 +9,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 function NavBarLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
-    <Link to={to} className="text-muted-foreground hover:text-foreground hover:scale-105 transition-all duration-300 text-xl">
+    <a href={to} className="text-muted-foreground hover:text-foreground hover:scale-105 transition-all duration-300 text-md">
       {children}
-    </Link>
+    </a>
   );
 }
 
@@ -30,28 +32,28 @@ function MobileNavLink({ to, onClick, children }: { to: string; onClick: () => v
   );
 }
 
-const navBarLinks = [
-  {
-    to: "/",
-    children: "Inicio"
-  },
-  
-  {
-    to: "/#projetos",
-    children: "Projetos"
-  },
-  {
-    to: "/#comunidade",
-    children: "Comunidade"
-  },
-  {
-    to: "/team",
-    children: "Equipe"
-  }
-];
-
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const navBarLinks = [
+    {
+      to: "/",
+      children: t('nav.home')
+    },
+    {
+      to: "/#projetos",
+      children: t('nav.projects')
+    },
+    { 
+      to: "/#comunidade",
+      children: t('nav.community')
+    },
+    {
+      to: "/team",
+      children: t('nav.team')
+    }
+  ];
 
   return (
     <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
@@ -60,7 +62,7 @@ export default function NavBar() {
         <div className="flex-shrink-0">
           <Link to="/" className="flex items-center space-x-2 hover:opacity-80 hover:scale-105 transition-all duration-300">
             <img src="/nexus-logo-gradient.svg" alt="Nexus Logo" className="w-6 h-6 md:h-10 md:w-10" />
-            <span className="font-semibold text-foreground text-lg md:text-2xl">Nexus</span>
+            <span className="font-semibold text-foreground text-lg md:text-xl">Nexus</span>
           </Link>
         </div>
         
@@ -73,8 +75,10 @@ export default function NavBar() {
           ))}
         </nav>
         
-        {/* Desktop - Empty space for balance */}
-        <div className="flex-shrink-0 w-[72px] hidden md:block"></div>
+        {/* Language Switcher - Desktop */}
+        <div className="hidden md:block">
+          <LanguageSwitcher />
+        </div>
 
         {/* Mobile Menu */}
         <div className="flex-1 flex justify-end md:hidden">
@@ -99,6 +103,9 @@ export default function NavBar() {
                     {link.children}
                   </MobileNavLink>
                 ))}
+                <div className="pt-4 border-t">
+                  <LanguageSwitcher />
+                </div>
               </nav>
             </SheetContent>
           </Sheet>

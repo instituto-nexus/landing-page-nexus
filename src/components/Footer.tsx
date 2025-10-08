@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+  
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-6">
@@ -17,27 +20,26 @@ export default function Footer() {
               <span className="text-xl font-bold">Nexus</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Uma iniciativa acadêmica para potencializar a experiência
-              universitária na UFABC.
+              {t('footer.description')}
             </p>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Links Rápidos</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/#sobre" className="text-gray-400 hover:text-white transition-colors">
-                  Sobre
+                  {t('footer.about')}
                 </Link>
               </li>
               <li>
                 <Link to="/#iniciativas" className="text-gray-400 hover:text-white transition-colors">
-                  Iniciativas
+                  {t('footer.initiatives')}
                 </Link>
               </li>
               <li>
                 <Link to="/team" className="text-gray-400 hover:text-white transition-colors">
-                  Equipe
+                  {t('footer.team')}
                 </Link>
               </li>
               <li>
@@ -47,16 +49,16 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Plataforma
+                  {t('footer.platform')}
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contato</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.contact')}</h3>
             <p className="text-gray-400 mb-2">contato@nexus.com.br</p>
-            <p className="text-gray-400 mb-4">Santo André, SP - Brasil</p>
+            <p className="text-gray-400 mb-4">{t('footer.location')}</p>
             <div className="flex space-x-4">
               <a
                 href="https://www.instagram.com/ufabc_next/"
@@ -104,7 +106,7 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400">
-            &copy; 2025 Nexus. Todos os direitos reservados.
+            {t('footer.copyright')}
           </p>
         </div>
       </div>
