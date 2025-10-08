@@ -1,185 +1,353 @@
-import React, { useState } from "react";
-import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
-import CourseCard from "@/components/CourseCard";
-import CardPreview from "@/components/CardPreview";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import NavBar from "@/components/NavBar";
+import SubmitDialog from "@/components/SubmitDialog";
+import Footer from "@/components/Footer";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
-const coursesData = [
+const projects = [
   {
     id: 1,
-    title: "Cálculo Vetorial e Integral",
-    code: "MCTA001-17",
-    professor: "Ana Paula Santos",
-    progress: 78,
-    imageColor: "bg-blue-500",
-    semester: "2023.2",
-    pendingTasks: 2
+    title: "UFABC next",
+    description:
+      "Construimos uma plataforma de avaliação de professores, disciplinas e cursos baseada na experiência dos alunoss",
+    icon: "./projects/next-logo.png",
   },
   {
     id: 2,
-    title: "Álgebra Linear",
-    code: "MCTA002-17",
-    professor: "Roberto Oliveira",
-    progress: 92,
-    imageColor: "bg-green-500",
-    semester: "2023.2",
-    pendingTasks: 0
+    title: "UFABC parser",
+    description:
+      "Disponibilizamos em formato de Api todas as informações relevantes para o desenvolvimento universitário da UFABC",
+    icon: "./projects/parser-logo.webp",
   },
   {
     id: 3,
-    title: "Física Geral I",
-    code: "MCTB019-17",
-    professor: "Carlos Mendes",
-    progress: 65,
-    imageColor: "bg-purple-500",
-    semester: "2023.2",
-    pendingTasks: 1
+    title: "WhatsaApp Bot",
+    description:
+      "Criamos um bot no WhatsApp para facilitar o acesso dos estudantes a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
+    icon: "./projects/whatsapp-bot.webp",
   },
   {
     id: 4,
-    title: "Bases Computacionais",
-    code: "MCTA023-13",
-    professor: "Patrícia Silva",
-    progress: 100,
-    imageColor: "bg-teal-500",
-    semester: "2023.2",
-    pendingTasks: 0
+    title: "WhatsApp Bot AI",
+    description:
+      "Criamos um bot no WhatsApp para facilitar o acesso dos estudantes a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
+    icon: "./projects/whatsapp-bot.webp",
   },
   {
     id: 5,
-    title: "Bases Epistemológicas",
-    code: "MCTB025-13",
-    professor: "João Fernandes",
-    progress: 45,
-    imageColor: "bg-red-500",
-    semester: "2023.2",
-    pendingTasks: 3
+    title: "Aulões Next",
+    description: "Criamos aulões para conectar veterano e calouros",
+    icon: "./projects/aulao-logo.png",
   },
-  {
-    id: 6,
-    title: "Processamento da Informação",
-    code: "MCTA028-15",
-    professor: "Mariana Costa",
-    progress: 72,
-    imageColor: "bg-amber-500",
-    semester: "2023.2",
-    pendingTasks: 0
-  },
-  {
-    id: 7,
-    title: "Fenômenos Mecânicos",
-    code: "MCTB018-17",
-    professor: "Lucas Pereira",
-    progress: 85,
-    imageColor: "bg-indigo-500",
-    semester: "2023.1",
-    pendingTasks: 0
-  },
-  {
-    id: 8,
-    title: "Estrutura da Matéria",
-    code: "MCTB009-17",
-    professor: "Juliana Souza",
-    progress: 60,
-    imageColor: "bg-cyan-500",
-    semester: "2023.1",
-    pendingTasks: 0
-  }
 ];
 
-const Index = () => {
-  const [activeSemester, setActiveSemester] = useState<string>("all");
-  
-  const filteredCourses = activeSemester === "all" 
-    ? coursesData 
-    : coursesData.filter(course => course.semester === activeSemester);
-
+const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <div className="flex">
-        <Sidebar />
-        <main className="flex-1 p-4 md:p-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex justify-end mb-4">
-              <Link to="/">
-                <Button variant="outline" size="sm">
-                  Voltar para Landing Page
+    <div className="min-h-screen bg-background">
+      <NavBar />
+
+      <main>
+        {/* Hero Section */}
+        <section className="bg-[#0a2e4f] text-white py-12 md:py-32">
+          <div className="max-w-7xl mx-auto px-6">
+            {/* Mobile Layout - Stacked */}
+            <div className="flex flex-col gap-8 md:hidden">
+              {/* Text */}
+              <div className="space-y-4">
+                <h1 className="text-3xl font-bold leading-tight">
+                  O ecossistema de inovação e transformação
+                </h1>
+                <p className="text-base text-white/80 leading-relaxed">
+                  Uma plataforma feita por e para estudantes da Universidade
+                  Federal do ABC, promovendo mentorias, conteúdos acadêmicos e
+                  apoio comunitário ao longo da graduação.
+                </p>
+              </div>
+
+              {/* Image */}
+              <div className="flex justify-center hover:scale-105 transition-all duration-300">
+                <img
+                  src="/members/time.jpeg"
+                  alt="Estudantes UFABC Next"
+                  className="rounded-2xl shadow-2xl w-full max-h-[400px] object-cover"
+                />
+              </div>
+
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <SubmitDialog
+                  type="volunteer"
+                  buttonText="Seja Voluntário"
+                  buttonClassName="bg-white text-black hover:bg-white/70 font-semibold w-full sm:w-auto"
+                />
+                <Button
+                  size="lg"
+                  className="text-white hover:bg-white/10 bg-transparent w-full sm:w-auto"
+                  onClick={() => {
+                    window.scrollTo({
+                      top: document.getElementById("comunidade")?.offsetTop,
+                      behavior: "smooth",
+                    });
+                  }}
+                >
+                  Saiba Mais
                 </Button>
-              </Link>
-            </div>
-            
-            <div className="mb-8 bg-white rounded-lg shadow p-4">
-              <h2 className="text-xl font-semibold mb-4">Preview do Card Vue Convertido para React</h2>
-              <CardPreview color="bg-blue-500" />
-            </div>
-            
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-              <div>
-                <h1 className="text-2xl font-semibold">Minhas Disciplinas</h1>
-                <p className="text-muted-foreground">Gerencie suas disciplinas e acompanhe seu progresso</p>
-              </div>
-              
-              <div className="flex items-center gap-2">
-                <Select defaultValue="all" onValueChange={setActiveSemester}>
-                  <SelectTrigger className="w-[140px]">
-                    <SelectValue placeholder="Semestre" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Todos</SelectItem>
-                    <SelectItem value="2023.2">2023.2</SelectItem>
-                    <SelectItem value="2023.1">2023.1</SelectItem>
-                    <SelectItem value="2022.3">2022.3</SelectItem>
-                  </SelectContent>
-                </Select>
               </div>
             </div>
-            
-            <Tabs defaultValue="current" className="mb-6">
-              <TabsList>
-                <TabsTrigger value="current">Em andamento</TabsTrigger>
-                <TabsTrigger value="completed">Concluídas</TabsTrigger>
-                <TabsTrigger value="upcoming">Próximas</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="current" className="mt-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {filteredCourses.map((course) => (
-                    <CourseCard
-                      key={course.id}
-                      title={course.title}
-                      code={course.code}
-                      professor={course.professor}
-                      progress={course.progress}
-                      imageColor={course.imageColor}
-                      semester={course.semester}
-                      pendingTasks={course.pendingTasks}
-                    />
-                  ))}
+
+            {/* Desktop/Tablet Layout - Side by Side */}
+            <div className="hidden md:grid md:grid-cols-2 gap-12 items-center">
+              {/* Text & Buttons */}
+              <div className="space-y-6">
+                <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+                  O ecossistema de inovação e transformação
+                </h1>
+                <p className="text-lg text-white/80 leading-relaxed">
+                  Uma plataforma feita por e para estudantes da Universidade
+                  Federal do ABC, promovendo mentorias, conteúdos acadêmicos e
+                  apoio comunitário ao longo da graduação.
+                </p>
+                <div className="flex gap-4 pt-4">
+                  <SubmitDialog
+                    type="volunteer"
+                    buttonText="Seja Voluntário"
+                    buttonClassName="bg-white text-black hover:bg-white/70 font-semibold"
+                  />
+                  <Button
+                    size="lg"
+                    className="text-white hover:bg-white/10 bg-transparent"
+                  >
+                    Saiba Mais
+                  </Button>
                 </div>
-              </TabsContent>
-              
-              <TabsContent value="completed">
-                <div className="text-center py-16">
-                  <p className="text-muted-foreground">Não há disciplinas concluídas para exibir.</p>
-                </div>
-              </TabsContent>
-              
-              <TabsContent value="upcoming">
-                <div className="text-center py-16">
-                  <p className="text-muted-foreground">Não há disciplinas agendadas para o próximo semestre.</p>
-                </div>
-              </TabsContent>
-            </Tabs>
+              </div>
+
+              {/* Image */}
+              <div className="flex justify-center hover:scale-105 transition-all duration-300">
+                <img
+                  src="/members/time.jpeg"
+                  alt="Estudantes UFABC Next"
+                  className="rounded-2xl shadow-2xl w-full max-h-[520px] object-cover"
+                />
+              </div>
+            </div>
           </div>
-        </main>
-      </div>
+        </section>
+
+        {/* Sobre Section */}
+        <section id="sobre" className="py-24 bg-background">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center text-foreground">
+              Sobre o UFABC Next
+            </h2>
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                O UFABC Next nasceu da necessidade de criar uma comunidade de
+                apoio e desenvolvimento acadêmico dentro da Universidade Federal
+                do ABC, onde estudantes pudessem compartilhar conhecimentos,
+                experiências e se preparar melhor para os desafios da graduação.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-card rounded-xl p-8 shadow-sm border border-border hover:shadow-lg transition-all duration-300">
+                <h3 className="text-2xl font-bold mb-4 text-primary">
+                  Nossa Missão
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Facilitar o percurso acadêmico dos estudantes da UFABC através
+                  de uma rede de apoio, compartilhamento de conhecimento e
+                  ferramentas de desenvolvimento.
+                </p>
+              </div>
+
+              <div className="bg-card rounded-xl p-8 shadow-sm border border-border hover:shadow-lg transition-all duration-300">
+                <h3 className="text-2xl font-bold mb-4 text-primary">
+                  Nossa Visão
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Ser reconhecida como a principal iniciativa de apoio ao
+                  desenvolvimento acadêmico na UFABC, tornando-se referência
+                  para outras universidades.
+                </p>
+              </div>
+
+              <div className="bg-card rounded-xl p-8 shadow-sm border border-border hover:shadow-lg transition-all duration-300">
+                <h3 className="text-2xl font-bold mb-4 text-primary">
+                  Nosso Impacto
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Mais de 2.000 estudantes impactados, centenas de mentorias
+                  realizadas e uma comunidade ativa que transforma experiências
+                  acadêmicas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Projetos */}
+        <section id="projetos" className="py-24 bg-muted/30">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-foreground">
+              Projetos
+            </h2>
+            <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-16">
+              O UFABC Next atua em diversas frentes para garantir uma
+              experiência universitária mais completa e enriquecedora.
+            </p>
+
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full max-w-5xl mx-auto"
+            >
+              <CarouselContent>
+                {projects.map((project) => (
+                  <CarouselItem
+                    key={project.id}
+                    className="md:basis-1/2 lg:basis-1/3"
+                  >
+                    <ProjectItem project={project} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hover:bg-primary/10 transition-all duration-300 left-2" />
+              <CarouselNext className="hover:bg-primary/10 transition-all duration-300 right-2" />
+            </Carousel>
+          </div>
+        </section>
+
+        {/* Governança */}
+        <section className="py-24 bg-background">
+          <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-foreground">
+              Governança Nexus
+            </h2>
+            <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-16">
+              A estrutura organizacional do UFABC Next assegura planejamento,
+              execução e impacto contínuo. Cada área é liderada por estudantes
+              com alta responsabilidade e engajamento.
+            </p>
+
+            <Button
+              className="transition-all duration-300 p-8 hover:scale-105"
+              style={{
+                background:
+                  "linear-gradient(to right,rgb(146, 198, 247), #0a2e4f)",
+              }}
+            >
+              <a href="/members" className="text-white text-xl font-medium">
+                Conheça nossa equipe
+              </a>
+            </Button>
+          </div>
+        </section>
+
+        {/* Impact Numbers Section */}
+        <section className="py-24 bg-gradient-to-br from-[#0a2e4f] to-primary">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center text-white">
+              Nosso Impacto
+            </h2>
+            <p className="text-xl text-white/90 text-center max-w-3xl mx-auto mb-20">
+              Números que mostram o alcance e impacto do Nexus na comunidade
+              acadêmica
+            </p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
+                  10k+
+                </div>
+                <p className="text-white/90 text-lg">Pessoas Impactadas</p>
+              </div>
+
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
+                  50+
+                </div>
+                <p className="text-white/90 text-lg">Projetos Desenvolvidos</p>
+              </div>
+
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
+                  15+
+                </div>
+                <p className="text-white/90 text-lg">Aulões Realizados</p>
+              </div>
+
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
+                  100+
+                </div>
+                <p className="text-white/90 text-lg">Membros Ativos</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Comunidade */}
+        <section
+          id="comunidade"
+          className="py-20 bg-[#0a2e4f] text-white text-center"
+        >
+          <div className="max-w-3xl mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-4">Junte-se a nós</h2>
+            <p className="text-lg mb-8">
+              Faça parte dessa comunidade e contribua para o desenvolvimento
+              acadêmico dos estudantes da UFABC, seja como mentor, voluntário ou
+              parceiro.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <SubmitDialog
+                type="mentor"
+                buttonText="Quero ser mentor"
+                buttonClassName="bg-transparent text-white hover:bg-white/10 font-semibold"
+              />
+
+              <SubmitDialog
+                type="volunteer"
+                buttonText="Quero ser voluntário"
+                buttonClassName="bg-white text-black hover:bg-white/70 font-semibold"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </div>
   );
 };
 
-export default Index;
+export default LandingPage;
+
+function ProjectItem({ project }: { project: any }) {
+  return (
+    <div className="bg-card rounded-xl p-6 shadow-sm border border-border text-center h-full hover:border-primary transition-all duration-300">
+      <div className="text-4xl mb-4">
+        <img
+          src={project.icon}
+          height={270}
+          alt={project.title}
+          className="w-full h-64 object-contain rounded-lg"
+        />
+      </div>
+      <h3 className="text-xl font-bold mb-3 text-foreground">
+        {project.title}
+      </h3>
+      <p className="text-muted-foreground leading-relaxed">
+        {project.description}
+      </p>
+    </div>
+  );
+}
