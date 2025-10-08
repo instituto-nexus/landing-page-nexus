@@ -165,7 +165,7 @@ export default function Members() {
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
                         <Avatar className="w-16 h-16 ring-2 ring-border">
-                          <AvatarImage src="/members/profile-picture-mateus.jpeg" alt="Lucas Martins" />
+                          <AvatarImage src="/members/profile-picture-mateus.jpeg" alt="" />
                           <AvatarFallback className="bg-muted text-muted-foreground">LM</AvatarFallback>
                         </Avatar>
                         <div className="flex-1">

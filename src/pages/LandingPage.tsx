@@ -40,15 +40,9 @@ const teamMembers = [
     image: "/members/joabe-profile.jpeg",
     linkedin: "https://www.linkedin.com/in/joabesv/s"
   },
+
   {
     id: 3,
-    name: "Nicolas Greco",
-    role: "Gerente geral e desenvolvedor",
-    image: "/members/profile-picture-nicolas.jpeg",
-    linkedin: "https://www.linkedin.com/in/nicolas-greco-160a5b258/"
-  },
-  {
-    id: 4,
     name: "Mateus Braga",
     role: "Especialista front-end",
     description: "Líder de iniciativas open source e front-end developer apaixonado por criar experiências digitais incríveis.",
@@ -56,16 +50,24 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/mateusbrg/"
   },
   {
+    id: 4,
+    name: "Nicolas Greco",
+    role: "Gerente geral e desenvolvedor",
+    image: "/members/profile-picture-nicolas.jpeg",
+    linkedin: "https://www.linkedin.com/in/nicolas-greco-160a5b258/"
+  },
+  
+  {
     id: 5,
     name: "Igor Santos",
-    role: "Especilista back-end",
+    role: "Especialista back-end",
     image: "/members/profile-picture-igor.jpeg",
     linkedin: "https://www.linkedin.com/in/igor-santos-ufabc/"
   },
   {
     id: 6,
     name: "Pedro Rodrigues",
-    role: "Especilista devops",
+    role: "Especialista devops",
     image: "/members/profile-pedro.png",
     linkedin: "https://www.linkedin.com/in/pedroprg/"
   },
@@ -82,6 +84,34 @@ const teamMembers = [
     role: "Engenheiro de Software",
     image: "/members/carlos-profile-pic.jpeg",
     linkedin: "https://www.linkedin.com/in/alencarlima/"
+  },
+  {
+    id: 9,
+    name: "Brian Andreossi",
+    role: "Mentor e consultor de tecnologia",
+    image: "/members/brian-profile-pic.jpeg",
+    linkedin: "https://www.linkedin.com/in/brian-andreossi/"
+  },
+  {
+    id: 10,
+    name: "Pedro Tomaz",
+    role: "Analista de produtos",
+    image: "/members/pedro-tomaz-profile-pic.jpeg",
+    linkedin: "https://www.linkedin.com/in/pedro-tomaz-55180619a/"
+  },
+  {
+    id: 11,
+    name: "João Pizoni",
+    role: "Engenheiro de dados",
+    image: "/members/joao-pizoni-profile-pic.jpeg",
+    linkedin: "https://www.linkedin.com/in/joaopizoni/"
+  },
+  {
+    id: 12,
+    name: "João Zanardo",
+    role: "Leader",
+    image: "/members/zanardo-profile-pic.jpeg",
+    linkedin: "https://www.linkedin.com/in/jo%C3%A3o-zanardo/"
   }
 ];
 
@@ -121,7 +151,7 @@ const pillars = [
     id: 2,
     title: "Ufabc parser",
     description: "Disponibilizamos em formato de Api todas as informações relevantes para o desenvolvimento universitário da UFABC",
-    icon: "./members/parser-logo.webp"
+    icon: "./members/parser-logo.png"
   },
   {
     id: 3,
@@ -131,12 +161,6 @@ const pillars = [
   },
   {
     id: 4,
-    title: "Ufabc next Wpp Bot AI",
-    description: "Criamos um bot no WhatsApp para facilitar o acesso dos estudantes a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
-    icon: "./members/wpp-bot-project.webp"
-  },
-  {
-    id: 5,
     title: "Aulões next",
     description: "criamos auloes para conectar veterano e calouros",
     icon: "./members/logo-aulao.png"
@@ -319,8 +343,8 @@ const LandingPage = () => {
                 <p className="text-white/90 text-lg">Aulões Realizados</p>
               </div>
               
-              <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-white mb-2">100+</div>
+              <div className="text-center"> 
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">10+</div>
                 <p className="text-white/90 text-lg">Membros Ativos</p>
               </div>
             </div>
@@ -346,18 +370,35 @@ const LandingPage = () => {
               <CarouselContent>
                 {pillars.map((pillar) => (
                   <CarouselItem key={pillar.id} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="bg-gray-50 rounded-lg p-6 shadow-sm text-center h-full">
-                      <div className="text-4xl mb-4">
-                        <img 
-                          src={pillar.icon}
-                          height={270}
-                          alt={pillar.title} 
-                          className="w-full h-64 object-contain"
-                        />
+                    {pillar.title === "Ufabc next" ? (
+                      <Link to="/members" className="block">
+                        <div className="bg-gray-50 rounded-lg p-6 shadow-sm text-center h-full transition-transform hover:scale-105 cursor-pointer">
+                          <div className="text-4xl mb-4">
+                            <img 
+                              src={pillar.icon}
+                              height={270}
+                              alt={pillar.title} 
+                              className="w-full h-64 object-contain"
+                            />
+                          </div>
+                          <h3 className="text-xl font-semibold mb-3 text-primary">{pillar.title}</h3>
+                          <p className="text-gray-700">{pillar.description}</p>
+                        </div>
+                      </Link>
+                    ) : (
+                      <div className="bg-gray-50 rounded-lg p-6 shadow-sm text-center h-full">
+                        <div className="text-4xl mb-4">
+                          <img 
+                            src={pillar.icon}
+                            height={270}
+                            alt={pillar.title} 
+                            className="w-full h-64 object-contain"
+                          />
+                        </div>
+                        <h3 className="text-xl font-semibold mb-3 text-primary">{pillar.title}</h3>
+                        <p className="text-gray-700">{pillar.description}</p>
                       </div>
-                      <h3 className="text-xl font-semibold mb-3 text-primary">{pillar.title}</h3>
-                      <p className="text-gray-700">{pillar.description}</p>
-                    </div>
+                    )}
                   </CarouselItem>
                 ))}
               </CarouselContent>
