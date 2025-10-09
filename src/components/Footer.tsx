@@ -57,7 +57,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-lg font-semibold mb-4">{t('footer.contact')}</h3>
-            <p className="text-gray-400 mb-2">contato@nexus.com.br</p>
+            <p className="text-gray-400 mb-2">contato@fundacaonexus.com</p>
             <p className="text-gray-400 mb-4">{t('footer.location')}</p>
             <div className="flex space-x-4">
               <a
