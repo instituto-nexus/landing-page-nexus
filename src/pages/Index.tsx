@@ -254,21 +254,21 @@ const LandingPage = () => {
 
               <div className="text-center">
                 <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                  50+
+                  5+
                 </div>
                 <p className="text-white/90 text-lg">{t('impactNumbers.projectsDeveloped')}</p>
               </div>
 
               <div className="text-center">
                 <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                  15+
+                  5+
                 </div>
                 <p className="text-white/90 text-lg">{t('impactNumbers.classesHeld')}</p>
               </div>
 
               <div className="text-center">
                 <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                  100+
+                10+
                 </div>
                 <p className="text-white/90 text-lg">{t('impactNumbers.activeMembers')}</p>
               </div>

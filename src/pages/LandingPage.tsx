@@ -320,7 +320,7 @@ const LandingPage = () => {
               </div>
               
               <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-white mb-2">100+</div>
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">10+</div>
                 <p className="text-white/90 text-lg">Membros Ativos</p>
               </div>
             </div>
