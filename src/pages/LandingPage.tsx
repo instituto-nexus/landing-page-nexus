@@ -27,7 +27,7 @@ const teamMembers = [
   {
     id: 1,
     name: "Gabriel Monteiro",
-    description: "Fundador do nexus, coordenador do projeto ufabc next e nas horas vagas engenheiro de software.",
+    description: "Fundador do nexus, coordenador do projeto Nexus e nas horas vagas engenheiro de software.",
     role: "Presidente e Fundador",
     image: "/members/profile-picture-gabriel.jpeg",
     linkedin: "https://www.linkedin.com/in/gabriel-monteiro-rocha7/"
@@ -35,7 +35,7 @@ const teamMembers = [
   {
     id: 2,
     name: "Joabe Varjão",
-    description: "Cofundador do nexus, principal enginner do projeto ufabc next, fundador do projeto ufabc parser, apaixonado por softwares",
+    description: "Cofundador do nexus, principal enginner do projeto Nexus, fundador do projeto ufabc parser, apaixonado por softwares",
     role: "Vice-Presidente e cofundador",
     image: "/members/joabe-profile.jpeg",
     linkedin: "https://www.linkedin.com/in/joabesv/s"
@@ -113,33 +113,38 @@ const formerMembers = [
 const pillars = [
   {
     id: 1,
-    title: "Ufabc next",
+    title: "Nexus",
     description: "Construimos uma plataforma de avaliação de professores, disciplinas e cursos baseada na experiência dos alunoss",
-    icon: "./members/logo_next_2.png"
+    icon: "./members/logo_next_2.png",
+    link: "/projetos/ufabc-next"
   },
   {
     id: 2,
     title: "Ufabc parser",
     description: "Disponibilizamos em formato de Api todas as informações relevantes para o desenvolvimento universitário da UFABC",
-    icon: "./members/parser-logo.webp"
+    icon: "./members/parser-logo.webp",
+    link: "/projetos/ufabc-parser"
   },
   {
     id: 3,
-    title: "Ufabc next Wpp Bot",
+    title: "Nexus Wpp Bot",
     description: "Criamos um bot no WhatsApp para facilitar o acesso dos estudantes a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
-    icon: "./members/wpp-bot-project.webp"
+    icon: "./members/wpp-bot-project.webp",
+    link: "/projetos/whatsapp-bot"
   },
   {
     id: 4,
-    title: "Ufabc next Wpp Bot AI",
+    title: "Nexus Wpp Bot AI",
     description: "Criamos um bot no WhatsApp para facilitar o acesso dos estudantes a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
-    icon: "./members/wpp-bot-project.webp"
+    icon: "./members/wpp-bot-project.webp",
+    link: "/projetos/whatsapp-bot-ai"
   },
   {
     id: 5,
     title: "Aulões next",
     description: "criamos auloes para conectar veterano e calouros",
-    icon: "./members/logo-aulao.png"
+    icon: "./members/logo-aulao.png",
+    link: "/projetos/auloes-next"
   }
 ];
 
@@ -249,7 +254,7 @@ const LandingPage = () => {
               <img 
               style={{  height: "520px" }}
                 src="/members/team-photo.jpeg" 
-                alt="Estudantes UFABC Next" 
+                alt="Estudantes Nexus" 
                 className="rounded-lg shadow-lg" 
               />
             </div>
@@ -259,10 +264,10 @@ const LandingPage = () => {
         {/* Sobre Section */}
         <section id="sobre" className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-6 text-center">Sobre o UFABC Next</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center">Sobre o Nexus</h2>
             <div className="max-w-3xl mx-auto text-center mb-12">
               <p className="text-lg text-gray-700 mb-8">
-                O UFABC Next nasceu da necessidade de criar uma comunidade de apoio e desenvolvimento
+                O Nexus nasceu da necessidade de criar uma comunidade de apoio e desenvolvimento
                 acadêmico dentro da Universidade Federal do ABC, onde estudantes pudessem compartilhar
                 conhecimentos, experiências e se preparar melhor para os desafios da graduação.
               </p>
@@ -300,7 +305,7 @@ const LandingPage = () => {
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-white">Nosso Impacto</h2>
             <p className="text-lg text-white/90 text-center max-w-3xl mx-auto mb-16">
-              Números que mostram o alcance e impacto do UFABC Next na comunidade acadêmica
+              Números que mostram o alcance e impacto do Nexus na comunidade acadêmica
             </p>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -333,7 +338,7 @@ const LandingPage = () => {
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="text-3xl font-bold mb-4 text-center">Projetos</h2>
             <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12">
-              O UFABC Next atua em diversas frentes para garantir uma experiência universitária mais completa e enriquecedora.
+              O Nexus atua em diversas frentes para garantir uma experiência universitária mais completa e enriquecedora.
             </p>
             
             <Carousel
@@ -346,18 +351,23 @@ const LandingPage = () => {
               <CarouselContent>
                 {pillars.map((pillar) => (
                   <CarouselItem key={pillar.id} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="bg-gray-50 rounded-lg p-6 shadow-sm text-center h-full">
-                      <div className="text-4xl mb-4">
-                        <img 
-                          src={pillar.icon}
-                          height={270}
-                          alt={pillar.title} 
-                          className="w-full h-64 object-contain"
-                        />
+                    <Link to={pillar.link} className="block h-full">
+                      <div className="bg-gray-50 rounded-lg p-6 shadow-sm text-center h-full flex flex-col hover:shadow-md transition-shadow cursor-pointer">
+                        <div className="text-4xl mb-4">
+                          <img 
+                            src={pillar.icon}
+                            height={270}
+                            alt={pillar.title} 
+                            className="w-full h-64 object-contain"
+                          />
+                        </div>
+                        <h3 className="text-xl font-semibold mb-3 text-primary">{pillar.title}</h3>
+                        <p className="text-gray-700 mb-4 flex-grow">{pillar.description}</p>
+                        <Button variant="outline" className="w-full">
+                          Ver mais
+                        </Button>
                       </div>
-                      <h3 className="text-xl font-semibold mb-3 text-primary">{pillar.title}</h3>
-                      <p className="text-gray-700">{pillar.description}</p>
-                    </div>
+                    </Link>
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -372,7 +382,7 @@ const LandingPage = () => {
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="text-3xl font-bold mb-4 text-center">Governança Nexus</h2>
             <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12">
-              A estrutura organizacional do UFABC Next assegura planejamento, execução e impacto contínuo. 
+              A estrutura organizacional do Nexus assegura planejamento, execução e impacto contínuo. 
               Cada área é liderada por estudantes com alta responsabilidade e engajamento.
             </p>
             
@@ -431,7 +441,7 @@ const LandingPage = () => {
                   <DialogHeader>
                     <DialogTitle>Cadastro de Mentor</DialogTitle>
                     <DialogDescription>
-                      Preencha os dados abaixo para se cadastrar como mentor no UFABC Next.
+                      Preencha os dados abaixo para se cadastrar como mentor no Nexus.
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
@@ -480,7 +490,7 @@ const LandingPage = () => {
                   <DialogHeader>
                     <DialogTitle>Cadastro de Voluntário</DialogTitle>
                     <DialogDescription>
-                      Preencha os dados abaixo para se cadastrar como voluntário no UFABC Next.
+                      Preencha os dados abaixo para se cadastrar como voluntário no Nexus.
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">

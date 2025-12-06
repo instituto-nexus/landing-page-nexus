@@ -20,30 +20,35 @@ const LandingPage = () => {
       title: t('projects.items.next.title'),
       description: t('projects.items.next.description'),
       icon: "./projects/next-logo.png",
+      link: "/projetos/ufabc-next"
     },
     {
       id: 2,
       title: t('projects.items.parser.title'),
       description: t('projects.items.parser.description'),
       icon: "./projects/parser-logo.webp",
+      link: "/projetos/ufabc-parser"
     },
     {
       id: 3,
       title: t('projects.items.whatsappBot.title'),
       description: t('projects.items.whatsappBot.description'),
       icon: "./projects/whatsapp-bot.webp",
+      link: "/projetos/whatsapp-bot"
     },
     {
       id: 4,
       title: t('projects.items.whatsappBotAI.title'),
       description: t('projects.items.whatsappBotAI.description'),
       icon: "./projects/whatsapp-bot.webp",
+      link: "/projetos/whatsapp-bot-ai"
     },
     {
       id: 5,
       title: t('projects.items.auloes.title'),
       description: t('projects.items.auloes.description'),
       icon: "./projects/aulao-logo.png",
+      link: "/projetos/auloes-next"
     },
   ];
   return (
@@ -312,21 +317,23 @@ export default LandingPage;
 
 function ProjectItem({ project }: { project: any }) {
   return (
-    <div className="bg-card rounded-xl p-6 shadow-sm border border-border text-center h-full hover:border-primary transition-all duration-300">
-      <div className="text-4xl mb-4">
-        <img
-          src={project.icon}
-          height={270}
-          alt={project.title}
-          className="w-full h-64 object-contain rounded-lg"
-        />
+    <a href={project.link} className="block h-full">
+      <div className="bg-card rounded-xl p-6 shadow-sm border border-border text-center h-full hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer">
+        <div className="text-4xl mb-4">
+          <img
+            src={project.icon}
+            height={270}
+            alt={project.title}
+            className="w-full h-64 object-contain rounded-lg"
+          />
+        </div>
+        <h3 className="text-xl font-bold mb-3 text-foreground">
+          {project.title}
+        </h3>
+        <p className="text-muted-foreground leading-relaxed">
+          {project.description}
+        </p>
       </div>
-      <h3 className="text-xl font-bold mb-3 text-foreground">
-        {project.title}
-      </h3>
-      <p className="text-muted-foreground leading-relaxed">
-        {project.description}
-      </p>
-    </div>
+    </a>
   );
 }

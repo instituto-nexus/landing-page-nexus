@@ -3,7 +3,16 @@
     "home": "Home",
     "projects": "Projects",
     "community": "Community",
-    "team": "Team"
+    "team": "Team",
+    "products": "Products",
+    "playground": "Playground",
+    "docs": "Documentation",
+    "pricing": "Pricing",
+    "integrations": "Integrations",
+    "blog": "Blog",
+    "resources": "Resources",
+    "signUp": "Sign up",
+    "githubStars": "stars"
   },
   "hero": {
     "title": "The innovation and transformation ecosystem",

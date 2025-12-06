@@ -3,7 +3,13 @@
     "home": "Inicio",
     "projects": "Projetos",
     "community": "Comunidade",
-    "team": "Equipe"
+    "team": "Equipe",
+    "docs": "Documentação",
+    "integrations": "Integrações",
+    "blog": "Blog",
+    "resources": "Recursos",
+    "signUp": "Cadastre-se",
+    "githubStars": "estrelas"
   },
   "hero": {
     "title": "O ecossistema de inovação e transformação",
@@ -13,8 +19,8 @@
     "learnMoreButton": "Saiba Mais"
   },
   "about": {
-    "title": "Sobre o UFABC Next",
-    "description": "O UFABC Next nasceu da necessidade de criar uma comunidade de apoio e desenvolvimento acadêmico dentro da Universidade Federal do ABC, onde estudantes pudessem compartilhar conhecimentos, experiências e se preparar melhor para os desafios da graduação.",
+    "title": "Sobre o Nexus",
+    "description": "O Nexus nasceu da necessidade de criar uma comunidade de apoio e desenvolvimento acadêmico dentro da Universidade Federal do ABC, onde estudantes pudessem compartilhar conhecimentos, experiências e se preparar melhor para os desafios da graduação.",
     "mission": {
       "title": "Nossa Missão",
       "content": "Facilitar o percurso acadêmico dos estudantes da UFABC através de uma rede de apoio, compartilhamento de conhecimento e ferramentas de desenvolvimento."
