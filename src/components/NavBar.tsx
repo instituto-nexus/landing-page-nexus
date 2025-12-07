@@ -164,15 +164,11 @@ export default function NavBar() {
                 </div>
 
                 <div className="border-t pt-4 space-y-1">
-                  <MobileNavLink to="/playground" onClick={() => setIsOpen(false)}>
-                    {t('nav.playground')}
-                  </MobileNavLink>
+                 
                   <MobileNavLink to="/docs" onClick={() => setIsOpen(false)}>
                     {t('nav.docs')}
                   </MobileNavLink>
-                  <MobileNavLink to="/pricing" onClick={() => setIsOpen(false)}>
-                    {t('nav.pricing')}
-                  </MobileNavLink>
+              
                 </div>
 
                 <div className="border-t pt-4 space-y-1">
