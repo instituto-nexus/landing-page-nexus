@@ -162,14 +162,16 @@ export default function BlogPost() {
           prose-p:leading-relaxed prose-p:mb-6
           prose-a:text-primary prose-a:no-underline hover:prose-a:underline
           prose-strong:font-semibold prose-strong:text-foreground
-          prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
-          prose-pre:bg-muted prose-pre:border prose-pre:rounded-lg
           prose-ul:my-6 prose-ol:my-6
           prose-li:my-2
           prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic
           prose-img:rounded-lg prose-img:shadow-md
+          [&_pre]:!bg-[#0d1117] [&_pre]:!text-[#c9d1d9] [&_pre]:rounded-lg [&_pre]:shadow-lg [&_pre]:my-6 [&_pre]:p-4 [&_pre]:overflow-auto [&_pre]:border [&_pre]:border-[#30363d]
+          [&_pre_code]:!bg-transparent [&_pre_code]:!text-inherit [&_pre_code]:!p-0
+          [&_code]:!bg-gray-800 [&_code]:!text-gray-200 [&_code]:!px-1.5 [&_code]:!py-0.5 [&_code]:!rounded [&_code]:!text-sm [&_code]:border [&_code]:border-[#30363d]
+          [&_.shiki]:!bg-[#0d1117] [&_.shiki]:rounded-lg [&_.shiki]:my-6 [&_.shiki]:shadow-lg
         ">
-          <div dangerouslySetInnerHTML={{ __html: convertMarkdownToHTML(post.content) }} />
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
 
         {/* Tags */}
@@ -239,49 +241,6 @@ export default function BlogPost() {
     </div>
   );
 }
-
-// Simple markdown to HTML converter
-function convertMarkdownToHTML(markdown: string): string {
-  let html = markdown;
-  
-  // Headers
-  html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-  html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-  html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-  
-  // Bold
-  html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
-  
-  // Italic
-  html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
-  
-  // Code blocks
-  html = html.replace(/```(\w+)?\n([\s\S]*?)```/gim, '<pre><code class="language-$1">$2</code></pre>');
-  
-  // Inline code
-  html = html.replace(/`([^`]+)`/gim, '<code>$1</code>');
-  
-  // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2">$1</a>');
-  
-  // Lists
-  html = html.replace(/^\- (.*$)/gim, '<li>$1</li>');
-  html = html.replace(/(<li>.*<\/li>)/gims, '<ul>$1</ul>');
-  
-  // Paragraphs
-  html = html.replace(/\n\n/g, '</p><p>');
-  html = '<p>' + html + '</p>';
-  
-  // Horizontal rule
-  html = html.replace(/^---$/gim, '<hr />');
-  
-  // Clean up empty paragraphs
-  html = html.replace(/<p><\/p>/g, '');
-  html = html.replace(/<p>\s*<\/p>/g, '');
-  
-  return html;
-}
-
 
 // Authors hover row: small avatar list where hovering/focus shows a floating author card
 function AuthorsHoverRow({ authors }: { authors: Author[] }) {

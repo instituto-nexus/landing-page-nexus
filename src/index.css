@@ -83,3 +83,55 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+/* Code blocks styling */
+@layer components {
+  /* Shiki code blocks */
+  .shiki {
+    @apply rounded-lg overflow-hidden shadow-lg my-6;
+    padding: 1.5rem !important;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    background-color: #0d1117 !important; /* GitHub dark theme background */
+  }
+
+  .shiki code {
+    @apply block;
+    counter-reset: line;
+    background: transparent !important;
+  }
+
+  .shiki .line {
+    @apply inline-block w-full px-4 -mx-4;
+  }
+
+  .shiki .line:hover {
+    @apply bg-white/5;
+  }
+
+  .shiki .line::before {
+    counter-increment: line;
+    content: counter(line);
+    @apply inline-block w-4 mr-6 text-right text-gray-500;
+  }
+
+  /* Regular pre code blocks (non-Shiki) */
+  pre {
+    background-color: #0d1117 !important; /* Same dark background */
+    color: #c9d1d9 !important;
+    border: 1px solid #30363d;
+  }
+
+  pre code {
+    background: transparent !important;
+    color: inherit !important;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  }
+
+  /* Inline code */
+  :not(pre) > code {
+    @apply bg-gray-800 text-gray-200 px-1.5 py-0.5 rounded text-sm;
+    border: 1px solid #30363d;
+  }
+}
