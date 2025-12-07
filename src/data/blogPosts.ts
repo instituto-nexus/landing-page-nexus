@@ -97,32 +97,28 @@ export const blogPostsDatabase: Record<string, BlogPost> = {
         category: "technology",
         slug: "my-server-is-down-what-do-i-do",
         tags: ["technology", "server", "troubleshooting", "devops", "ufabc next"],
-        content: ` <h2 class="text-3xl font-bold mb-4">O Dia em que o Next Caiu</h2>
+        content: `
 
-<p class="mb-4">Sexta-feira, 18h. Tudo parecia tranquilo.</p>
-
-<p class="mb-4">De repente, uma mensagem: <strong>"O Next caiu"</strong>.</p>
+<p class="mb-4">Sexta feira, 18hrs da tarde, aparentemente um ótimo dia e de uma hora para a outra chega uma mensagem <strong>"O Next caiu"</strong>.. Geralmente não gostamos de fazer deploy de sexta ou finais de semana, então o que poderia ter acontecido? </p>
 
 <p class="mb-4">
-Deploy na sexta? Nunca. Então o que teria acontecido?  
-Como bons engenheiros, fomos verificar.
+Como todos engenheiro de software, fomos céticos e tentamos entrar na plataforma para ver, o resultado: 
 </p>
-
-<p class="mb-4">Resultado:</p>
 
 <img src="/blog/blog-1/content/bad-gateway.jpg" alt="Erro na plataforma"
      class="rounded-lg shadow-md my-6" />
 
-<p class="mb-6">Sim. Estávamos com um problema real.</p>
+<p class="mb-6">De fato, tivemos um problema, no primeiro momento um erro de nginx só poderia indicar que a app não estava de pé e ao tentar redirecionar para a porta que a aplicação roda houve alguma falha. </p>
 
 <p class="mb-4">
-O erro do <strong>nginx</strong> sugeria que nossa aplicação não estava de pé.
-Nenhum deploy havia sido feito, então a falha deveria estar mais abaixo...
+Mas não tivemos <strong>nenhum</strong> deploy, o buraco deve ser um pouco mais embaixo. 
 </p>
+<p class="mb-4">
+O outro sintoma curioso, não conseguimos acessar a máquina de produção, qualquer tentativa de acesso com o SSM falhava, bem como o connect terminal do console, estavamos literalmente no escuro e sem poder entender o que de fato estava acontecendo. </p>
 
 <p class="mb-4">
-O segundo sintoma: não conseguíamos acessar a <strong>máquina de produção</strong>.
-Nem SSM, nem connect do console.
+Nos baseamos por logs, tanto no Cloudwatch com logs do SSM quanto na aplicação não tivemos muitas respostas. Nesse momento, partimos para o plano drástico, tirar da tomada e ligar denovo.    Tentamos uma abordagem mais soft, com o restart da máquina que não deu muito certo, já no modo mais hard, simplesmente criamos um novo tipo de instância.   Agora é só partir para o abraço e... Não deu certo! Mas nem tudo estava perdido tem momentos que falhar é muito bom e nos deu a dica que precisavamos, se mesmo trocando a instância não tivemos sucesso, significa que tinhamos que olhar mais embaixo.   Na arquitetura da AWS, quando trabalhamos com máquinas EC2, precisamos também trabalhar com um volume EBS, que nada mais é que o nosso bloco de memória que contém sistema operacional, drivers de memória e afins. No nosso caso, estavamos trabalhando com um volume do tipo gp3, com a memória padrão de 8gb que pode ser pouco dependendo do workload que utilizamos.  
+Um detalhe importante, depois de fazer a recriação da instância, conseguimos acessar via SSH a máquina, o que nos facilitou fazer o diagnóstico final. O conjunto App + Docker havia sido terminado com códigos de falha estranhos e ao tentar executar o comando service docker restart, o systemd não respondia. 
 </p>
 
 <p class="mb-6">Estávamos completamente no escuro.</p>
@@ -131,110 +127,71 @@ Nem SSM, nem connect do console.
      class="rounded-lg shadow-md my-6" />
 
 
-<h2 class="text-2xl font-bold mt-10 mb-4">Investigação Inicial</h2>
 
 <p class="mb-4">
-Começamos pelos logs: <strong>CloudWatch</strong>, <strong>SSM</strong> e aplicação.  
-Nada conclusivo.
+Bom, vamos então entender como está a saúde da máquina. Ao rodar o conjunto de comandos df-h e df -T <Explicar a diferença entre as flags>   Vimos que os FileSystem estavam ok, exceto um. 
+
 </p>
 
-<p class="mb-4">
-Decidimos ir para o modo clássico: <strong>desligar e ligar novamente</strong>.
+<p class="font-mono bg-gray-800 text-gray-200 px-3 py-2 rounded mb-4">/dev/nvme0n1p1. -- Falo mais sobre no final do blog</p> 
+
+<p class="mb-4"> Certo, conseguimos confirmar isso de outra maneira, o gráfico do cloudwatch mostrava que o disco realmente estava bastante sobrecarregado. Então partimos para a solução matadora, vamos escalar o disco e aumentar a capacidade de storage da máquina.   Nesse momento, passamos o volume para o modo optimizing state, esse estado indica que o EBS está passando por resizing. 
+
 </p>
-
-<p class="mb-4">
-O reboot não funcionou.  
-Criamos um novo tipo de instância.  
-Também não funcionou.
-</p>
-
-<p class="mb-6"><strong>Mas isso foi ótimo.</strong> Significava que o problema era mais profundo.</p>
-
-
-<h2 class="text-2xl font-bold mt-10 mb-4">O Problema Real: Volumes EBS</h2>
-
-<p class="mb-4">
-Usávamos um volume <strong>gp3</strong> padrão de <strong>8GB</strong>.  
-Dependendo do workload, isso é pouco.
-</p>
-
-<h3 class="text-xl font-semibold mt-8 mb-3">Diagnóstico</h3>
-
-<p class="mb-4">
-Após recriar a instância, conseguimos acessar via <strong>SSH</strong>, o que
-permitiu um diagnóstico melhor.
-</p>
-
-<p class="mb-4">
-O conjunto <strong>App + Docker</strong> havia sido encerrado com falhas estranhas.  
-O <code>systemd</code> não reiniciava o Docker.
-</p>
-
-<p class="mb-4">Rodamos os comandos:</p>
-
-<pre class="rounded-lg shadow-lg p-4 bg-gray-900 text-gray-200 my-6 overflow-auto text-sm">
-# Verificar uso do disco
-df -h
-
-# Ver tipos de filesystem
-df -T
-</pre>
-
-<p class="mb-4">Os filesystems estavam ok, exceto:</p>
-
-<p class="font-mono bg-gray-800 text-gray-200 px-3 py-2 rounded">/dev/nvme0n1p1</p>
 
 <img src="/blog/blog-1/content/cw-metrics.png"
      alt="CloudWatch Disk 100%"
      class="rounded-lg shadow-md my-6" />
 
 
-<h2 class="text-2xl font-bold mt-10 mb-4">A Solução: Redimensionar o Volume EBS</h2>
+<p class="mb-4">
+OBS: Esse tipo de operação não pode ser realizado com muita frequência, se não tomamos downtime da api da AWS, o que aconteceu conosco nos testes 😅
+</p>
+
+
+<img src="/blog/blog-1/content/quota-aws.png" alt="quotas aws"
+     class="rounded-lg shadow-md my-6" />
+
+
 
 <p class="mb-4">
-Colocamos o volume em <strong>optimizing state</strong>.  
-Após alguns minutos, a operação terminou — mas o problema continuou.
-</p>
+Após 5 minutos, a AWS tinha terminado a operação e BANG, ainda não funcionava. Curiosamente, a vontade de jogar o servidor no lixo é proporcional a curiosidade de entender os meandros que fizeram o problema acontecer e pesquisando mais um pouco, entendemos algo que até então foi novo. 
 
-<p class="mb-6">
-Foi quando entendemos o detalhe crucial: aumentar o volume na AWS
-<strong>não</strong> aumenta automaticamente o filesystem no Linux.
-</p>
-
-
-<h3 class="text-xl font-semibold mt-8 mb-3">Linux Volume Manager (LVM)</h3>
+ </p>
 
 <p class="mb-4">
-Precisávamos expandir o filesystem manualmente.
+O conceito é o seguinte, no linux precisamos manualmente fazer o gerenciamento do filesystem e mesmo que tivessemos aumentado o hardwate, precisamos indicar para o <strong>LVM(Linux Volume Manager)</strong> que ele fizesse o particionamento lógico e passasse a entender que os 12Gb adicionais estavam disponíveis para uso. 
+
+ </p>
+
+<p class="mb-4">
+ O comando lsbk vai nos mostrar a distribuição dessas partições e a maneira como o linux está interpretando cada uma delas, para expandir de fato, precisamos executar os comandos growpart /dev/nvme0n1 1 e sudo xfs_growfs -d / é como dizer para o linux aumentar o tamanho da sua gaveta e também as suas divisões de meias internas.</p>
 </p>
 
-<p class="mb-4">Primeiro, verificamos a estrutura com:</p>
+
+<p class="mb-4">
+Nesse tipo de problema, temos alguns comandos que vão nos ajudar a visualizar e gerenciar as partições do linux.
+</p>
 
 <pre class="rounded-lg shadow-lg p-4 bg-gray-900 text-gray-200 my-6 text-sm">
-lsblk
+# Lista as partições e discos
+sudo df -h ou df -T
 </pre>
-
-<p class="mb-4">Depois, rodamos os comandos de expansão:</p>
 
 <pre class="rounded-lg shadow-lg p-4 bg-gray-900 text-gray-200 my-6 text-sm">
 # Expande a partição física
 sudo growpart /dev/nvme0n1 1
 
-# Expande o filesystem XFS
+# Expande o filesystem XFS, o "sistema de prateleiras" do linux, organizando o EBS
 sudo xfs_growfs -d /
 </pre>
 
-<img src="/blog/wallpaper/resizing_machines.png"
-     alt="Resizing"
-     class="rounded-lg shadow-md my-6" />
+<p class="mb-4">
+Então fizemos o processo de gerenciamento do LVM e <em>voilà</em>, o comando <strong>lsbk</strong> nos mostrou a partição agora com os 20gb que precisavamos 
+</p>
 
-<p class="mb-4">Rodando novamente:</p>
 
-<pre class="rounded-lg shadow-lg p-4 bg-gray-900 text-gray-200 my-6 text-sm">
-lsblk
-</pre>
-
-<p class="mb-6">Vimos agora algo como:</p>
+<p class="mb-6">Vimos algo como:</p>
 
 <pre class="rounded-lg shadow-lg p-4 bg-gray-900 text-gray-200 my-6 text-sm">
 nvme0n1       259:0    0  20G  0 disk
@@ -242,48 +199,24 @@ nvme0n1       259:0    0  20G  0 disk
 </pre>
 
 
-<h2 class="text-2xl font-bold mt-10 mb-4">Vitória! 🎆</h2>
-
 <p class="mb-4">
-Com espaço liberado, o Docker voltou a subir normalmente
-e a aplicação foi restaurada.
+Finalmente, após algumas horas de troubleshooting, alcançamos espaço disponivel para executar o nosso Docker e o comando restar do Docker passou responder com sucesso a subida do processo do Dockerd e assim pudemos fazer resetar de nossa aplicação, hora dos fogos, vencemos o bug. 🎆  Em nosso post mortem, definimos alguns potenciais causadores desse problema e um deles diz respeito a maneira como reciclamos as imagens antigas a cada implantação e armazenamos arquivos de log, como lições: 
 </p>
 
 
-<h2 class="text-2xl font-bold mt-10 mb-4">Post Mortem & Lições Aprendidas</h2>
 
 <ul class="list-disc ml-6 mb-6">
-  <li>🔥 Como reciclamos imagens antigas pode ter contribuído</li>
-  <li>🚨 Monitoramento é obrigatório</li>
-  <li>🧹 Limpeza automática de imagens e volumes evita incidentes</li>
+  <li>É importante termos alarmes para os parâmetros de infraestrutura</li>
+  <li>Manter o controle de logs e imagens antigas no servidor</li>
+  <li>Criar rotinas de limpeza para garantir a saúde do seu sistema de aramazenamento</li>
 </ul>
 
-<h3 class="text-xl font-semibold mt-8 mb-3">Comandos úteis</h3>
 
-<pre class="rounded-lg shadow-lg p-4 bg-gray-900 text-gray-200 my-6 text-sm">
-docker image prune -a
-docker container prune
-docker volume prune
-docker system df
-</pre>
-
-
-<h2 class="text-2xl font-bold mt-10 mb-4">Bonus: O que é NVMe?</h2>
+<h2 class="text-2xl font-bold mt-10 mb-4">Bonus Tips: NVMe</h2>
 
 <p class="mb-4">
-<strong>NVMe</strong> (Non-Volatile Memory Express) é um protocolo moderno para SSDs,
-muito mais rápido que SATA.
+O volume EC2 que abordamos nesse blog foi o NVME (Non-Volatile Memory Express) é um tipo de protocolo de SSDs modernos, diferente de outros mais antigos como o SATA, ele garante uma comunicação muito rápida, ideal para aplicações que tenham um alto IOPS e precisam de latência baixa, esse resultado é alcançado pela capacidade de conexão direta a CPU, sem passar por intermediários de tradução, ideal para alto desempenho. 
 </p>
-
-<ul class="list-disc ml-6 mb-6">
-  <li>🚀 Muito mais velocidade</li>
-  <li>⚡ Baixa latência</li>
-  <li>📊 Alto IOPS</li>
-  <li>🔄 Paralelização real</li>
-</ul>
-
-
-<hr class="my-10" />
 
 <h3 class="text-xl font-semibold mb-4">Referências</h3>
 
