@@ -114,7 +114,7 @@ const pillars = [
   {
     id: 1,
     title: "Nexus",
-    description: "Construimos uma plataforma de avaliação de professores, disciplinas e cursos baseada na experiência dos alunoss",
+    description: "Construimos uma plataforma de avaliação de professores, disciplinas e cursos baseada na experiência dos alunos",
     icon: "./members/logo_next_2.png",
     link: "/projetos/ufabc-next"
   },
