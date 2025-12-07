@@ -3,7 +3,7 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowLeft, Calendar, Clock, Share2, Twitter, Linkedin, Github, MapPin, AtSign } from "lucide-react";
+import { ArrowLeft, Calendar, School, Share2, Twitter, Linkedin, Github, MapPin, AtSign } from "lucide-react";
 import { getPostBySlug, type Author } from "@/data/blogPosts";
 import {
   Carousel,
@@ -78,14 +78,14 @@ export default function BlogPost() {
       <div className="min-h-screen bg-background">
         <NavBar />
         <div className="container mx-auto px-6 py-20 text-center">
-          <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
+          <h1 className="text-4xl font-bold mb-4">Post Não Encontrado</h1>
           <p className="text-muted-foreground mb-8">
-            The blog post you're looking for doesn't exist.
+            O post que você está procurando não existe.
           </p>
           <Link to="/blog">
             <Button>
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
+              Voltar ao Blog
             </Button>
           </Link>
         </div>
@@ -124,7 +124,7 @@ export default function BlogPost() {
             <span>{post.date}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4" />
+            <School className="h-4 w-4" />
             <span>{post.readTime}</span>
           </div>
         </div>
@@ -292,16 +292,16 @@ function AuthorsHoverRow({ authors }: { authors: Author[] }) {
                     </div>
                     <div className="my-3 border-t pt-3">
                       <div className="flex flex-col gap-2 text-xs text-muted-foreground">
-                        {author.location && (
+                        {author.campus && (
                           <div className="flex items-center gap-2">
                             <MapPin className="h-4 w-4" />
-                            <span>{author.location}</span>
+                            <span>{author.campus}</span>
                           </div>
                         )}
-                        {author.timezone && (
+                        {author.curso && (
                           <div className="flex items-center gap-2">
-                            <Clock className="h-4 w-4" />
-                            <span>{computeLocalTime(author.timezone)}</span>
+                            <School className="h-4 w-4" />
+                            <span>{author.curso}</span>
                           </div>
                         )}
                         {author.handle && (
@@ -322,7 +322,7 @@ function AuthorsHoverRow({ authors }: { authors: Author[] }) {
                     rel="noopener noreferrer"
                     className="block text-center rounded-md px-3 py-2 bg-muted/40 hover:bg-muted/60 transition-colors text-sm"
                   >
-                    See more
+                    Ver mais
                   </a>
                 </div>
               </div>

@@ -10,8 +10,8 @@ export interface Author {
         github?: string;
     };
     // optional fields used by the author hover card
-    location?: string;
-    timezone?: string;
+    campus?: string;
+    curso?: string;
     handle?: string;
 }
 
@@ -34,69 +34,57 @@ export const blogPostsDatabase: Record<string, BlogPost> = {
     "my-server-is-down-what-do-i-do": {
         id: "0",
         title: "Mayday, o next caiu! E agora?",
-        excerpt: "A comprehensive guide to troubleshooting server issues and getting your application back online quickly.",
+        excerpt: "Um guia completo sobre como diagnosticar e resolver problemas de servidor, desde volumes EBS até gerenciamento de filesystem no Linux.",
         image: "/blog/blog-1/wallpaper/resizing_machines.png",
-        author: {
-            name: "Gabriel Monteiro",
-            avatar: "/members/gabriel.jpeg",
-            role: "Founder & CEO",
-            bio: "Gabriel is the Founder & CEO at Nexus. With a passion for building tools that empower students, Gabriel leads the team in creating innovative solutions for the academic community.",
-            social: {
-                twitter: "https://twitter.com/gabrielmonteiro",
-                linkedin: "https://www.linkedin.com/in/gabriel-monteiro-rocha7/",
-                github: "https://github.com/gabrielmonteiro"
-            }
-        },
         authors: [
             {
                 name: "Gabriel Monteiro",
                 avatar: "/members/gabriel.jpeg",
-                role: "Founder & CEO",
-                bio: "Gabriel is the Founder & CEO at Nexus. With a passion for building tools that empower students, Gabriel leads the team in creating innovative solutions for the academic community.",
+                role: "Fundador & CEO",
+                bio: "Gabriel é o Fundador e CEO do Nexus. Com paixão por construir ferramentas que capacitam estudantes, Gabriel lidera o time na criação de soluções inovadoras para a comunidade acadêmica.",
                 social: {
                     twitter: "https://twitter.com/gabrielmonteiro",
                     linkedin: "https://www.linkedin.com/in/gabriel-monteiro-rocha7/",
-                    github: "https://github.com/gabrielmonteiro"
+                    github: "https://github.com/brMonteiro-G"
                 },
-                // optional fields for metadata
-                location: "Brazil",
-                timezone: "UTC-3",
+                campus: "UFABC Santo André",
+                curso: "Ciência da Computação",
                 handle: "@gabrielmonteiro"
             },
             {
                 name: "Nicolas Greco",
                 avatar: "/members/nicolas.jpeg",
-                role: "DevOps Specialist",
-                bio: "Pedro is the DevOps Specialist at Nexus, ensuring our infrastructure runs smoothly and reliably. He's passionate about automation and best practices.",
+                role: "Diretor de Tecnologia",
+                bio: "Nicolas é o Diretor de Tecnologia do Nexus, liderando as iniciativas técnicas e garantindo que nossa infraestrutura funcione de forma suave e confiável. É apaixonado por automação e boas práticas.",
                 social: {
                     linkedin: "https://www.linkedin.com/in/nicolas-grecos/",
                     github: "https://github.com/nicolasgrecos"
                 },
                 // optional fields for metadata
-                location: "Argentina",
-                timezone: "UTC-3",
+                campus: "UFABC Santo André",
+                curso: "Ciência da Computação",
                 handle: "@nicolasgreco"
             },
             {
                 name: "Joabe Silva",
                 avatar: "/members/joabe.jpeg",
-                role: "Backend Specialist",
-                bio: "Joabe is the Backend Specialist at Nexus, building robust and scalable server-side solutions. He loves solving complex problems.",
+                role: "Cofundador & CTO",
+                bio: "Joabe é o Cofundador e CTO do Nexus, construindo soluções robustas e escaláveis no servidor. Adora resolver problemas complexos.",
                 social: {
                     linkedin: "https://www.linkedin.com/in/joabe-silva-ufabc/",
                     github: "https://github.com/joabesilva"
                 },
                 // optional fields for metadata
-                location: "Brazil",
-                timezone: "UTC-3",
+                campus: "UFABC Santo André",
+                curso: "Ciência da Computação",
                 handle: "@joabesilva"
             }
         ],
-        date: "Dec 6, 2025",
-        readTime: "8 min read",
+        date: "6 de Dezembro, 2025",
+        readTime: "8 min de leitura",
         category: "technology",
         slug: "my-server-is-down-what-do-i-do",
-        tags: ["technology", "server", "troubleshooting", "devops", "ufabc next"],
+        tags: ["tecnologia", "servidor", "troubleshooting", "devops", "ufabc next"],
         content: `
 
 <p class="mb-4">Sexta feira, 18hrs da tarde, aparentemente um ótimo dia e de uma hora para a outra chega uma mensagem <strong>"O Next caiu"</strong>.. Geralmente não gostamos de fazer deploy de sexta ou finais de semana, então o que poderia ter acontecido? </p>
@@ -228,29 +216,34 @@ O volume EC2 que abordamos nesse blog foi o NVME (Non-Volatile Memory Express) �
  `,
     },
 
-    "building-a-whatsapp-bot-with-ai-integration": {
+    "extension-ufabc-next": {
         id: "1",
-        title: "Building a WhatsApp Bot with AI Integration",
-        excerpt: "A walkthrough to build a smart WhatsApp bot that leverages AI for conversational flows.",
-        image: "/blog/wallpaper/resizing_machines.png",
-        author: {
-            name: "Gabriel Monteiro",
-            avatar: "/members/gabriel.jpeg",
-            role: "Founder & CEO",
-            bio: "Gabriel is the Founder & CEO at Nexus. With a passion for building tools that empower students, Gabriel leads the team in creating innovative solutions for the academic community.",
-            social: {
-                twitter: "https://twitter.com/gabrielmonteiro",
-                linkedin: "https://www.linkedin.com/in/gabriel-monteiro-rocha7/",
-                github: "https://github.com/gabrielmonteiro"
-            }
-        },
-        authors: [],
-        date: "Dec 1, 2025",
-        readTime: "6 min read",
+        title: "Quero atualizar meus dados no UFABC next, como faço?",
+        excerpt: "Um passo a passo para entender o funcionamento da extensão de atualização automática de dados do UFABC next.",
+        image: "/blog/blog-2/wallpaper/image.png",
+        authors: [
+
+            {
+                name: "Nicolas Greco",
+                avatar: "/members/nicolas.jpeg",
+                role: "Diretor de Tecnologia",
+                bio: "Nicolas é o Diretor de Tecnologia do Nexus, liderando as iniciativas técnicas e garantindo que nossa infraestrutura funcione de forma suave e confiável. É apaixonado por automação e boas práticas.",
+                social: {
+                    linkedin: "https://www.linkedin.com/in/nicolas-grecos/",
+                    github: "https://github.com/nicolasgrecos"
+                },
+                // optional fields for metadata
+                campus: "UFABC Santo André",
+                curso: "Ciência da Computação",
+                handle: "@nicolasgreco"
+            },
+        ],
+        date: "1 de Dezembro, 2025",
+        readTime: "6 min de leitura",
         category: "technology",
-        slug: "building-a-whatsapp-bot-with-ai-integration",
-        tags: ["whatsapp", "bot", "ai"],
-        content: `<h2>Building a WhatsApp Bot with AI Integration</h2>`
+        slug: "extension-ufabc-next",
+        tags: ["ufabc-next", "Tecnologia", "Comunidade"],
+        content: `<h2>Um conteúdo incrivel vindo por aí</h2>`
     }
 };
 

@@ -8,13 +8,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getAllPosts, type BlogPost } from "@/data/blogPosts";
 
 const categories = [
-  "all",
-  "technology",
-  "community",
-  "tutorials",
-  "updates",
-  "events"
-];
+  { id: "all", label: "Todos" },
+  { id: "technology", label: "Tecnologia" },
+  { id: "community", label: "Comunidade" },
+  { id: "tutorials", label: "Tutoriais" },
+  { id: "updates", label: "Atualizações" },
+  { id: "events", label: "Eventos" }, 
+  { id: "next", label: "Ufabc next" }
+];  
 
 // Get all blog posts from centralized data
 const blogPosts: BlogPost[] = getAllPosts();
@@ -27,6 +28,11 @@ export default function Blog() {
     ? blogPosts 
     : blogPosts.filter(post => post.category === selectedCategory);
 
+  const getCategoryLabel = (categoryId: string) => {
+    const category = categories.find(c => c.id === categoryId);
+    return category ? category.label : categoryId;
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <NavBar />
@@ -38,7 +44,7 @@ export default function Blog() {
             Blog
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Stories, tutorials, and insights from the Nexus community
+            Histórias, tutoriais e insights da comunidade Nexus
           </p>
         </div>
 
@@ -46,19 +52,19 @@ export default function Blog() {
         <div className="flex flex-wrap items-center justify-center gap-3 mb-16">
           {categories.map((category) => (
             <Button
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
+              key={category.id}
+              variant={selectedCategory === category.id ? "default" : "outline"}
               size="sm"
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => setSelectedCategory(category.id)}
               className={`
                 rounded-full px-6 py-2 font-medium transition-all duration-200
-                ${selectedCategory === category 
+                ${selectedCategory === category.id 
                   ? "shadow-md scale-105" 
                   : "hover:scale-105 hover:shadow-sm"
                 }
               `}
             >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+              {category.label}
             </Button>
           ))}
         </div>
@@ -74,7 +80,7 @@ export default function Blog() {
         {filteredPosts.length === 0 && (
           <div className="text-center py-20">
             <p className="text-xl text-muted-foreground">
-              No posts found in this category
+              Nenhum post encontrado nesta categoria
             </p>
           </div>
         )}
@@ -104,7 +110,17 @@ function BlogCard({ post }: { post: BlogPost }) {
       <div className="p-6 space-y-4">
         {/* Category Badge */}
         <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-muted text-muted-foreground">
-          {post.category}
+          {(() => {
+            const categories = [
+              { id: "technology", label: "Tecnologia" },
+              { id: "community", label: "Comunidade" },
+              { id: "tutorials", label: "Tutoriais" },
+              { id: "updates", label: "Atualizações" },
+              { id: "events", label: "Eventos" }
+            ];
+            const category = categories.find(c => c.id === post.category);
+            return category ? category.label : post.category;
+          })()}
         </span>
 
         {/* Title */}
