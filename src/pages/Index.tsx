@@ -10,9 +10,34 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import { toast } from "sonner";
+import { BlogNotificationToast } from "@/components/BlogNotificationToast";
 
 const LandingPage = () => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    // Show custom blog notification toast immediately on page load
+    toast.custom(
+      (toastId) => (
+        <BlogNotificationToast
+          onDismiss={() => toast.dismiss(toastId)}
+          onAction={() => {
+            toast.dismiss(toastId);
+            const blogSection = document.getElementById("blog-section");
+            if (blogSection) {
+              blogSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }}
+        />
+      ),
+      {
+        duration: 8000,
+        position: "bottom-right",
+      }
+    );
+  }, []);
 
   const projects = [
     {
@@ -215,6 +240,71 @@ const LandingPage = () => {
           </div>
         </section>
 
+        {/* Latest Blog Posts - Editorial Style */}
+        <section id="blog-section" className="py-28 bg-background">
+          <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+            {/* Section Header */}
+            <div className="mb-20 flex flex-col items-center justify-center text-center">
+              <h2 className="text-[42px] md:text-[52px] font-bold tracking-tight text-foreground mb-4">
+                Do Blog
+              </h2>
+              <p className="text-[17px] text-foreground/60 font-medium max-w-2xl">
+                Insights, histórias e atualizações da comunidade Nexus
+              </p>
+            </div>
+
+            {/* Blog Cards Grid */}
+            <div className="flex justify-center">
+              <div className="grid md:grid-cols-2 gap-x-8 gap-y-16 max-w-[900px]">
+                {/* Blog Card 1 */}
+                <BlogCard
+                  image="/blog/blog-1/wallpaper/resizing_machines.png"
+                  title="Mayday, o next caiu! E agora?"
+                  description="Um guia completo sobre como diagnosticar e resolver problemas de servidor, desde volumes EBS até gerenciamento de filesystem."
+                  author={{
+                    name: "Gabriel Monteiro",
+                    avatar: "/members/gabriel.jpeg",
+                    date: "6 de Dez, 2025"
+                  }}
+                  href="/blog/my-server-is-down-what-do-i-do"
+                />
+
+                {/* Blog Card 2 */}
+                <BlogCard
+                  image="/blog/blog-2/wallpaper/image.png"
+                  title="Atualização de Dados no UFABC Next"
+                  description="Entenda o funcionamento da extensão de atualização automática de dados e como ela facilita sua experiência."
+                  author={{
+                    name: "Nicolas Greco",
+                    avatar: "/members/nicolas.jpeg",
+                    date: "1 de Dez, 2025"
+                  }}
+                  href="/blog/extension-ufabc-next"
+                />
+              </div>
+            </div>
+
+            {/* View All Link */}
+            <div className="mt-16 text-center">
+              <a 
+                href="/blog"
+                className="inline-flex items-center gap-2 text-[15px] font-medium text-foreground/70 hover:text-foreground transition-colors duration-200 group"
+              >
+                Ver todos os posts
+                <svg 
+                  className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+
         {/* Governança */}
         <section className="py-24 bg-background">
           <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
@@ -281,6 +371,7 @@ const LandingPage = () => {
           </div>
         </section>
 
+        
         {/* Comunidade */}
         <section
           id="comunidade"
@@ -334,6 +425,98 @@ function ProjectItem({ project }: { project: any }) {
           {project.description}
         </p>
       </div>
+    </a>
+  );
+}
+
+interface BlogCardProps {
+  image: string;
+  title: string;
+  description: string;
+  author: {
+    name: string;
+    avatar: string;
+    date: string;
+  };
+  href: string;
+}
+
+function BlogCard({ image, title, description, author, href }: BlogCardProps) {
+  return (
+    <a 
+      href={href}
+      className="group block"
+    >
+      <article className="flex flex-col h-full">
+        {/* Feature Image */}
+        <div className="relative aspect-[16/10] mb-6 overflow-hidden rounded-2xl bg-muted">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 flex flex-col gap-4">
+          {/* Title */}
+          <h3 className="text-[22px] font-bold leading-tight tracking-tight text-foreground group-hover:text-foreground/80 transition-colors duration-200 line-clamp-2">
+            {title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-[15px] leading-relaxed text-foreground/60 font-normal line-clamp-3">
+            {description}
+          </p>
+
+          {/* Author Area */}
+          <div className="mt-auto pt-4 flex items-center gap-3 border-t border-border/40">
+            {/* Avatar */}
+            <div className="relative">
+              <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-background">
+                <img
+                  src={author.avatar}
+                  alt={author.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Author Info */}
+            <div className="flex-1 min-w-0">
+              <p className="text-[14px] font-medium text-foreground truncate">
+                {author.name}
+              </p>
+              <p className="text-[13px] text-foreground/50 font-normal">
+                {author.date}
+              </p>
+            </div>
+
+            {/* Bookmark Icon (Optional) */}
+            <button 
+              className="p-2 hover:bg-accent rounded-lg transition-colors duration-200"
+              onClick={(e) => {
+                e.preventDefault();
+                // Bookmark functionality here
+              }}
+            >
+              <svg 
+                className="w-5 h-5 text-foreground/40 hover:text-foreground/70 transition-colors" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={1.5} 
+                  d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" 
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
     </a>
   );
 }
