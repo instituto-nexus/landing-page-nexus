@@ -79,14 +79,23 @@ export default function NavBar() {
   ];
 
   const resourcesDropdown = [
-    { label: t('nav.docs'), href: "/docs" },
     { label: t('nav.blog'), href: "/blog" },
     { label: t('nav.community'), href: "/#comunidade" },
   ];
 
-  const integrationsDropdown = [
+  const projectsDropdown = [
     { label: "WhatsApp Bot", href: "/projetos/whatsapp-bot" },
-    { label: "WhatsApp Bot AI", href: "/projetos/whatsapp-bot-ai" },
+    { label: "next AI", href: "/projetos/whatsapp-bot-ai" },
+    { label: "ufabc parser", href: "/projetos/ufabc-parser" },
+    { label: "ufabc next", href: "/projetos/ufabc-next" },
+    { label: "aulões next", href: "/projetos/auloes-next" },
+
+
+  ];
+
+  const docsDropdown = [  
+    { label: "Ufabc parser", href: "https://ufabc-parser.com/docs" },
+  
   ];
 
   return (
@@ -112,11 +121,11 @@ export default function NavBar() {
           
           {/* Center Navigation - Generous Spacing */}
           <nav className="hidden lg:flex items-center gap-10">
-            <NavBarLink to="/docs">{t('nav.docs')}</NavBarLink>
+            <NavDropdown label={t('nav.docs')} items={docsDropdown} />
             
             <span className="h-4 w-px bg-border/60" aria-hidden="true" />
             
-            <NavDropdown label={t('nav.integrations')} items={integrationsDropdown} />
+            <NavDropdown label={t('nav.projects')} items={projectsDropdown} />
             
             <span className="h-4 w-px bg-border/60" aria-hidden="true" />
             
@@ -185,16 +194,21 @@ export default function NavBar() {
                     </div>
 
                     <div className="border-t pt-6 space-y-2">
-                      <MobileNavLink to="/docs" onClick={() => setIsOpen(false)}>
+                       <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">
                         {t('nav.docs')}
-                      </MobileNavLink>
+                      </p>
+                      {docsDropdown.map((item) => (
+                        <MobileNavLink key={item.href} to={item.href} onClick={() => setIsOpen(false)}>
+                          {item.label}
+                        </MobileNavLink>
+                      ))}
                     </div>
 
                     <div className="border-t pt-6 space-y-2">
                       <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                        {t('nav.integrations')}
+                        {t('nav.projects')}
                       </p>
-                      {integrationsDropdown.map((item) => (
+                      {projectsDropdown.map((item) => (
                         <MobileNavLink key={item.href} to={item.href} onClick={() => setIsOpen(false)}>
                           {item.label}
                         </MobileNavLink>

@@ -137,7 +137,7 @@ const LandingPage = () => {
                 <p className="text-lg text-white/80 leading-relaxed">
                   {t('hero.description')}
                 </p>
-                <div className="flex gap-4 pt-4">
+                <div className="flex gap-4 pt-4 justify-center">
                   <SubmitDialog
                     type="volunteer"
                     buttonText={t('hero.volunteerButton')}
@@ -147,7 +147,6 @@ const LandingPage = () => {
                     size="lg"
                     className="text-white hover:bg-white/10 bg-transparent"
                   >
-                    {t('hero.learnMoreButton')}
                   </Button>
                 </div>
               </div>
