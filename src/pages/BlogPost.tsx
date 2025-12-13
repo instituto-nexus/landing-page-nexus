@@ -317,7 +317,7 @@ function AuthorsHoverRow({ authors }: { authors: Author[] }) {
 
                 <div className="mt-3 pt-3 border-t">
                   <a
-                    href={author.social?.github || author.social?.linkedin || '#'}
+                    href={ author.social?.linkedin }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-center rounded-md px-3 py-2 bg-muted/40 hover:bg-blue-50 hover:text-blue-600 transition-colors text-sm"

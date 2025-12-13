@@ -58,7 +58,7 @@ export const blogPostsDatabase: Record<string, BlogPost> = {
                 role: "Cofundador & CTO",
                 bio: "Joabe é o Cofundador e CTO do Nexus, construindo soluções robustas e escaláveis no servidor. Adora resolver problemas complexos.",
                 social: {
-                    linkedin: "https://www.linkedin.com/in/joabe-silva-ufabc/",
+                    linkedin: "https://www.linkedin.com/in/joabesv/",
                     github: "https://github.com/joabesilva"
                 },
                 // optional fields for metadata
@@ -72,7 +72,7 @@ export const blogPostsDatabase: Record<string, BlogPost> = {
                 role: "Diretor de Tecnologia",
                 bio: "Nicolas é o Diretor de Tecnologia do Nexus, liderando as iniciativas técnicas e garantindo que nossa infraestrutura funcione de forma suave e confiável. É apaixonado por automação e boas práticas.",
                 social: {
-                    linkedin: "https://www.linkedin.com/in/nicolas-grecos/",
+                    linkedin: "https://www.linkedin.com/in/nicolas-greco-160a5b258/",
                     github: "https://github.com/nicolasgrecos"
                 },
                 // optional fields for metadata
@@ -88,10 +88,10 @@ export const blogPostsDatabase: Record<string, BlogPost> = {
         tags: ["tecnologia", "servidor", "troubleshooting", "devops", "ufabc next"],
         content: `
 
-<p class="mb-4">Sexta feira, 18hrs da tarde, aparentemente um ótimo dia e de uma hora para a outra chega uma mensagem <strong>"O Next caiu"</strong>.. Geralmente não gostamos de fazer deploy de sexta ou finais de semana, então o que poderia ter acontecido? </p>
+<p class="mb-4">Sexta feira, 18hrs da tarde, aparentemente um ótimo dia e de uma hora para a outra chega uma mensagem <strong>"O Next caiu"</strong>... Geralmente não gostamos de fazer deploy de sexta ou finais de semana, então o que poderia ter acontecido? </p>
 
 <p class="mb-4">
-Como todos engenheiro de software, fomos céticos e tentamos entrar na plataforma para ver, o resultado: 
+Como todo engenheiro de software, fomos céticos e tentamos entrar na plataforma para ver, o resultado: 
 </p>
 
 <img src="/blog/blog-1/content/bad-gateway.jpg" alt="Erro na plataforma"
@@ -106,7 +106,7 @@ Mas não tivemos <strong>nenhum</strong> deploy, o buraco deve ser um pouco mais
 O outro sintoma curioso, não conseguimos acessar a máquina de produção, qualquer tentativa de acesso com o SSM falhava, bem como o connect terminal do console, estavamos literalmente no escuro e sem poder entender o que de fato estava acontecendo. </p>
 
 <p class="mb-4">
-Nos baseamos por logs, tanto no Cloudwatch com logs do SSM quanto na aplicação não tivemos muitas respostas. Nesse momento, partimos para o plano drástico, tirar da tomada e ligar denovo.    Tentamos uma abordagem mais soft, com o restart da máquina que não deu muito certo, já no modo mais hard, simplesmente criamos um novo tipo de instância.   Agora é só partir para o abraço e... Não deu certo! Mas nem tudo estava perdido tem momentos que falhar é muito bom e nos deu a dica que precisavamos, se mesmo trocando a instância não tivemos sucesso, significa que tinhamos que olhar mais embaixo.   Na arquitetura da AWS, quando trabalhamos com máquinas EC2, precisamos também trabalhar com um volume EBS, que nada mais é que o nosso bloco de memória que contém sistema operacional, drivers de memória e afins. No nosso caso, estavamos trabalhando com um volume do tipo gp3, com a memória padrão de 8gb que pode ser pouco dependendo do workload que utilizamos.  
+Nos baseamos por logs, tanto no Cloudwatch com logs do SSM quanto na aplicação não tivemos muitas respostas. Nesse momento, partimos para o plano drástico, tirar da tomada e ligar denovo. Tentamos uma abordagem mais soft, com o restart da máquina que não deu muito certo, já no modo mais hard, simplesmente criamos um novo tipo de instância. Agora é só partir para o abraço e... Não deu certo! Mas nem tudo estava perdido tem momentos que falhar é muito bom e nos deu a dica que precisavamos, se mesmo trocando a instância não tivemos sucesso, significa que tinhamos que olhar mais embaixo. Na arquitetura da AWS, quando trabalhamos com máquinas EC2, precisamos também trabalhar com um volume EBS, que nada mais é que o nosso bloco de memória que contém sistema operacional, drivers de memória e afins. No nosso caso, estavamos trabalhando com um volume do tipo gp3, com a memória padrão de 8gb que pode ser pouco dependendo do workload que utilizamos. 
 Um detalhe importante, depois de fazer a recriação da instância, conseguimos acessar via SSH a máquina, o que nos facilitou fazer o diagnóstico final. O conjunto App + Docker havia sido terminado com códigos de falha estranhos e ao tentar executar o comando service docker restart, o systemd não respondia. 
 </p>
 
@@ -118,13 +118,13 @@ Um detalhe importante, depois de fazer a recriação da instância, conseguimos 
 
 
 <p class="mb-4">
-Bom, vamos então entender como está a saúde da máquina. Ao rodar o conjunto de comandos df-h e df -T <Explicar a diferença entre as flags>   Vimos que os FileSystem estavam ok, exceto um. 
+Bom, vamos então entender como está a saúde da máquina. Ao rodar o conjunto de comandos df-h e df -T <Explicar a diferença entre as flags> Vimos que os FileSystem estavam ok, exceto um. 
 
 </p>
 
 <p class="font-mono bg-gray-800 text-gray-200 px-3 py-2 rounded mb-4">/dev/nvme0n1p1. -- Falo mais sobre no final do blog</p> 
 
-<p class="mb-4"> Certo, conseguimos confirmar isso de outra maneira, o gráfico do cloudwatch mostrava que o disco realmente estava bastante sobrecarregado. Então partimos para a solução matadora, vamos escalar o disco e aumentar a capacidade de storage da máquina.   Nesse momento, passamos o volume para o modo optimizing state, esse estado indica que o EBS está passando por resizing. 
+<p class="mb-4"> Certo, conseguimos confirmar isso de outra maneira, o gráfico do cloudwatch mostrava que o disco realmente estava bastante sobrecarregado. Então partimos para a solução matadora, vamos escalar o disco e aumentar a capacidade de storage da máquina. Nesse momento, passamos o volume para o modo optimizing state, esse estado indica que o EBS está passando por resizing. 
 
 </p>
 
@@ -189,7 +189,7 @@ nvme0n1       259:0    0  20G  0 disk
 
 
 <p class="mb-4">
-Finalmente, após algumas horas de troubleshooting, alcançamos espaço disponivel para executar o nosso Docker e o comando restar do Docker passou responder com sucesso a subida do processo do Dockerd e assim pudemos fazer resetar de nossa aplicação, hora dos fogos, vencemos o bug. 🎆  Em nosso post mortem, definimos alguns potenciais causadores desse problema e um deles diz respeito a maneira como reciclamos as imagens antigas a cada implantação e armazenamos arquivos de log, como lições: 
+Finalmente, após algumas horas de troubleshooting, alcançamos espaço disponivel para executar o nosso Docker e o comando restar do Docker passou responder com sucesso a subida do processo do Dockerd e assim pudemos fazer resetar de nossa aplicação, hora dos fogos, vencemos o bug. 🎆Em nosso post mortem, definimos alguns potenciais causadores desse problema e um deles diz respeito a maneira como reciclamos as imagens antigas a cada implantação e armazenamos arquivos de log, como lições: 
 </p>
 
 

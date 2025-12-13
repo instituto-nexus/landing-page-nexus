@@ -39,7 +39,7 @@
     "items": {
       "next": {
         "title": "UFABC next",
-        "description": "Construimos uma plataforma de avaliação de professores, disciplinas e cursos baseada na experiência dos alunoss"
+        "description": "Construimos uma plataforma de avaliação de professores, disciplinas e cursos baseada na experiência dos alunos"
       },
       "parser": {
         "title": "UFABC parser",
@@ -81,7 +81,7 @@
   "team": {
     "titlePart1": "Pessoas por trás",
     "titlePart2": "do",
-    "description": "Somos um time de <strong>{{count}} pessoas</strong> que acreditam em construir projetos que inspiram e transformam a experiência universitária.",
+    "description": "Somos um time que acredita em construir projetos que inspiram e transformam a experiência universitária.",
     "addYourName": "Adicione seu nome a essa lista",
     "formerMembers": "Ex-Membros",
     "formerMembersDescription": "Agradecimento especial aos ex-membros que fizeram contribuições valiosas ao projeto.",
