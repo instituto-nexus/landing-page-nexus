@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3" style={{ gap: '15rem' }}>
           <div>
             <div className="flex items-center mb-4">
               <div className="w-8 h-8 mr-2">

@@ -74,8 +74,8 @@ export default function NavBar() {
 
   const productsDropdown = [
     { label: t('nav.projects'), href: "/#projetos" },
-    { label: "UFABC Next", href: "/projetos/ufabc-next" },
-    { label: "UFABC Parser", href: "/projetos/ufabc-parser" },
+    { label: "UFABC Next", href: "/404" },
+    { label: "UFABC Parser", href: "/404" },
   ];
 
   const resourcesDropdown = [
@@ -84,11 +84,11 @@ export default function NavBar() {
   ];
 
   const projectsDropdown = [
-    { label: "WhatsApp Bot", href: "/projetos/whatsapp-bot" },
-    { label: "next AI", href: "/projetos/whatsapp-bot-ai" },
-    { label: "ufabc parser", href: "/projetos/ufabc-parser" },
-    { label: "ufabc next", href: "/projetos/ufabc-next" },
-    { label: "aulões next", href: "/projetos/auloes-next" },
+    { label: "WhatsApp Bot", href: "/404" },
+    { label: "next AI", href: "/404" },
+    { label: "ufabc parser", href: "/404" },
+    { label: "ufabc next", href: "/404" },
+    { label: "aulões next", href: "/404" },
 
 
   ];
@@ -131,9 +131,9 @@ export default function NavBar() {
             
             <NavBarLink to="/blog">{t('nav.blog')}</NavBarLink>
             
-            <span className="h-4 w-px bg-border/60" aria-hidden="true" />
+            {/*  <span className="h-4 w-px bg-border/60" aria-hidden="true" /> */}
             
-            <NavDropdown label={t('nav.resources')} items={resourcesDropdown} />
+           {/* Center Navigation - Generous Spacing  <NavDropdown label={t('nav.resources')} items={resourcesDropdown} /> */}
           </nav>
           
           {/* Right Side - Clean Interaction Area */}

@@ -45,35 +45,35 @@ const LandingPage = () => {
       title: t('projects.items.next.title'),
       description: t('projects.items.next.description'),
       icon: "./projects/next-logo.png",
-      link: "/projetos/ufabc-next"
+      link: "/404"
     },
     {
       id: 2,
       title: t('projects.items.parser.title'),
       description: t('projects.items.parser.description'),
       icon: "./projects/parser-logo.webp",
-      link: "/projetos/ufabc-parser"
+      link: "/404"
     },
     {
       id: 3,
       title: t('projects.items.whatsappBot.title'),
       description: t('projects.items.whatsappBot.description'),
       icon: "./projects/whatsapp-bot.webp",
-      link: "/projetos/whatsapp-bot"
+      link: "/404"
     },
     {
       id: 4,
       title: t('projects.items.whatsappBotAI.title'),
       description: t('projects.items.whatsappBotAI.description'),
       icon: "./projects/whatsapp-bot.webp",
-      link: "/projetos/whatsapp-bot-ai"
+      link: "/404"
     },
     {
       id: 5,
       title: t('projects.items.auloes.title'),
       description: t('projects.items.auloes.description'),
       icon: "./projects/aulao-logo.png",
-      link: "/projetos/auloes-next"
+      link: "/404"
     },
   ];
   return (
@@ -359,7 +359,7 @@ const LandingPage = () => {
                     avatar: "/members/nicolas.jpeg",
                     date: "1 de Dez, 2025"
                   }}
-                  href="/blog/extension-ufabc-next"
+                  href="/404"
                 />
               </div>
             </div>
