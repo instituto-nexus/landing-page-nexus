@@ -100,9 +100,9 @@ export default function BlogPost() {
 
       <article className="container mx-auto px-6 py-12 max-w-4xl">
         {/* Back Button */}
-        <Link to="/blog" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors mb-8">
+        <Link to="/blog" className="inline-flex items-center text-sm text-muted-foreground hover:text-blue-600 transition-colors mb-8">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Blog
+          Voltar ao Blog
         </Link>
 
         {/* Category Badge */}
@@ -137,9 +137,9 @@ export default function BlogPost() {
         <AuthorsHoverRow authors={post.authors && post.authors.length > 0 ? post.authors : [post.author]} />
 
          
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200">
             <Share2 className="h-4 w-4 mr-2" />
-            Share
+            Compartilhar
           </Button>
         </div>
 
@@ -184,7 +184,7 @@ export default function BlogPost() {
               {post.tags.map((tag) => (
                 <span 
                   key={tag}
-                  className="px-3 py-1 rounded-full text-sm bg-muted hover:bg-muted/80 transition-colors cursor-pointer"
+                  className="px-3 py-1 rounded-full text-sm bg-muted hover:bg-blue-50 hover:text-blue-600 transition-colors cursor-pointer"
                 >
                   {tag}
                 </span>
@@ -196,7 +196,7 @@ export default function BlogPost() {
         {/* Authors Section */}
         <div className="mt-12">
           <h3 className="text-2xl font-bold mb-6">
-            {post.authors && post.authors.length > 1 ? "About the Authors" : "About the Author"}
+            {post.authors && post.authors.length > 1 ? "Sobre os Autores" : "Sobre o Autor"}
           </h3>
           
           {post.authors && post.authors.length > 1 ? (
@@ -225,14 +225,14 @@ export default function BlogPost() {
         {/* Navigation */}
         <div className="mt-12 pt-8 border-t flex justify-between items-center">
           <Link to="/blog">
-            <Button variant="outline">
+            <Button variant="outline" className="hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              All Posts
+              Todos os Posts
             </Button>
           </Link>
           <div className="flex gap-2">
-            <Button variant="ghost" size="sm">← Previous</Button>
-            <Button variant="ghost" size="sm">Next →</Button>
+            <Button variant="ghost" size="sm" className="hover:bg-blue-50 hover:text-blue-600">← Anterior</Button>
+            <Button variant="ghost" size="sm" className="hover:bg-blue-50 hover:text-blue-600">Próximo →</Button>
           </div>
         </div>
       </article>
@@ -320,7 +320,7 @@ function AuthorsHoverRow({ authors }: { authors: Author[] }) {
                     href={author.social?.github || author.social?.linkedin || '#'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-center rounded-md px-3 py-2 bg-muted/40 hover:bg-muted/60 transition-colors text-sm"
+                    className="block text-center rounded-md px-3 py-2 bg-muted/40 hover:bg-blue-50 hover:text-blue-600 transition-colors text-sm"
                   >
                     Ver mais
                   </a>

@@ -121,14 +121,21 @@ export default function NavBar() {
           
           {/* Center Navigation - Generous Spacing */}
           <nav className="hidden lg:flex items-center gap-10">
+
+           <NavDropdown label={t('nav.projects')} items={projectsDropdown} />
+            
+            <span className="h-4 w-px bg-border/60" aria-hidden="true" />
+
             <NavDropdown label={t('nav.docs')} items={docsDropdown} />
             
             <span className="h-4 w-px bg-border/60" aria-hidden="true" />
             
-            <NavDropdown label={t('nav.projects')} items={projectsDropdown} />
-            
+
+            <NavBarLink to="/team">{t('nav.team')}</NavBarLink>
+
+
             <span className="h-4 w-px bg-border/60" aria-hidden="true" />
-            
+
             <NavBarLink to="/blog">{t('nav.blog')}</NavBarLink>
             
             {/*  <span className="h-4 w-px bg-border/60" aria-hidden="true" /> */}
@@ -143,7 +150,7 @@ export default function NavBar() {
               href="https://github.com/ufabc-next" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2.5 px-4 py-2 rounded-lg hover:bg-accent/50 transition-all duration-200 text-[14px] font-medium"
+              className="flex items-center gap-2.5 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 text-[14px] font-medium"
             >
               <Github className="h-4 w-4 opacity-70" />
               <span>1.2k</span>

@@ -51,20 +51,7 @@ export const blogPostsDatabase: Record<string, BlogPost> = {
                 curso: "Ciência da Computação",
                 handle: "@gabrielmonteiro"
             },
-            {
-                name: "Nicolas Greco",
-                avatar: "/members/nicolas.jpeg",
-                role: "Diretor de Tecnologia",
-                bio: "Nicolas é o Diretor de Tecnologia do Nexus, liderando as iniciativas técnicas e garantindo que nossa infraestrutura funcione de forma suave e confiável. É apaixonado por automação e boas práticas.",
-                social: {
-                    linkedin: "https://www.linkedin.com/in/nicolas-grecos/",
-                    github: "https://github.com/nicolasgrecos"
-                },
-                // optional fields for metadata
-                campus: "UFABC Santo André",
-                curso: "Ciência da Computação",
-                handle: "@nicolasgreco"
-            },
+            
             {
                 name: "Joabe Silva",
                 avatar: "/members/joabe.jpeg",
@@ -78,6 +65,20 @@ export const blogPostsDatabase: Record<string, BlogPost> = {
                 campus: "UFABC Santo André",
                 curso: "Ciência da Computação",
                 handle: "@joabesilva"
+            },
+            {
+                name: "Nicolas Greco",
+                avatar: "/members/nicolas.jpeg",
+                role: "Diretor de Tecnologia",
+                bio: "Nicolas é o Diretor de Tecnologia do Nexus, liderando as iniciativas técnicas e garantindo que nossa infraestrutura funcione de forma suave e confiável. É apaixonado por automação e boas práticas.",
+                social: {
+                    linkedin: "https://www.linkedin.com/in/nicolas-grecos/",
+                    github: "https://github.com/nicolasgrecos"
+                },
+                // optional fields for metadata
+                campus: "UFABC Santo André",
+                curso: "Ciência da Computação",
+                handle: "@nicolasgreco"
             }
         ],
         date: "6 de Dezembro, 2025",

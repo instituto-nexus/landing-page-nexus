@@ -20,7 +20,7 @@ const UfabcParser = () => {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <img 
-            src="/members/parser-logo.webp" 
+            src="/members/parser-logo.png" 
             alt="UFABC Parser Logo" 
             className="w-64 h-64 object-contain mx-auto mb-8"
           />

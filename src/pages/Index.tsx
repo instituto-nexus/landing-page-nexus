@@ -51,7 +51,7 @@ const LandingPage = () => {
       id: 2,
       title: t('projects.items.parser.title'),
       description: t('projects.items.parser.description'),
-      icon: "./projects/parser-logo.webp",
+      icon: "./projects/parser-logo.png",
       link: "/404"
     },
     {
@@ -65,7 +65,7 @@ const LandingPage = () => {
       id: 4,
       title: t('projects.items.whatsappBotAI.title'),
       description: t('projects.items.whatsappBotAI.description'),
-      icon: "./projects/whatsapp-bot.webp",
+      icon: "./projects/Ai.png",
       link: "/404"
     },
     {
@@ -512,14 +512,14 @@ function BlogCard({ image, title, description, author, href }: BlogCardProps) {
 
             {/* Bookmark Icon (Optional) */}
             <button 
-              className="p-2 hover:bg-accent rounded-lg transition-colors duration-200"
+              className="p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
               onClick={(e) => {
                 e.preventDefault();
                 // Bookmark functionality here
               }}
             >
               <svg 
-                className="w-5 h-5 text-foreground/40 hover:text-foreground/70 transition-colors" 
+                className="w-5 h-5 text-foreground/40 hover:text-blue-600 transition-colors" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
