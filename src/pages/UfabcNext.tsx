@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
 const UfabcNext = () => {
@@ -104,6 +105,79 @@ const UfabcNext = () => {
           </div>
         </section>
 
+        {/* Timeline Section */}
+        <section className="mb-16">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">História do Projeto</h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              Conheça os principais contribuidores que ajudaram a construir e evoluir o UFABC Next ao longo dos anos
+            </p>
+          </div>
+
+          {/* Vertical Timeline */}
+          <div className="max-w-4xl mx-auto relative">
+            {/* Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-300"></div>
+
+            {/* Timeline Items */}
+            <div className="space-y-12">
+              {/* 2024 */}
+              <TimelineYear year="2024" members={[
+                {
+                  name: "Felipe Silva",
+                  image: "/former-members/felipe-silva.png",
+                  linkedin: "https://www.linkedin.com/in/feosilva/",
+                  side: "left"
+                },
+                {
+                  name: "Felipe Tiozo",
+                  image: "/former-members/felipe-tiozo.png",
+                  linkedin: "https://www.linkedin.com/in/felipetiozo/",
+                  side: "right"
+                }
+              ]} />
+
+              {/* 2023 */}
+              <TimelineYear year="2023" members={[
+                {
+                  name: "Felipe Augusto",
+                  image: "/former-members/felipe-augusto.png",
+                  linkedin: "https://www.linkedin.com/in/felipeaugustodev/",
+                  side: "left"
+                },
+                {
+                  name: "Vinicius Santana",
+                  image: "/former-members/vinicius-santana.png",
+                  linkedin: "https://www.linkedin.com/in/vinicius-santana-santos/",
+                  side: "right"
+                }
+              ]} />
+
+              {/* 2022 */}
+              <TimelineYear year="2022" members={[
+                {
+                  name: "Pedro Birais",
+                  image: "/former-members/pedro-birais.png",
+                  linkedin: "https://www.linkedin.com/in/phbirais/",
+                  side: "left"
+                },
+                {
+                  name: "Lucas Grippa",
+                  image: "/former-members/lucas-grippa.png",
+                  linkedin: "https://www.linkedin.com/in/lucas-grippa-5269366a/",
+                  side: "right"
+                },
+                {
+                  name: "Rafael Telles",
+                  image: "/former-members/rafael-telles.png",
+                  linkedin: "https://www.linkedin.com/in/rafael-telles/",
+                  side: "left"
+                }
+              ]} />
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="text-center bg-gradient-to-br from-primary to-primary/80 text-white rounded-lg p-12">
           <h2 className="text-3xl font-bold mb-4">Acesse a Plataforma</h2>
@@ -130,5 +204,100 @@ const UfabcNext = () => {
     </div>
   );
 };
+
+// Timeline Components
+interface TimelineMember {
+  name: string;
+  image: string;
+  linkedin: string;
+  side: "left" | "right";
+}
+
+function TimelineYear({ year, members }: { year: string; members: TimelineMember[] }) {
+  return (
+    <div className="relative">
+      <div className="flex items-center justify-center mb-8">
+        <div 
+          className="text-white px-6 py-2 rounded-full font-bold text-lg z-10 bg-gradient-to-br from-[#0a2e4f] to-primary"
+        >
+          {year}
+        </div>
+      </div>
+      <div className="space-y-8">
+        {members.map((member, index) => (
+          <TimelineMember key={index} member={member} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TimelineMember({ member }: { member: TimelineMember }) {
+  return (
+    <div 
+      className={`grid md:grid-cols-2 gap-16 relative ${
+        member.side === "right" ? "md:grid-flow-dense" : ""
+      }`}
+    >
+      {member.side === "left" ? (
+        <>
+          <div className="flex items-center justify-end relative">
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center justify-center space-y-3 hover:scale-105 transition-all duration-300 cursor-pointer"
+            >
+              <div className="overflow-hidden rounded-full">
+                <Avatar className="w-32 h-32">
+                  <AvatarImage src={member.image} alt={member.name} className="object-cover scale-110" />
+                  <AvatarFallback className="bg-gray-200 text-gray-600">
+                    {member.name.slice(0, 2).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <h3 className="font-semibold text-gray-900 text-base leading-tight">
+                  {member.name}
+                </h3>
+              </div>
+            </a>
+            {/* Connection line from image to center */}
+            <div className="hidden md:block absolute right-0 top-16 h-0.5 bg-gray-300" style={{ width: 'calc(4rem - 1px)', transform: 'translateX(calc(100% + 1px))' }}></div>
+          </div>
+          <div className="hidden md:block"></div>
+        </>
+      ) : (
+        <>
+          <div className="hidden md:block"></div>
+          <div className="flex items-center justify-start relative">
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center justify-center space-y-3 hover:scale-105 transition-all duration-300 cursor-pointer"
+            >
+              <div className="overflow-hidden rounded-full">
+                <Avatar className="w-32 h-32">
+                  <AvatarImage src={member.image} alt={member.name} className="object-cover scale-110" />
+                  <AvatarFallback className="bg-gray-200 text-gray-600">
+                    {member.name.slice(0, 2).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <h3 className="font-semibold text-gray-900 text-base leading-tight">
+                  {member.name}
+                </h3>
+              </div>
+            </a>
+            {/* Connection line from image to center */}
+            <div className="hidden md:block absolute left-0 top-16 h-0.5 bg-gray-300" style={{ width: 'calc(4rem - 1px)', transform: 'translateX(calc(-100% - 1px))' }}></div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default UfabcNext;

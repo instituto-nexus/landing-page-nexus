@@ -155,11 +155,7 @@ export default function Team() {
 
       <main className="container mx-auto px-6 py-10 md:py-10 max-w-8xl flex flex-col items-center justify-center">
         {/* Hero Section */}
-        <img
-          src="/nexus-logo-gradient.svg"
-          alt="Nexus"
-          className="w-14 h-14 md:w-32 md:h-24 mb-6"
-        />
+       
         <div className="mb-20 flex flex-col items-center justify-center">
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight text-center">
             {t("team.titlePart1")}
@@ -184,20 +180,15 @@ export default function Team() {
             }}
           />
           <Button
-            variant="outline"
             size="lg"
-            className="text-white hover:scale-105 transactions-all duration-300 "
-            style={{
-              background:
-                "linear-gradient(to right,rgb(146, 198, 247), #0a2e4f)",
-            }}
+            className="text-white hover:text-white hover:scale-105 transactions-all duration-300 bg-gradient-to-br from-[#0a2e4f] to-primary border-0"
           >
             {t("team.addYourName")}
           </Button>
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-8 gap-y-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 max-w-6xl mx-auto">
           {teamMembers.map((member) => (
             <MemberCard key={member.id} member={member} />
           ))}
@@ -211,14 +202,14 @@ export default function Team() {
             </h2>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-8 gap-y-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 max-w-6xl mx-auto">
           {specialMembers.map((member) => (
             <MemberCard key={member.id} member={member} />
           ))}
         </div>
 
-        {/* Former Members Timeline Section */}
-        <div className="mt-32 mb-20 w-full">
+        {/* Former Members Section */}
+        <div className="mt-25 mb-20 w-full">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-foreground mb-4">
               {t("team.formerMembers")}
@@ -228,96 +219,13 @@ export default function Team() {
             </p>
           </div>
 
-          {/* Vertical Timeline */}
-          <div className="max-w-4xl mx-auto relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-border"></div>
-
-            {/* Timeline Items */}
-            <div className="space-y-12">
-              {formerMembersByYear.map((yearGroup) => (
-                <div key={yearGroup.year} className="relative">
-                  <div className="flex items-center justify-center mb-8">
-                    <div 
-                      className="text-primary-foreground px-6 py-2 rounded-full font-bold text-lg z-10"
-                      style={{
-                        background: "linear-gradient(to right,rgb(146, 198, 247), #0a2e4f)",
-                      }}
-                    >
-                      {yearGroup.year}
-                    </div>
-                  </div>
-                  <div className="space-y-8">
-                    {yearGroup.members.map((member) => (
-                      <div 
-                        key={member.id} 
-                        className={`grid md:grid-cols-2 gap-16 relative ${
-                          member.side === "right" ? "md:grid-flow-dense" : ""
-                        }`}
-                      >
-                        {member.side === "left" ? (
-                          <>
-                            <div className="flex items-center justify-end relative">
-                              <a
-                                href={member.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group flex flex-col items-center justify-center space-y-3 hover:scale-105 transition-all duration-300 cursor-pointer"
-                              >
-                                <div className="overflow-hidden rounded-full">
-                                  <Avatar className="w-32 h-32">
-                                    <AvatarImage src={member.image} alt={member.name} className="object-cover scale-110" />
-                                    <AvatarFallback className="bg-muted text-muted-foreground">
-                                      {member.name.slice(0, 2).toUpperCase()}
-                                    </AvatarFallback>
-                                  </Avatar>
-                                </div>
-                                <div className="flex flex-col items-center justify-center">
-                                  <h3 className="font-semibold text-foreground text-base leading-tight">
-                                    {member.name}
-                                  </h3>
-                                </div>
-                              </a>
-                              {/* Connection line from image to center */}
-                              <div className="hidden md:block absolute right-0 top-16 h-0.5 bg-border" style={{ width: 'calc(4rem - 1px)', transform: 'translateX(calc(100% + 1px))' }}></div>
-                            </div>
-                            <div className="hidden md:block"></div>
-                          </>
-                        ) : (
-                          <>
-                            <div className="hidden md:block"></div>
-                            <div className="flex items-center justify-start relative">
-                              <a
-                                href={member.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group flex flex-col items-center justify-center space-y-3 hover:scale-105 transition-all duration-300 cursor-pointer"
-                              >
-                                <div className="overflow-hidden rounded-full">
-                                  <Avatar className="w-32 h-32">
-                                    <AvatarImage src={member.image} alt={member.name} className="object-cover scale-110" />
-                                    <AvatarFallback className="bg-muted text-muted-foreground">
-                                      {member.name.slice(0, 2).toUpperCase()}
-                                    </AvatarFallback>
-                                  </Avatar>
-                                </div>
-                                <div className="flex flex-col items-center justify-center">
-                                  <h3 className="font-semibold text-foreground text-base leading-tight">
-                                    {member.name}
-                                  </h3>
-                                </div>
-                              </a>
-                              {/* Connection line from image to center */}
-                              <div className="hidden md:block absolute left-0 top-16 h-0.5 bg-border" style={{ width: 'calc(4rem - 1px)', transform: 'translateX(calc(-100% - 1px))' }}></div>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* Former Members Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {formerMembersByYear.flatMap((yearGroup) =>
+              yearGroup.members.map((member) => (
+                <FormerMemberCard key={member.id} member={member} year={yearGroup.year} />
+              ))
+            )}
           </div>
         </div>
       </main>
@@ -329,27 +237,106 @@ export default function Team() {
 
 function MemberCard({ member }: { member: any }) {
   return (
-    <a
-      key={member.id}
-      href={member.linkedin}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex flex-col items-center justify-center space-y-3 hover:scale-105 transition-all duration-300 cursor-pointer"
-    >
-      <div className="overflow-hidden rounded-full">
-      <Avatar className="w-48 h-48">
-          <AvatarImage src={member.image} alt={member.name} className="object-cover scale-105" />
-        <AvatarFallback className="bg-muted text-muted-foreground text-lg font-semibold">
-          {member.name.slice(0, 2).toUpperCase()}
-        </AvatarFallback>
-      </Avatar>
+    <div className="group rounded-2xl border border-border bg-card shadow-sm hover:shadow-lg transition-all duration-300 p-6">
+      <div className="flex items-start gap-4">
+        {/* Profile Image */}
+        <div className="flex-shrink-0">
+          <div className="overflow-hidden rounded-xl">
+            <Avatar className="w-20 h-20">
+              <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+              <AvatarFallback className="bg-muted text-muted-foreground text-base font-semibold">
+                {member.name.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          {/* Header with Name and Social */}
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold text-foreground text-lg leading-tight mb-1 truncate">
+                {member.name}
+              </h3>
+              <p className="text-muted-foreground text-sm font-medium">
+                {member.role}
+              </p>
+            </div>
+            
+            {/* Social Icon */}
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <svg className="w-5 h-5 text-muted-foreground hover:text-blue-600 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+
+          {/* Description/Bio */}
+          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+            {member.bio || `Membro dedicado da equipe Nexus, contribuindo com expertise em ${member.role.toLowerCase()} para construir soluções inovadoras para a comunidade acadêmica.`}
+          </p>
+        </div>
       </div>
-      <div className="flex flex-col items-center justify-center">
-        <h3 className="font-semibold text-foreground text-lg leading-tight mb-1">
-          {member.name}
-        </h3>
-        <p className="text-muted-foreground text-sm">{member.role}</p>
+    </div>
+  );
+}
+
+function FormerMemberCard({ member, year }: { member: any; year: string }) {
+  return (
+    <div className="group rounded-2xl border border-border bg-card shadow-sm hover:shadow-lg transition-all duration-300 p-6">
+      <div className="flex items-start gap-4">
+        {/* Profile Image */}
+        <div className="flex-shrink-0">
+          <div className="overflow-hidden rounded-xl">
+            <Avatar className="w-20 h-20">
+              <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+              <AvatarFallback className="bg-muted text-muted-foreground text-base font-semibold">
+                {member.name.slice(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          {/* Header with Name and Social */}
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div className="flex-1 min-w-0">
+              <h3 className="font-bold text-foreground text-lg leading-tight mb-1 truncate">
+                {member.name}
+              </h3>
+              <p className="text-muted-foreground text-sm font-medium">
+                Ex-membro • {year}
+              </p>
+            </div>
+            
+            {/* Social Icon */}
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <svg className="w-5 h-5 text-muted-foreground hover:text-blue-600 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+
+          {/* Description/Bio */}
+          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+            Contribuiu para o crescimento do Instituto Nexus e deixou um legado importante para a comunidade acadêmica da UFABC.
+          </p>
+        </div>
       </div>
-    </a>
+    </div>
   );
 }

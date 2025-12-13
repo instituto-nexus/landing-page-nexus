@@ -307,11 +307,7 @@ const LandingPage = () => {
             </p>
 
             <Button
-              className="transition-all duration-300 p-8 hover:scale-105"
-              style={{
-                background:
-                  "linear-gradient(to right,rgb(146, 198, 247), #0a2e4f)",
-              }}
+              className="transition-all duration-300 p-8 hover:scale-105 bg-gradient-to-br from-[#0a2e4f] to-primary hover:opacity-90"
             >
               <a href="/team" className="text-white text-xl font-medium">
                 {t('governance.button')}
