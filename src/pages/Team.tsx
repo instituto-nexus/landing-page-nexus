@@ -8,11 +8,9 @@ import {
 } from "@/components/ui/dialog";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
 export default function Team() {
-  const { t } = useTranslation();
   const [selectedMember, setSelectedMember] = useState<any>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -25,7 +23,7 @@ export default function Team() {
     {
       id: 1,
       name: "Gabriel Monteiro",
-      role: t('team.roles.president'),
+      role: "Presidente e Fundador",
       image: "/members/gabriel.jpeg",
       linkedin: "https://www.linkedin.com/in/gabriel-monteiro-rocha7/",
       bio: "Fundador e CEO do Instituto Nexus. Apaixonado por construir ferramentas que capacitam estudantes e lidera o time na criação de soluções inovadoras para a comunidade acadêmica da UFABC.",
@@ -33,7 +31,7 @@ export default function Team() {
     {
       id: 2,
       name: "Joabe Varjão",
-      role: t('team.roles.vicePresident'),
+      role: "Vice-Presidente e Cofundador",
       image: "/members/joabe.jpeg",
       linkedin: "https://www.linkedin.com/in/joabesv/",
       bio: "Cofundador e CTO do Instituto Nexus. Especialista em construir soluções robustas e escaláveis no backend. Adora resolver problemas complexos e garantir a estabilidade da infraestrutura.",
@@ -41,7 +39,7 @@ export default function Team() {
     {
       id: 3,
       name: "Nicolas Greco",
-      role: t('team.roles.developer'),
+      role: "Desenvolvedor",
       image: "/members/nicolas.jpeg",
       linkedin: "https://www.linkedin.com/in/nicolas-greco-160a5b258/",
       bio: "Diretor de Tecnologia do Nexus. Lidera as iniciativas técnicas e garante que nossa infraestrutura funcione de forma suave e confiável. É apaixonado por automação e boas práticas de desenvolvimento.",
@@ -49,7 +47,7 @@ export default function Team() {
     {
       id: 4,
       name: "Mateus Braga",
-      role: t('team.roles.frontendSpecialist'),
+      role: "Especialista Front-end",
       image: "/members/mateus.png",
       linkedin: "#",
       bio: "Especialista em desenvolvimento frontend. Focado em criar interfaces modernas, intuitivas e acessíveis que proporcionam a melhor experiência possível para os usuários das plataformas Nexus.",
@@ -57,7 +55,7 @@ export default function Team() {
     {
       id: 5,
       name: "Igor Santos",
-      role: t('team.roles.backendSpecialist'),
+      role: "Especialista Back-end",
       image: "/members/igor.jpeg",
       linkedin: "#",
       bio: "Especialista em desenvolvimento backend. Trabalha na construção de APIs robustas e escaláveis, garantindo performance e segurança para todas as aplicações do Instituto Nexus.",
@@ -65,7 +63,7 @@ export default function Team() {
     {
       id: 6,
       name: "Pedro Rodrigues",
-      role: t('team.roles.devopsSpecialist'),
+      role: "Especialista DevOps",
       image: "/members/pedro.jpg",
       linkedin: "#",
       bio: "Especialista em DevOps e infraestrutura. Responsável por manter nossos serviços no ar, otimizar pipelines de deployment e garantir a confiabilidade de toda a infraestrutura em nuvem.",
@@ -73,7 +71,7 @@ export default function Team() {
     {
       id: 7,
       name: "Rafael Evangelista",
-      role: t('team.roles.developer'),
+      role: "Desenvolvedor",
       image: "/members/rafael.jpg",
       linkedin: "#",
       bio: "Desenvolvedor full-stack versátil. Contribui em diversos projetos do Instituto Nexus, sempre buscando entregar código de qualidade e soluções elegantes para problemas complexos.",
@@ -188,9 +186,9 @@ export default function Team() {
        
         <div className="mb-20 flex flex-col items-center justify-center">
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight text-center">
-            {t("team.titlePart1")}
+            Pessoas por trás
             <br />
-            {t("team.titlePart2")}{" "}
+            do{" "}
             <b
               style={{
                 background:
@@ -203,17 +201,14 @@ export default function Team() {
               Nexus
             </b>
           </h1>
-          <p
-            className="text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8 text-center"
-            dangerouslySetInnerHTML={{
-              __html: t("team.description", { count: teamMembers.length }),
-            }}
-          />
+          <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8 text-center">
+            Somos um time de <strong>{teamMembers.length} pessoas</strong> que acreditam em construir projetos que inspiram e transformam a experiência universitária.
+          </p>
           <Button
             size="lg"
             className="text-white hover:text-white hover:scale-105 transactions-all duration-300 bg-gradient-to-br from-[#0a2e4f] to-primary border-0"
           >
-            {t("team.addYourName")}
+            Adicione seu nome a essa lista
           </Button>
         </div>
 
@@ -228,7 +223,7 @@ export default function Team() {
         <div className="border-t border-border pt-20">
           <div className="flex flex-col items-center justify-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {t("team.consulteers")}
+              Consultores
             </h2>
           </div>
         </div>
@@ -242,10 +237,10 @@ export default function Team() {
         <div className="mt-25 mb-20 w-full">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-foreground mb-4">
-              {t("team.formerMembers")}
+              Ex-Membros
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t("team.formerMembersDescription")}
+              Agradecimento especial aos ex-membros que fizeram contribuições valiosas para o projeto.
             </p>
           </div>
 

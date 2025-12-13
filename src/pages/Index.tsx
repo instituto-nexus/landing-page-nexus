@@ -9,14 +9,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { BlogNotificationToast } from "@/components/BlogNotificationToast";
 
 const LandingPage = () => {
-  const { t } = useTranslation();
-
   useEffect(() => {
     // Show custom blog notification toast immediately on page load
     toast.custom(
@@ -42,36 +39,36 @@ const LandingPage = () => {
   const projects = [
     {
       id: 1,
-      title: t('projects.items.next.title'),
-      description: t('projects.items.next.description'),
+      title: "UFABC next",
+      description: "Construímos uma plataforma de avaliação de professores, disciplinas e programas com base na experiência dos alunos",
       icon: "./projects/next-logo.png",
       link: "/404"
     },
     {
       id: 2,
-      title: t('projects.items.parser.title'),
-      description: t('projects.items.parser.description'),
+      title: "UFABC parser",
+      description: "Fornecemos todas as informações relevantes para o desenvolvimento universitário da UFABC em formato de API",
       icon: "./projects/parser-logo.png",
       link: "/404"
     },
     {
       id: 3,
-      title: t('projects.items.whatsappBot.title'),
-      description: t('projects.items.whatsappBot.description'),
+      title: "WhatsApp Bot",
+      description: "Criamos um bot do WhatsApp para facilitar o acesso dos alunos a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
       icon: "./projects/whatsapp-bot.webp",
       link: "/404"
     },
     {
       id: 4,
-      title: t('projects.items.whatsappBotAI.title'),
-      description: t('projects.items.whatsappBotAI.description'),
+      title: "WhatsApp Bot AI",
+      description: "Criamos um bot do WhatsApp para facilitar o acesso dos alunos a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
       icon: "./projects/Ai.png",
       link: "/404"
     },
     {
       id: 5,
-      title: t('projects.items.auloes.title'),
-      description: t('projects.items.auloes.description'),
+      title: "Aulões Next",
+      description: "Criamos aulões para conectar veteranos e calouros",
       icon: "./projects/aulao-logo.png",
       link: "/404"
     },
@@ -89,10 +86,10 @@ const LandingPage = () => {
               {/* Text */}
               <div className="space-y-4">
                 <h1 className="text-3xl font-bold leading-tight">
-                  {t('hero.title')}
+                  O ecossistema de inovação e transformação
                 </h1>
                 <p className="text-base text-white/80 leading-relaxed">
-                  {t('hero.description')}
+                  Uma plataforma feita por e para estudantes da Universidade Federal do ABC, promovendo mentorias, conteúdo acadêmico e suporte comunitário ao longo da graduação.
                 </p>
               </div>
 
@@ -100,7 +97,7 @@ const LandingPage = () => {
               <div className="flex justify-center hover:scale-105 transition-all duration-300">
                 <img
                   src="/members/time.jpeg"
-                  alt={t('hero.altImage')}
+                  alt="Estudantes UFABC Next"
                   className="rounded-2xl shadow-2xl w-full max-h-[400px] object-cover"
                 />
               </div>
@@ -109,7 +106,7 @@ const LandingPage = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <SubmitDialog
                   type="volunteer"
-                  buttonText={t('hero.volunteerButton')}
+                  buttonText={"Seja um Voluntário"}
                   buttonClassName="bg-white text-black hover:bg-white/70 font-semibold w-full sm:w-auto"
                 />
                 <Button
@@ -122,7 +119,7 @@ const LandingPage = () => {
                     });
                   }}
                 >
-                  {t('hero.learnMoreButton')}
+                  Saiba Mais
                 </Button>
               </div>
             </div>
@@ -132,15 +129,15 @@ const LandingPage = () => {
               {/* Text & Buttons */}
               <div className="space-y-6">
                 <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                  {t('hero.title')}
+                  O ecossistema de inovação e transformação
                 </h1>
                 <p className="text-lg text-white/80 leading-relaxed">
-                  {t('hero.description')}
+                  Uma plataforma feita por e para estudantes da Universidade Federal do ABC, promovendo mentorias, conteúdo acadêmico e suporte comunitário ao longo da graduação.
                 </p>
                 <div className="flex gap-4 pt-4 justify-center">
                   <SubmitDialog
                     type="volunteer"
-                    buttonText={t('hero.volunteerButton')}
+                    buttonText={"Seja um Voluntário"}
                     buttonClassName="bg-white text-black hover:bg-white/70 font-semibold"
                   />
                   <Button
@@ -155,7 +152,7 @@ const LandingPage = () => {
               <div className="flex justify-center hover:scale-105 transition-all duration-300">
                 <img
                   src="/members/time.jpeg"
-                  alt={t('hero.altImage')}
+                  alt="Estudantes UFABC Next"
                   className="rounded-2xl shadow-2xl w-full max-h-[520px] object-cover"
                 />
               </div>
@@ -167,39 +164,39 @@ const LandingPage = () => {
         <section id="sobre" className="py-24 bg-background">
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center text-foreground">
-              {t('about.title')}
+              Sobre Nós
             </h2>
             <div className="max-w-3xl mx-auto text-center mb-16">
               <p className="text-xl text-muted-foreground leading-relaxed">
-                {t('about.description')}
+                O Nexus nasceu da necessidade de criar uma comunidade de apoio e desenvolvimento acadêmico dentro da Universidade Federal do ABC, onde estudantes pudessem compartilhar conhecimento, experiências e se prepararem melhor para os desafios da graduação.
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-card rounded-xl p-8 shadow-sm border border-border hover:shadow-lg transition-all duration-300">
                 <h3 className="text-2xl font-bold mb-4 text-primary">
-                  {t('about.mission.title')}
+                  Nossa Missão
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {t('about.mission.content')}
+                  Facilitar a jornada acadêmica dos alunos da UFABC através de uma rede de apoio, compartilhamento de conhecimento e ferramentas de desenvolvimento.
                 </p>
               </div>
 
               <div className="bg-card rounded-xl p-8 shadow-sm border border-border hover:shadow-lg transition-all duration-300">
                 <h3 className="text-2xl font-bold mb-4 text-primary">
-                  {t('about.vision.title')}
+                  Nossa Visão
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {t('about.vision.content')}
+                  Ser reconhecido como a principal iniciativa de apoio ao desenvolvimento acadêmico na UFABC, tornando-se referência para outras universidades.
                 </p>
               </div>
 
               <div className="bg-card rounded-xl p-8 shadow-sm border border-border hover:shadow-lg transition-all duration-300">
                 <h3 className="text-2xl font-bold mb-4 text-primary">
-                  {t('about.impact.title')}
+                  Nosso Impacto
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {t('about.impact.content')}
+                  Mais de 2.000 alunos impactados, centenas de mentorias realizadas e uma comunidade ativa que transforma experiências acadêmicas.
                 </p>
               </div>
             </div>
@@ -211,10 +208,10 @@ const LandingPage = () => {
         <section className="bg-gradient-to-br from-[#0a2e4f] to-primary" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center text-white">
-              {t('impactNumbers.title')}
+              Nosso Impacto
             </h2>
             <p className="text-xl text-white/90 text-center max-w-3xl mx-auto mb-20">
-              {t('impactNumbers.description')}
+              Números mostrando o alcance e impacto do Nexus na comunidade acadêmica
             </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -222,28 +219,28 @@ const LandingPage = () => {
                 <div className="text-5xl md:text-6xl font-bold text-white mb-2">
                   + 10.000
                 </div>
-                <p className="text-white/90 text-lg">{t('impactNumbers.peopleImpacted')}</p>
+                <p className="text-white/90 text-lg">Pessoas Impactadas</p>
               </div>
 
               <div className="text-center">
                 <div className="text-5xl md:text-6xl font-bold text-white mb-2">
                   + 5
                 </div>
-                <p className="text-white/90 text-lg">{t('impactNumbers.projectsDeveloped')}</p>
+                <p className="text-white/90 text-lg">Projetos Desenvolvidos</p>
               </div>
 
               <div className="text-center">
                 <div className="text-5xl md:text-6xl font-bold text-white mb-2">
                   + 5
                 </div>
-                <p className="text-white/90 text-lg">{t('impactNumbers.classesHeld')}</p>
+                <p className="text-white/90 text-lg">Aulões Realizados</p>
               </div>
 
               <div className="text-center">
                 <div className="text-5xl md:text-6xl font-bold text-white mb-2">
                 + 10
                 </div>
-                <p className="text-white/90 text-lg">{t('impactNumbers.activeMembers')}</p>
+                <p className="text-white/90 text-lg">Membros Ativos</p>
               </div>
             </div>
           </div>
@@ -253,10 +250,10 @@ const LandingPage = () => {
         <section id="projetos" className="py-24 bg-muted/30">
           <div className="max-w-7xl mx-auto px-6">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-foreground">
-              {t('projects.title')}
+              Projetos
             </h2>
             <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-16">
-              {t('projects.description')}
+              A UFABC Next atua em múltiplas frentes para garantir uma experiência universitária mais completa e enriquecedora.
             </p>
 
             <Carousel
@@ -300,17 +297,17 @@ const LandingPage = () => {
           
           <div className="relative max-w-7xl mx-auto px-6 flex flex-col items-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">
-              {t('governance.title')}
+              Governança Nexus
             </h2>
             <p className="text-xl text-white/80 text-center max-w-3xl mx-auto mb-16">
-              {t('governance.description')}
+              A estrutura organizacional da UFABC Next garante planejamento, execução e impacto contínuo. Cada área é liderada por estudantes com alta responsabilidade e engajamento.
             </p>
 
             <Button
               className="transition-all duration-300 p-8 hover:scale-105 bg-gradient-to-br from-[#0a2e4f] to-primary hover:opacity-90"
             >
               <a href="/team" className="text-white text-xl font-medium">
-                {t('governance.button')}
+                Conheça nosso time
               </a>
             </Button>
           </div>
@@ -392,20 +389,20 @@ const LandingPage = () => {
           className="py-20 bg-[#0a2e4f] text-white text-center"
         >
           <div className="max-w-3xl mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-4">{t('joinUs.title')}</h2>
+            <h2 className="text-3xl font-bold mb-4">Junte-se a Nós</h2>
             <p className="text-lg mb-8">
-              {t('joinUs.description')}
+              Faça parte desta comunidade e contribua para o desenvolvimento acadêmico dos alunos da UFABC, seja como mentor, voluntário ou parceiro.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <SubmitDialog
                 type="mentor"
-                buttonText={t('joinUs.mentorButton')}
+                buttonText={"Quero ser mentor"}
                 buttonClassName="bg-transparent text-white hover:bg-white/10 font-semibold"
               />
 
               <SubmitDialog
                 type="volunteer"
-                buttonText={t('joinUs.volunteerButton')}
+                buttonText={"Quero ser voluntário"}
                 buttonClassName="bg-white text-black hover:bg-white/70 font-semibold"
               />
             </div>

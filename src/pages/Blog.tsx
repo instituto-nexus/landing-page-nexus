@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getAllPosts, type BlogPost } from "@/data/blogPosts";
@@ -21,7 +20,6 @@ const categories = [
 const blogPosts: BlogPost[] = getAllPosts();
 
 export default function Blog() {
-  const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const filteredPosts = selectedCategory === "all" 

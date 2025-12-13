@@ -15,8 +15,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "./LanguageSwitcher";
 
 interface NavLinkProps {
   to: string;
@@ -70,17 +68,16 @@ function MobileNavLink({ to, onClick, children }: { to: string; onClick: () => v
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useTranslation();
 
   const productsDropdown = [
-    { label: t('nav.projects'), href: "/#projetos" },
+    { label: "Projetos", href: "/#projetos" },
     { label: "UFABC Next", href: "/404" },
     { label: "UFABC Parser", href: "/404" },
   ];
 
   const resourcesDropdown = [
-    { label: t('nav.blog'), href: "/blog" },
-    { label: t('nav.community'), href: "/#comunidade" },
+    { label: "Blog", href: "/blog" },
+    { label: "Comunidade", href: "/#comunidade" },
   ];
 
   const projectsDropdown = [
@@ -122,25 +119,25 @@ export default function NavBar() {
           {/* Center Navigation - Generous Spacing */}
           <nav className="hidden lg:flex items-center gap-10">
 
-           <NavDropdown label={t('nav.projects')} items={projectsDropdown} />
+           <NavDropdown label="Projetos" items={projectsDropdown} />
             
             <span className="h-4 w-px bg-border/60" aria-hidden="true" />
 
-            <NavDropdown label={t('nav.docs')} items={docsDropdown} />
+            <NavDropdown label="Documentação" items={docsDropdown} />
             
             <span className="h-4 w-px bg-border/60" aria-hidden="true" />
             
 
-            <NavBarLink to="/team">{t('nav.team')}</NavBarLink>
+            <NavBarLink to="/team">Time</NavBarLink>
 
 
             <span className="h-4 w-px bg-border/60" aria-hidden="true" />
 
-            <NavBarLink to="/blog">{t('nav.blog')}</NavBarLink>
+            <NavBarLink to="/blog">Blog</NavBarLink>
             
             {/*  <span className="h-4 w-px bg-border/60" aria-hidden="true" /> */}
             
-           {/* Center Navigation - Generous Spacing  <NavDropdown label={t('nav.resources')} items={resourcesDropdown} /> */}
+           {/* Center Navigation - Generous Spacing  <NavDropdown label="Recursos" items={resourcesDropdown} /> */}
           </nav>
           
           {/* Right Side - Clean Interaction Area */}
@@ -156,25 +153,18 @@ export default function NavBar() {
               <span>1.2k</span>
             </a>
 
-            {/* Language Switcher */}
-            <LanguageSwitcher />
-            
-            {/* Subtle Separator */}
-            <span className="h-6 w-px bg-border/60" aria-hidden="true" />
-            
             {/* CTA Button - Clean */}
             <Button 
               size="sm" 
               className="rounded-lg px-5 py-2 font-medium text-[14px] shadow-sm hover:shadow transition-all duration-200"
               asChild
             >
-              <a href="/#comunidade">{t('nav.signUp')}</a>
+              <a href="/#comunidade">Cadastrar</a>
             </Button>
           </div>
 
           {/* Mobile Menu */}
           <div className="flex items-center gap-3 lg:hidden">
-            <LanguageSwitcher />
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-lg">
@@ -191,7 +181,7 @@ export default function NavBar() {
                   <nav className="flex flex-col gap-6 mt-8">
                     <div className="space-y-2">
                       <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                        {t('nav.products')}
+                        Produtos
                       </p>
                       {productsDropdown.map((item) => (
                         <MobileNavLink key={item.href} to={item.href} onClick={() => setIsOpen(false)}>
@@ -202,7 +192,7 @@ export default function NavBar() {
 
                     <div className="border-t pt-6 space-y-2">
                        <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                        {t('nav.docs')}
+                        Documentação
                       </p>
                       {docsDropdown.map((item) => (
                         <MobileNavLink key={item.href} to={item.href} onClick={() => setIsOpen(false)}>
@@ -213,7 +203,7 @@ export default function NavBar() {
 
                     <div className="border-t pt-6 space-y-2">
                       <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                        {t('nav.projects')}
+                        Projetos
                       </p>
                       {projectsDropdown.map((item) => (
                         <MobileNavLink key={item.href} to={item.href} onClick={() => setIsOpen(false)}>
@@ -224,7 +214,7 @@ export default function NavBar() {
 
                     <div className="border-t pt-6 space-y-2">
                       <MobileNavLink to="/blog" onClick={() => setIsOpen(false)}>
-                        {t('nav.blog')}
+                        Blog
                       </MobileNavLink>
                       {resourcesDropdown.map((item) => (
                         <MobileNavLink key={item.href} to={item.href} onClick={() => setIsOpen(false)}>
@@ -236,7 +226,7 @@ export default function NavBar() {
                     <div className="border-t pt-6">
                       <Button className="w-full rounded-lg font-medium shadow-sm" asChild>
                         <a href="/#comunidade" onClick={() => setIsOpen(false)}>
-                          {t('nav.signUp')}
+                          Cadastrar
                         </a>
                       </Button>
                     </div>
