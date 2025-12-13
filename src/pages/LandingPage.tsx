@@ -291,10 +291,9 @@ const LandingPage = () => {
               </div>
               
               <div className="bg-gray-50 rounded-lg p-6 shadow-sm">
-                <h3 className="text-xl font-semibold mb-3 text-primary">Nosso Impacto</h3>
+                <h3 className="text-xl font-semibold mb-3 text-primary">Nossos valores</h3>
                 <p className="text-gray-700">
-                  Mais de 2.000 estudantes impactados, centenas de mentorias realizadas e uma 
-                  comunidade ativa que transforma experiências acadêmicas.
+                  Inclusão, colaboração, inovação e compromisso com o sucesso acadêmico dos estudantes.
                 </p>
               </div>
             </div>

@@ -206,6 +206,49 @@ const LandingPage = () => {
           </div>
         </section>
 
+
+                {/* Impact Numbers Section */}
+        <section className="bg-gradient-to-br from-[#0a2e4f] to-primary" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center text-white">
+              {t('impactNumbers.title')}
+            </h2>
+            <p className="text-xl text-white/90 text-center max-w-3xl mx-auto mb-20">
+              {t('impactNumbers.description')}
+            </p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
+                  + 10.000
+                </div>
+                <p className="text-white/90 text-lg">{t('impactNumbers.peopleImpacted')}</p>
+              </div>
+
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
+                  + 5
+                </div>
+                <p className="text-white/90 text-lg">{t('impactNumbers.projectsDeveloped')}</p>
+              </div>
+
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
+                  + 5
+                </div>
+                <p className="text-white/90 text-lg">{t('impactNumbers.classesHeld')}</p>
+              </div>
+
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
+                + 10
+                </div>
+                <p className="text-white/90 text-lg">{t('impactNumbers.activeMembers')}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Projetos */}
         <section id="projetos" className="py-24 bg-muted/30">
           <div className="max-w-7xl mx-auto px-6">
@@ -239,16 +282,54 @@ const LandingPage = () => {
           </div>
         </section>
 
+
+         {/* Governança */}
+        <section 
+          className="relative"
+          style={{ 
+            paddingTop: '3rem', 
+            paddingBottom: '36rem',
+            backgroundImage: 'url(/team-image.jpeg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-[#0a2e4f]/80"></div>
+          
+          <div className="relative max-w-7xl mx-auto px-6 flex flex-col items-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">
+              {t('governance.title')}
+            </h2>
+            <p className="text-xl text-white/80 text-center max-w-3xl mx-auto mb-16">
+              {t('governance.description')}
+            </p>
+
+            <Button
+              className="transition-all duration-300 p-8 hover:scale-105"
+              style={{
+                background:
+                  "linear-gradient(to right,rgb(146, 198, 247), #0a2e4f)",
+              }}
+            >
+              <a href="/team" className="text-white text-xl font-medium">
+                {t('governance.button')}
+              </a>
+            </Button>
+          </div>
+        </section>
+
         {/* Latest Blog Posts - Editorial Style */}
-        <section id="blog-section" className="py-28 bg-background">
+        <section id="blog-section" className="py-28 bg-background" style={{ paddingTop: '2rem', paddingBottom: '3rem' }}>
           <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
             {/* Section Header */}
             <div className="mb-20 flex flex-col items-center justify-center text-center">
               <h2 className="text-[42px] md:text-[52px] font-bold tracking-tight text-foreground mb-4">
-                Do Blog
+                Nossas histórias
               </h2>
               <p className="text-[17px] text-foreground/60 font-medium max-w-2xl">
-                Insights, histórias e atualizações da comunidade Nexus
+                Insights, momentos e atualizações da comunidade Nexus
               </p>
             </div>
 
@@ -304,71 +385,9 @@ const LandingPage = () => {
         </section>
 
 
-        {/* Governança */}
-        <section className="py-24 bg-background">
-          <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-foreground">
-              {t('governance.title')}
-            </h2>
-            <p className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-16">
-              {t('governance.description')}
-            </p>
+       
 
-            <Button
-              className="transition-all duration-300 p-8 hover:scale-105"
-              style={{
-                background:
-                  "linear-gradient(to right,rgb(146, 198, 247), #0a2e4f)",
-              }}
-            >
-              <a href="/team" className="text-white text-xl font-medium">
-                {t('governance.button')}
-              </a>
-            </Button>
-          </div>
-        </section>
 
-        {/* Impact Numbers Section */}
-        <section className="py-24 bg-gradient-to-br from-[#0a2e4f] to-primary">
-          <div className="max-w-7xl mx-auto px-6">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center text-white">
-              {t('impactNumbers.title')}
-            </h2>
-            <p className="text-xl text-white/90 text-center max-w-3xl mx-auto mb-20">
-              {t('impactNumbers.description')}
-            </p>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                  10k+
-                </div>
-                <p className="text-white/90 text-lg">{t('impactNumbers.peopleImpacted')}</p>
-              </div>
-
-              <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                  5+
-                </div>
-                <p className="text-white/90 text-lg">{t('impactNumbers.projectsDeveloped')}</p>
-              </div>
-
-              <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                  5+
-                </div>
-                <p className="text-white/90 text-lg">{t('impactNumbers.classesHeld')}</p>
-              </div>
-
-              <div className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                10+
-                </div>
-                <p className="text-white/90 text-lg">{t('impactNumbers.activeMembers')}</p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         
         {/* Comunidade */}

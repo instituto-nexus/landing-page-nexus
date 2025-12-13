@@ -26,11 +26,11 @@
     },
     "vision": {
       "title": "Nossa Visão",
-      "content": "Ser reconhecida como a principal iniciativa de apoio ao desenvolvimento acadêmico na UFABC, tornando-se referência para outras universidades."
+      "content": "Ser reconhecida como a principal iniciativa de apoio ao desenvolvimento acadêmico e profissional na UFABC, tornando-se referência para outras universidades."
     },
     "impact": {
-      "title": "Nosso Impacto",
-      "content": "Mais de 2.000 estudantes impactados, centenas de mentorias realizadas e uma comunidade ativa que transforma experiências acadêmicas."
+      "title": "Nossos Valores",
+      "content": "Inclusão, colaboração, inovação e compromisso com o sucesso acadêmico dos estudantes."
     }
   },
   "projects": {
@@ -60,7 +60,7 @@
     }
   },
   "governance": {
-    "title": "Governança Nexus",
+    "title": "Quem faz o Nexus",
     "description": "A estrutura organizacional do UFABC Next assegura planejamento, execução e impacto contínuo. Cada área é liderada por estudantes com alta responsabilidade e engajamento.",
     "button": "Conheça nossa equipe"
   },
