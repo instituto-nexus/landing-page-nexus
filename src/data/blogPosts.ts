@@ -21,7 +21,6 @@ export interface BlogPost {
     excerpt: string;
     content: string; // Now stores HTML instead of Markdown
     image: string;
-    author: Author; // Primary author for backward compatibility
     authors?: Author[]; // Multiple authors
     date: string;
     readTime: string;
@@ -81,130 +80,137 @@ export const blogPostsDatabase: Record<string, BlogPost> = {
                 handle: "@nicolasgreco"
             }
         ],
-        date: "6 de Dezembro, 2025",
+        date: "21 de Dezembro, 2025",
         readTime: "8 min de leitura",
         category: "technology",
         slug: "my-server-is-down-what-do-i-do",
         tags: ["tecnologia", "servidor", "troubleshooting", "devops", "ufabc next"],
         content: `
-
-<p class="mb-4">Sexta feira, 18hrs da tarde, aparentemente um ótimo dia e de uma hora para a outra chega uma mensagem <strong>"O Next caiu"</strong>... Geralmente não gostamos de fazer deploy de sexta ou finais de semana, então o que poderia ter acontecido? </p>
+<p class="mb-4">
+Sexta-feira, 18hrs. Tudo indicava o fim de uma semana tranquila quando, de repente, chega a mensagem:
+<strong>“O Next caiu.”</strong> Geralmente não gostamos de fazer deploy às sextas ou em finais de semana, então, se nada havia sido alterado, o que poderia ter acontecido?
+</p>
 
 <p class="mb-4">
-Como todo engenheiro de software, fomos céticos e tentamos entrar na plataforma para ver, o resultado: 
+Como todo engenheiro de software naturalmente cético, a primeira reação foi: entrar na plataforma e conferir com os próprios olhos.
 </p>
 
 <img src="/blog/blog-1/content/bad-gateway.jpg" alt="Erro na plataforma"
      class="rounded-lg shadow-md my-6" />
 
-<p class="mb-6">De fato, tivemos um problema, no primeiro momento um erro de nginx só poderia indicar que a app não estava de pé e ao tentar redirecionar para a porta que a aplicação roda houve alguma falha. </p>
-
-<p class="mb-4">
-Mas não tivemos <strong>nenhum</strong> deploy, o buraco deve ser um pouco mais embaixo. 
-</p>
-<p class="mb-4">
-O outro sintoma curioso, não conseguimos acessar a máquina de produção, qualquer tentativa de acesso com o SSM falhava, bem como o connect terminal do console, estavamos literalmente no escuro e sem poder entender o que de fato estava acontecendo. </p>
-
-<p class="mb-4">
-Nos baseamos por logs, tanto no Cloudwatch com logs do SSM quanto na aplicação não tivemos muitas respostas. Nesse momento, partimos para o plano drástico, tirar da tomada e ligar denovo. Tentamos uma abordagem mais soft, com o restart da máquina que não deu muito certo, já no modo mais hard, simplesmente criamos um novo tipo de instância. Agora é só partir para o abraço e... Não deu certo! Mas nem tudo estava perdido tem momentos que falhar é muito bom e nos deu a dica que precisavamos, se mesmo trocando a instância não tivemos sucesso, significa que tinhamos que olhar mais embaixo. Na arquitetura da AWS, quando trabalhamos com máquinas EC2, precisamos também trabalhar com um volume EBS, que nada mais é que o nosso bloco de memória que contém sistema operacional, drivers de memória e afins. No nosso caso, estavamos trabalhando com um volume do tipo gp3, com a memória padrão de 8gb que pode ser pouco dependendo do workload que utilizamos. 
-Um detalhe importante, depois de fazer a recriação da instância, conseguimos acessar via SSH a máquina, o que nos facilitou fazer o diagnóstico final. O conjunto App + Docker havia sido terminado com códigos de falha estranhos e ao tentar executar o comando service docker restart, o systemd não respondia. 
+<p class="mb-6">
+De fato, havia um problema. O erro retornado era do <strong>nginx</strong>, que, em analogia, funciona como o porteiro da aplicação. Quando ele começa a reclamar, normalmente significa que, como porteiro, sua função de ligar nos apartamentos e liberar a entrada não está funcionando bem, ou seja, a aplicação que ele deveria encaminhar simplesmente não está respondendo ou não está lá. 
 </p>
 
-<p class="mb-6">Estávamos completamente no escuro.</p>
+<p class="mb-6">
+O estranho é que não tivemos <strong>nenhum</strong> deploy. Se nada mudou no código, o buraco provavelmente era mais embaixo.
+</p>
+
+<p class="mb-6">
+Outro sintoma deixou tudo ainda mais curioso: não conseguíamos acessar o servidor que estava em produção. Qualquer tentativa de acesso remoto falhava — tanto usando o AWS SSM, um dos serviços da AWS usado para gerenciamento de servidores, quanto pela própria AWS. Era como ter um servidor ligado, mas sem teclado, sem tela e sem resposta. Estávamos literalmente no escuro.
+</p>
+
+<p class="mb-6">
+Buscamos então pistas nos logs. Logs são, basicamente, o diário da aplicação e da infraestrutura. Analisamos tanto os registros da aplicação quanto os logs do nosso serviço responsável na AWS, o Amazon CloudWatch, mas não encontramos nada conclusivo.
+</p>
+
+<p class="mb-6">
+Nesse momento, partimos para a estratégia mais antiga da computação: tirar da tomada e ligar de novo. Tentamos primeiro uma abordagem mais suave, reiniciando a máquina. Não funcionou. Bom, fomos um pouco mais primitivos e pensamos, joga fora e começa denovo! Simplesmente criamos uma nova máquina e adicionamos o código lá dentro.
+</p>
+
+<p class="mb-6">
+Não voltou. Porém, nem tudo estava perdido. Existem momentos em que falhar é mais útil do que acertar de primeira. Paramos para pensar e, trocar o computador é uma forma de garantir que tudo voltará ao estado incial mas e se nem tudo estivesse sendo, de fato trocado?
+</p>
+
+<p class="mb-6">
+Na arquitetura de sistemas escolhida, usamos um serviço chamado EC2 para hospedar nossa servidor, que depende de uma série de configurações para que o sistema fique pronto para rodar. Imagine que ao ler esse artigo, o seu dispositivo é quase como um Iceberg, repleto de camadas, ele vai desde a interface com o usuário, sistema operacional e por fim a parte física que faz tudo ser possível. Para o EC2 não é diferente, essas camadas, dependem em algum momento de um hardware para armazenar as informações, chamado <strong>EBS</strong>, que funciona como o HD do computador. Nesse componente, podemos encontrar o sistema operacional, arquivos diversos, logs e afins. No nosso caso, esse “HD”, chamado volume,  era do tipo <strong>gp3</strong>, com <strong>8 GB</strong>, que até parece bastante, até que comece a faltar. </p>
+
 
 <img src="/blog/blog-1/content/sample-arch.png" alt="Arquitetura"
      class="rounded-lg shadow-md my-6" />
 
-
-
-<p class="mb-4">
-Bom, vamos então entender como está a saúde da máquina. Ao rodar o conjunto de comandos df-h e df -T <Explicar a diferença entre as flags> Vimos que os FileSystem estavam ok, exceto um. 
-
+<p class="mb-6">
+Após recriar a instância, finalmente conseguimos acessar a máquina via SSH, o que permitiu um diagnóstico mais aprofundado. Rapidamente percebemos que o conjunto <strong>App + Docker</strong> havia sido encerrado com códigos de erro estranhos. Ao tentar executar <code>service docker restart</code>, o <strong>systemd</strong> simplesmente não respondia. Algo estava muito errado com o sistema operacional.
 </p>
 
-<p class="font-mono bg-gray-800 text-gray-200 px-3 py-2 rounded mb-4">/dev/nvme0n1p1. -- Falo mais sobre no final do blog</p> 
 
-<p class="mb-4"> Certo, conseguimos confirmar isso de outra maneira, o gráfico do cloudwatch mostrava que o disco realmente estava bastante sobrecarregado. Então partimos para a solução matadora, vamos escalar o disco e aumentar a capacidade de storage da máquina. Nesse momento, passamos o volume para o modo optimizing state, esse estado indica que o EBS está passando por resizing. 
 
+<p class="mb-6">
+Decidimos então verificar algo básico: a saúde da máquina. Rodamos comandos como <code>df -h</code> e <code>df -T</code>, que mostram quanto espaço existe, quanto está sendo utilizado e qual o tipo de filesystem. A maioria parecia normal, exceto um.
+</p>
+
+<p class="font-mono bg-gray-800 text-gray-200 px-3 py-2 rounded mb-6">
+/dev/nvme0n1p1
+</p>
+
+<p class="mb-6">
+Confirmamos a suspeita de outra forma: o gráfico do CloudWatch mostrava o disco completamente sobrecarregado. A solução parecia óbvia — aumentar o tamanho do disco. Escalamos o volume EBS, que entrou no estado de <em>optimizing</em>, indicando que o redimensionamento estava em andamento.
 </p>
 
 <img src="/blog/blog-1/content/cw-metrics.png"
      alt="CloudWatch Disk 100%"
      class="rounded-lg shadow-md my-6" />
 
-
-<p class="mb-4">
-OBS: Esse tipo de operação não pode ser realizado com muita frequência, se não tomamos downtime da api da AWS, o que aconteceu conosco nos testes 😅
+<p class="mb-6">
+<strong>Obs:</strong> esse tipo de operação não pode ser feita muitas vezes em sequência. Aprendemos isso tomando um pequeno downtime da própria API da AWS durante os testes 😅
 </p>
-
 
 <img src="/blog/blog-1/content/quota-aws.png" alt="quotas aws"
      class="rounded-lg shadow-md my-6" />
 
-
-
-<p class="mb-4">
-Após 5 minutos, a AWS tinha terminado a operação e BANG, ainda não funcionava. Curiosamente, a vontade de jogar o servidor no lixo é proporcional a curiosidade de entender os meandros que fizeram o problema acontecer e pesquisando mais um pouco, entendemos algo que até então foi novo. 
-
- </p>
-
-<p class="mb-4">
-O conceito é o seguinte, no linux precisamos manualmente fazer o gerenciamento do filesystem e mesmo que tivessemos aumentado o hardwate, precisamos indicar para o <strong>LVM(Linux Volume Manager)</strong> que ele fizesse o particionamento lógico e passasse a entender que os 12Gb adicionais estavam disponíveis para uso. 
-
- </p>
-
-<p class="mb-4">
- O comando lsbk vai nos mostrar a distribuição dessas partições e a maneira como o linux está interpretando cada uma delas, para expandir de fato, precisamos executar os comandos growpart /dev/nvme0n1 1 e sudo xfs_growfs -d / é como dizer para o linux aumentar o tamanho da sua gaveta e também as suas divisões de meias internas.</p>
+<p class="mb-6">
+Após alguns minutos, a AWS concluiu a operação. E então… <strong>BANG</strong>. Ainda não funcionava. Foi nesse momento que entendemos algo fundamental: no Linux, aumentar o tamanho do disco não significa automaticamente que o sistema passará a usar esse espaço.
 </p>
 
+<p class="mb-6">
+É como comprar uma gaveta maior, mas continuar usando as mesmas divisões internas. O espaço existe, mas o sistema ainda não sabe disso. Precisávamos informar ao <strong>LVM (Linux Volume Manager)</strong> que aqueles novos gigabytes agora estavam disponíveis.
+</p>
 
-<p class="mb-4">
-Nesse tipo de problema, temos alguns comandos que vão nos ajudar a visualizar e gerenciar as partições do linux.
+<p class="mb-6">
+O comando <code>lsblk</code> nos mostra como o Linux está interpretando discos e partições. Para resolver de vez, foi necessário aumentar a gaveta e reorganizar as divisões internas.
 </p>
 
 <pre class="rounded-lg shadow-lg p-4 bg-gray-900 text-gray-200 my-6 text-sm">
-# Lista as partições e discos
-sudo df -h ou df -T
+# Visualiza discos e partições
+df -h
+df -T
 </pre>
 
 <pre class="rounded-lg shadow-lg p-4 bg-gray-900 text-gray-200 my-6 text-sm">
 # Expande a partição física
 sudo growpart /dev/nvme0n1 1
 
-# Expande o filesystem XFS, o "sistema de prateleiras" do linux, organizando o EBS
+# Expande o filesystem XFS
 sudo xfs_growfs -d /
 </pre>
 
-<p class="mb-4">
-Então fizemos o processo de gerenciamento do LVM e <em>voilà</em>, o comando <strong>lsbk</strong> nos mostrou a partição agora com os 20gb que precisavamos 
+<p class="mb-6">
+Após o ajuste do LVM, rodamos novamente o <code>lsblk</code> e finalmente vimos a partição reconhecendo os <strong>20 GB</strong> disponíveis.
 </p>
-
-
-<p class="mb-6">Vimos algo como:</p>
 
 <pre class="rounded-lg shadow-lg p-4 bg-gray-900 text-gray-200 my-6 text-sm">
 nvme0n1       259:0    0  20G  0 disk
 └─nvme0n1p1   259:1    0  20G  0 part /
 </pre>
 
-
-<p class="mb-4">
-Finalmente, após algumas horas de troubleshooting, alcançamos espaço disponivel para executar o nosso Docker e o comando restar do Docker passou responder com sucesso a subida do processo do Dockerd e assim pudemos fazer resetar de nossa aplicação, hora dos fogos, vencemos o bug. 🎆Em nosso post mortem, definimos alguns potenciais causadores desse problema e um deles diz respeito a maneira como reciclamos as imagens antigas a cada implantação e armazenamos arquivos de log, como lições: 
+<p class="mb-6">
+Agora sim, havia espaço suficiente. O Docker voltou a subir, a aplicação respondeu e, depois de algumas horas de troubleshooting, vencemos o bug. Hora dos fogos 🎆
 </p>
 
-
+<p class="mb-4">
+No post-mortem, alguns aprendizados ficaram claros:
+</p>
 
 <ul class="list-disc ml-6 mb-6">
-  <li>É importante termos alarmes para os parâmetros de infraestrutura</li>
-  <li>Manter o controle de logs e imagens antigas no servidor</li>
-  <li>Criar rotinas de limpeza para garantir a saúde do seu sistema de aramazenamento</li>
+  <li>Ter alarmes claros para parâmetros de infraestrutura</li>
+  <li>Manter controle de logs e imagens antigas</li>
+  <li>Criar rotinas de limpeza para preservar a saúde do armazenamento</li>
 </ul>
-
 
 <h2 class="text-2xl font-bold mt-10 mb-4">Bonus Tips: NVMe</h2>
 
-<p class="mb-4">
-O volume EC2 que abordamos nesse blog foi o NVME (Non-Volatile Memory Express) é um tipo de protocolo de SSDs modernos, diferente de outros mais antigos como o SATA, ele garante uma comunicação muito rápida, ideal para aplicações que tenham um alto IOPS e precisam de latência baixa, esse resultado é alcançado pela capacidade de conexão direta a CPU, sem passar por intermediários de tradução, ideal para alto desempenho. 
+<p class="mb-6">
+O volume utilizado era do tipo <strong>NVMe (Non-Volatile Memory Express)</strong>, um protocolo moderno de SSD que permite comunicação direta com a CPU, garantindo alto IOPS e baixa latência. Ideal para aplicações de alto desempenho — desde que você dê espaço suficiente para ele respirar.
 </p>
 
 <h3 class="text-xl font-semibold mb-4">Referências</h3>
@@ -214,6 +220,7 @@ O volume EC2 que abordamos nesse blog foi o NVME (Non-Volatile Memory Express) �
   <li><a href="https://repost.aws/knowledge-center/create-lv-on-ebs-partition">AWS — Create LV on EBS Partition</a></li>
   <li><a href="https://www.quora.com/Why-are-NVMes-faster-than-SSDs-Where-both-are-non-volatile-memory-What-is-the-key-factor-or-reason">Por que NVMe é mais rápido?</a></li>
 </ul>
+
  `,
     },
 
