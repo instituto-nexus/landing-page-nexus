@@ -184,4 +184,12 @@
   .animate-slide-in {
     animation: slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  /* Blog Image Shadow - Top and Bottom */
+  .blog-image-shadow {
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 
+                0 -2px 4px -1px rgba(0, 0, 0, 0.06),
+                0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
 }

@@ -3,8 +3,9 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowLeft, Calendar, School, Share2, Twitter, Linkedin, Github, MapPin, AtSign } from "lucide-react";
+import { ArrowLeft, Calendar, School, Share2, Twitter, Linkedin, Github, MapPin, AtSign, Check } from "lucide-react";
 import { getPostBySlug, type Author } from "@/data/blogPosts";
+import { useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -70,8 +71,20 @@ function AuthorCard({ author }: { author: Author }) {
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
+  const [copied, setCopied] = useState(false);
   
   const post = slug ? getPostBySlug(slug) : null;
+
+  const handleShareClick = async () => {
+    const url = window.location.href;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
 
   if (!post) {
     return (
@@ -137,9 +150,23 @@ export default function BlogPost() {
         <AuthorsHoverRow authors={post.authors && post.authors.length > 0 ? post.authors : [post.author]} />
 
          
-          <Button variant="outline" size="sm" className="hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200">
-            <Share2 className="h-4 w-4 mr-2" />
-            Compartilhar
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200"
+            onClick={handleShareClick}
+          >
+            {copied ? (
+              <>
+                <Check className="h-4 w-4 mr-2" />
+                Link copiado!
+              </>
+            ) : (
+              <>
+                <Share2 className="h-4 w-4 mr-2" />
+                Compartilhar
+              </>
+            )}
           </Button>
         </div>
 

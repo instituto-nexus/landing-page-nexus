@@ -107,7 +107,7 @@ O estranho é que não tivemos <strong>nenhum</strong> deploy. Se nada mudou no 
 </p>
 
 <p class="mb-6">
-Outro sintoma deixou tudo ainda mais curioso: não conseguíamos acessar o servidor que estava em produção. Qualquer tentativa de acesso remoto falhava — tanto usando o AWS SSM, um dos serviços da AWS usado para gerenciamento de servidores, quanto pela própria AWS. Era como ter um servidor ligado, mas sem teclado, sem tela e sem resposta. Estávamos literalmente no escuro.
+Outro sintoma deixou tudo ainda mais curioso: não conseguíamos acessar o servidor que estava em produção. Qualquer tentativa de acesso remoto falhava, tanto usando o AWS SSM, um dos serviços da AWS usado para gerenciamento de servidores, quanto pela própria AWS. Era como ter um servidor ligado, mas sem teclado, sem tela e sem resposta. Estávamos literalmente no escuro.
 </p>
 
 <p class="mb-6">
@@ -119,24 +119,25 @@ Nesse momento, partimos para a estratégia mais antiga da computação: tirar da
 </p>
 
 <p class="mb-6">
-Não voltou. Porém, nem tudo estava perdido. Existem momentos em que falhar é mais útil do que acertar de primeira. Paramos para pensar e, trocar o computador é uma forma de garantir que tudo voltará ao estado incial mas e se nem tudo estivesse sendo, de fato trocado?
+Não voltou. Porém, nem tudo estava perdido. Existem momentos em que falhar é mais útil do que acertar de primeira. Paramos para pensar e, trocar o computador é uma forma de garantir que tudo voltará ao estado incial mas e se nem tudo estivesse sendo mesmo trocado?
 </p>
 
 <p class="mb-6">
-Na arquitetura de sistemas escolhida, usamos um serviço chamado EC2 para hospedar nossa servidor, que depende de uma série de configurações para que o sistema fique pronto para rodar. Imagine que ao ler esse artigo, o seu dispositivo é quase como um Iceberg, repleto de camadas, ele vai desde a interface com o usuário, sistema operacional e por fim a parte física que faz tudo ser possível. Para o EC2 não é diferente, essas camadas, dependem em algum momento de um hardware para armazenar as informações, chamado <strong>EBS</strong>, que funciona como o HD do computador. Nesse componente, podemos encontrar o sistema operacional, arquivos diversos, logs e afins. No nosso caso, esse “HD”, chamado volume,  era do tipo <strong>gp3</strong>, com <strong>8 GB</strong>, que até parece bastante, até que comece a faltar. </p>
+Na arquitetura de sistemas escolhida, usamos um serviço chamado EC2 para hospedar nossa servidor, que depende de uma série de configurações para que o sistema fique pronto para rodar. Imagine que ao ler esse artigo, o seu dispositivo é quase como um Iceberg, repleto de camadas, ele vai desde a interface com o usuário, sistema operacional e por fim a parte física que faz tudo ser possível. Para o EC2 não é diferente, essas camadas, dependem em algum momento de um hardware para armazenar as informações, chamado <strong>EBS</strong>, que funciona como o HD do computador. Nesse componente, podemos encontrar o sistema operacional, arquivos, logs e afins. No nosso caso, esse “HD”, chamado volume,  era do tipo <strong>gp3</strong>, com <strong>8 GB</strong>, que até parece bastante, até que comece a faltar. </p>
 
 
 <img src="/blog/blog-1/content/sample-arch.png" alt="Arquitetura"
-     class="rounded-lg shadow-md my-6" />
+     class="rounded-lg blog-image-shadow my-6" />
 
 <p class="mb-6">
-Após recriar a instância, finalmente conseguimos acessar a máquina via SSH, o que permitiu um diagnóstico mais aprofundado. Rapidamente percebemos que o conjunto <strong>App + Docker</strong> havia sido encerrado com códigos de erro estranhos. Ao tentar executar <code>service docker restart</code>, o <strong>systemd</strong> simplesmente não respondia. Algo estava muito errado com o sistema operacional.
-</p>
+Recriar a instância, deu um pequeno sinal, finalmente conseguimos conectar na máquina através da linha de comando, o que permitiu um diagnóstico mais detalhado. Percebemos então que, o nossos componentes internos estavam sem comunicação, o porteiro, <strong>nginx</strong> não reconhecia nenhum tipo de contato com o sistema resposável por separar os apartamentos, seguindo a nossa analogia. Esse sistema chamado Docker, veja figura 1.2, é importante para o processo de muitas maneiras que não cabem aqui explicar mas o importante é que assim como os demais programas, por quê não tentar reiniciar? Aqui vimos uma falha importante, ao executar o comando  <code>service docker restart</code> não tivemos sucesso, na verdade, os logs indicavam erros bem estranhos.   
+ </p>
 
-
+<img src="/blog/blog-1/content/server-components.png" alt="componentes"
+     class="rounded-lg blog-image-shadow  my-6" />
 
 <p class="mb-6">
-Decidimos então verificar algo básico: a saúde da máquina. Rodamos comandos como <code>df -h</code> e <code>df -T</code>, que mostram quanto espaço existe, quanto está sendo utilizado e qual o tipo de filesystem. A maioria parecia normal, exceto um.
+Decidimos então verificar algo básico: a saúde da máquina. Rodamos comandos como <code>df -h</code> e <code>df -T</code>, que mostram informações importantes sobre os espaços de memória onde o sistema operacional executa, chamados de FileSystems. Como resultado do comando, a maioria parecia normal, exceto um.
 </p>
 
 <p class="font-mono bg-gray-800 text-gray-200 px-3 py-2 rounded mb-6">
@@ -144,30 +145,30 @@ Decidimos então verificar algo básico: a saúde da máquina. Rodamos comandos 
 </p>
 
 <p class="mb-6">
-Confirmamos a suspeita de outra forma: o gráfico do CloudWatch mostrava o disco completamente sobrecarregado. A solução parecia óbvia — aumentar o tamanho do disco. Escalamos o volume EBS, que entrou no estado de <em>optimizing</em>, indicando que o redimensionamento estava em andamento.
+Esse espaço mostrava 0% de espaço livre, o que foi o primeiro bingo, se não houver memória, nada funciona como deveria. Confirmamos a suspeita de outra forma: o gráfico do AWS CloudWatch mostrava o disco completamente sobrecarregado. A solução parecia óbvia, aumentar o tamanho dessa memória. Aumentamos o volume EBS, que entrou no estado de <em>optimizing</em>, indicando que o redimensionamento estava em andamento.
 </p>
 
 <img src="/blog/blog-1/content/cw-metrics.png"
      alt="CloudWatch Disk 100%"
-     class="rounded-lg shadow-md my-6" />
+     class="rounded-lg blog-image-shadow my-6" />
 
 <p class="mb-6">
-<strong>Obs:</strong> esse tipo de operação não pode ser feita muitas vezes em sequência. Aprendemos isso tomando um pequeno downtime da própria API da AWS durante os testes 😅
+<strong>Obs:</strong> esse tipo de operação não pode ser feita muitas vezes em sequência. Aprendemos isso tomando uma pequena indisponibilidade da própria AWS durante os testes 😅
 </p>
 
 <img src="/blog/blog-1/content/quota-aws.png" alt="quotas aws"
-     class="rounded-lg shadow-md my-6" />
+     class="rounded-lg blog-image-shadow my-6" />
 
 <p class="mb-6">
-Após alguns minutos, a AWS concluiu a operação. E então… <strong>BANG</strong>. Ainda não funcionava. Foi nesse momento que entendemos algo fundamental: no Linux, aumentar o tamanho do disco não significa automaticamente que o sistema passará a usar esse espaço.
+Após alguns minutos, a AWS concluiu a operação. E então… <strong>BANG</strong>. Ainda não funcionava. Foi nesse momento, entre o dilema de lidar com a frustração das tentativas e a curiosidade de continuar, entendemos o seguinte: no Linux, aumentar o tamanho do disco não significa automaticamente que o sistema passará a usar esse espaço.
 </p>
 
 <p class="mb-6">
-É como comprar uma gaveta maior, mas continuar usando as mesmas divisões internas. O espaço existe, mas o sistema ainda não sabe disso. Precisávamos informar ao <strong>LVM (Linux Volume Manager)</strong> que aqueles novos gigabytes agora estavam disponíveis.
+É como comprar uma gaveta maior, mas continuar usando as mesmas divisões internas. O espaço existe, mas o sistema ainda não sabe disso. Precisávamos informar ao programa responsável, chamado <strong>LVM (Linux Volume Manager)</strong>, que aqueles novos gigabytes agora estavam disponíveis.
 </p>
 
 <p class="mb-6">
-O comando <code>lsblk</code> nos mostra como o Linux está interpretando discos e partições. Para resolver de vez, foi necessário aumentar a gaveta e reorganizar as divisões internas.
+O comando <code>lsblk</code> nos mostra como o Linux está interpretando discos e suas partições. Para resolver de vez, foi necessário aumentar a gaveta e reorganizar as divisões internas.
 </p>
 
 <pre class="rounded-lg shadow-lg p-4 bg-gray-900 text-gray-200 my-6 text-sm">
@@ -198,13 +199,13 @@ Agora sim, havia espaço suficiente. O Docker voltou a subir, a aplicação resp
 </p>
 
 <p class="mb-4">
-No post-mortem, alguns aprendizados ficaram claros:
+No post-mortem, o exercício da engenharia de software para entender quais os fatores levaram ao problema, os pontos:
 </p>
 
 <ul class="list-disc ml-6 mb-6">
-  <li>Ter alarmes claros para parâmetros de infraestrutura</li>
-  <li>Manter controle de logs e imagens antigas</li>
-  <li>Criar rotinas de limpeza para preservar a saúde do armazenamento</li>
+  <li>É importante monitorar não só a aplicação mas também o que está embaixo, sua infraestrutura</li>
+  <li>Manter o controle das versões antigas que estão na máquina</li>
+  <li>Criar rotinas de limpeza para garantir que apenas terá o essencial é importante para evitar problemas futuros</li>
 </ul>
 
 <h2 class="text-2xl font-bold mt-10 mb-4">Bonus Tips: NVMe</h2>
@@ -216,10 +217,16 @@ O volume utilizado era do tipo <strong>NVMe (Non-Volatile Memory Express)</stron
 <h3 class="text-xl font-semibold mb-4">Referências</h3>
 
 <ul class="list-disc ml-6">
-  <li><a href="https://docs.aws.amazon.com/ebs/latest/userguide/recognize-expanded-volume-linux.html">AWS — Expanded Volume (Linux)</a></li>
-  <li><a href="https://repost.aws/knowledge-center/create-lv-on-ebs-partition">AWS — Create LV on EBS Partition</a></li>
-  <li><a href="https://www.quora.com/Why-are-NVMes-faster-than-SSDs-Where-both-are-non-volatile-memory-What-is-the-key-factor-or-reason">Por que NVMe é mais rápido?</a></li>
+  <li><a href="https://docs.aws.amazon.com/ebs/latest/userguide/recognize-expanded-volume-linux.html" class="text-primary hover:underline hover:text-blue-700 transition-colors">AWS — Expanded Volume (Linux)</a></li>
+  <li><a href="https://repost.aws/knowledge-center/create-lv-on-ebs-partition" class="text-primary hover:underline hover:text-blue-700 transition-colors">AWS — Create LV on EBS Partition</a></li>
+  <li><a href="https://www.quora.com/Why-are-NVMes-faster-than-SSDs-Where-both-are-non-volatile-memory-What-is-the-key-factor-or-reason" class="text-primary hover:underline hover:text-blue-700 transition-colors">Por que NVMe é mais rápido?</a></li>
 </ul>
+
+<div class="mt-12 p-6 bg-gradient-to-br from-blue-50/50 to-slate-100/50 dark:from-blue-900/10 dark:to-blue-800/10 rounded-2xl border-2 border-blue-100 dark:border-blue-900">
+  <p class="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+    Se você gostaria de <strong>aprender tecnologia a partir de vivências práticas</strong> e <strong>impactar a comunidade acadêmica da Universidade Federal do ABC</strong> no processo. Esse lugar é para você, venha fazer parte do time, <strong>inscrições em breve</strong>!
+  </p>
+</div>
 
  `,
     },
