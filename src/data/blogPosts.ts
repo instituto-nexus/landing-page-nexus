@@ -115,7 +115,7 @@ Buscamos então pistas nos logs. Logs são, basicamente, o diário da aplicaçã
 </p>
 
 <p class="mb-6">
-Nesse momento, partimos para a estratégia mais antiga da computação: tirar da tomada e ligar de novo. Tentamos primeiro uma abordagem mais suave, reiniciando a máquina. Não funcionou. Bom, fomos um pouco mais primitivos e pensamos, joga fora e começa denovo! Simplesmente criamos uma nova máquina e adicionamos o código lá dentro.
+Nesse momento, partimos para a estratégia mais antiga da computação: tirar da tomada e ligar de novo. Tentamos primeiro uma abordagem mais suave, reiniciando a máquina. Não funcionou. Bom, fomos um pouco mais primitivos e pensamos, joga fora e começa de novo! Simplesmente criamos uma nova máquina e adicionamos o código lá dentro.
 </p>
 
 <p class="mb-6">
@@ -130,7 +130,7 @@ Na arquitetura de sistemas escolhida, usamos um serviço chamado EC2 para hosped
      class="rounded-lg blog-image-shadow my-6" />
 
 <p class="mb-6">
-Recriar a instância, deu um pequeno sinal, finalmente conseguimos conectar na máquina através da linha de comando, o que permitiu um diagnóstico mais detalhado. Percebemos então que, o nossos componentes internos estavam sem comunicação, o porteiro, <strong>nginx</strong> não reconhecia nenhum tipo de contato com o sistema resposável por separar os apartamentos, seguindo a nossa analogia. Esse sistema chamado Docker, veja figura 1.2, é importante para o processo de muitas maneiras que não cabem aqui explicar mas o importante é que assim como os demais programas, por quê não tentar reiniciar? Aqui vimos uma falha importante, ao executar o comando  <code>service docker restart</code> não tivemos sucesso, na verdade, os logs indicavam erros bem estranhos.   
+Recriar a instância, deu um pequeno sinal, finalmente conseguimos conectar na máquina através da linha de comando, o que permitiu um diagnóstico mais detalhado. Percebemos então que, o nossos componentes internos estavam sem comunicação, o porteiro, <strong>nginx</strong> não reconhecia nenhum tipo de contato com o sistema responsável por separar os apartamentos, seguindo a nossa analogia. Esse sistema chamado Docker, veja figura 1.2, é importante para o processo de muitas maneiras que não cabem aqui explicar mas o importante é que assim como os demais programas, por quê não tentar reiniciar? Aqui vimos uma falha importante, ao executar o comando  <code>service docker restart</code> não tivemos sucesso, na verdade, os logs indicavam erros bem estranhos.   
  </p>
 
 <img src="/blog/blog-1/content/server-components.png" alt="componentes"
@@ -153,7 +153,7 @@ Esse espaço mostrava 0% de espaço livre, o que foi o primeiro bingo, se não h
      class="rounded-lg blog-image-shadow my-6" />
 
 <p class="mb-6">
-<strong>Obs:</strong> esse tipo de operação não pode ser feita muitas vezes em sequência. Aprendemos isso tomando uma pequena indisponibilidade da própria AWS durante os testes 😅
+<strong>Obs:</strong> esse tipo de operação não pode ser feita muitas vezes em sequência. Aprendemos isso ao tomar uma pequena indisponibilidade da própria AWS durante os testes 😅
 </p>
 
 <img src="/blog/blog-1/content/quota-aws.png" alt="quotas aws"
@@ -205,7 +205,7 @@ No post-mortem, o exercício da engenharia de software para entender quais os fa
 <ul class="list-disc ml-6 mb-6">
   <li>É importante monitorar não só a aplicação mas também o que está embaixo, sua infraestrutura</li>
   <li>Manter o controle das versões antigas que estão na máquina</li>
-  <li>Criar rotinas de limpeza para garantir que apenas terá o essencial é importante para evitar problemas futuros</li>
+  <li>Criar rotinas de limpeza para garantir que apenas o essencial será mantido é importante para evitar problemas futuros</li>
 </ul>
 
 <h2 class="text-2xl font-bold mt-10 mb-4">Bonus Tips: NVMe</h2>
