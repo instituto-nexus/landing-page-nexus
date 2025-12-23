@@ -82,7 +82,7 @@ export const blogPostsDatabase: Record<string, BlogPost> = {
         ],
         date: "21 de Dezembro, 2025",
         readTime: "8 min de leitura",
-        category: "technology",
+        category: "Tecnologia",
         slug: "my-server-is-down-what-do-i-do",
         tags: ["tecnologia", "servidor", "troubleshooting", "devops", "ufabc next"],
         content: `

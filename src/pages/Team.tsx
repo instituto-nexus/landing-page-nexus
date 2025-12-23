@@ -76,6 +76,22 @@ export default function Team() {
       linkedin: "#",
       bio: "Desenvolvedor full-stack versátil. Contribui em diversos projetos do Instituto Nexus, sempre buscando entregar código de qualidade e soluções elegantes para problemas complexos.",
     },
+    {
+      id: 8,
+      name: "Pedro Tomaz",
+      role: "Analista de estratégia",
+      image: "/members/PTomaz.png",
+      linkedin: "https://www.linkedin.com/in/pedro-tomaz-martins/",
+      bio: "Desenvolvedor full-stack versátil. Contribui em diversos projetos do Instituto Nexus, sempre buscando entregar código de qualidade e soluções elegantes para problemas complexos.",
+    },
+    {
+      id: 9,
+      name: "Carlos Alencar",
+      role: "Desenvolvedor",
+      image: "/members/carlos-profile-pic.jpeg",
+      linkedin: "https://www.linkedin.com/in/alencarlima/",
+      bio: "Desenvolvedor full-stack versátil. Contribui em diversos projetos do Instituto Nexus, sempre buscando entregar código de qualidade e soluções elegantes para problemas complexos.",
+    },
   ];
 
   const specialMembers = [
@@ -101,21 +117,21 @@ export default function Team() {
     {
       year: "2024",
       members: [
-    {
-      id: 1,
-      name: "Felipe Silva",
-          period: "2024",
-      image: "/former-members/felipe-silva.png",
-      linkedin: "https://www.linkedin.com/in/feosilva/",
+        {
+          id: 1,
+          name: "Felipe Silva",
+          period: "2019",
+          image: "/former-members/felipe-silva.png",
+          linkedin: "https://www.linkedin.com/in/feosilva/",
           side: "left",
           bio: "Desenvolvedor full-stack que contribuiu significativamente para a evolução das plataformas Nexus. Trabalhou em projetos-chave que melhoraram a experiência de milhares de usuários da UFABC."
-    },
-    {
-      id: 2,
-      name: "Felipe Tiozo",
+        },
+        {
+          id: 2,
+          name: "Felipe Tiozo",
           period: "2024",
-      image: "/former-members/felipe-tiozo.png",
-      linkedin: "https://www.linkedin.com/in/felipetiozo/",
+          image: "/former-members/felipe-tiozo.png",
+          linkedin: "https://www.linkedin.com/in/felipetiozo/",
           side: "right",
           bio: "Especialista em frontend que ajudou a modernizar as interfaces do Instituto Nexus. Suas contribuições em UX/UI continuam impactando positivamente a comunidade acadêmica."
         },
@@ -124,21 +140,21 @@ export default function Team() {
     {
       year: "2023",
       members: [
-    {
-      id: 3,
-      name: "Felipe Augusto",
+        {
+          id: 3,
+          name: "Felipe Augusto",
           period: "2023",
-      image: "/former-members/felipe-augusto.png",
-      linkedin: "https://www.linkedin.com/in/felipeaugustodev/",
+          image: "/former-members/felipe-augusto.png",
+          linkedin: "https://www.linkedin.com/in/felipeaugustodev/",
           side: "left",
           bio: "Desenvolvedor talentoso que liderou importantes iniciativas de backend. Suas implementações robustas estabeleceram bases sólidas para o crescimento do Nexus."
-    },
-    {
-      id: 4,
-      name: "Vinicius Santana",
+        },
+        {
+          id: 4,
+          name: "Vinicius Santana",
           period: "2023",
-      image: "/former-members/vinicius-santana.png",
-      linkedin: "https://www.linkedin.com/in/vinicius-santana-santos/",
+          image: "/former-members/vinicius-santana.png",
+          linkedin: "https://www.linkedin.com/in/vinicius-santana-santos/",
           side: "right",
           bio: "Engenheiro de software versátil que contribuiu em múltiplas frentes do projeto. Sua dedicação e expertise técnica foram fundamentais para diversos lançamentos importantes."
         },
@@ -147,30 +163,30 @@ export default function Team() {
     {
       year: "2022",
       members: [
-    {
-      id: 5,
-      name: "Pedro Birais",
+        {
+          id: 5,
+          name: "Pedro Birais",
           period: "2022",
-      image: "/former-members/pedro-birais.png",
-      linkedin: "https://www.linkedin.com/in/phbirais/",
+          image: "/former-members/pedro-birais.png",
+          linkedin: "https://www.linkedin.com/in/phbirais/",
           side: "left",
           bio: "Um dos pioneiros do Instituto Nexus, ajudou a estabelecer os primeiros processos e cultura de desenvolvimento. Suas contribuições iniciais foram essenciais para o sucesso do projeto."
-    },
-    {
-      id: 6,
-      name: "Lucas Grippa",
+        },
+        {
+          id: 6,
+          name: "Lucas Grippa",
           period: "2022",
-      image: "/former-members/lucas-grippa.png",
-      linkedin: "https://www.linkedin.com/in/lucas-grippa-5269366a/",
+          image: "/former-members/lucas-grippa.png",
+          linkedin: "https://www.linkedin.com/in/lucas-grippa-5269366a/",
           side: "right",
           bio: "Desenvolvedor criativo que trouxe ideias inovadoras para as plataformas Nexus. Participou ativamente na construção de features que transformaram a experiência dos estudantes."
-    },
-    {
-      id: 7,
-      name: "Rafael Telles",
+        },
+        {
+          id: 7,
+          name: "Rafael Telles",
           period: "2022",
-      image: "/former-members/rafael-telles.png",
-      linkedin: "https://www.linkedin.com/in/rafael-telles/",
+          image: "/former-members/rafael-telles.png",
+          linkedin: "https://www.linkedin.com/in/rafael-telles/",
           side: "left",
           bio: "Membro fundador que ajudou a dar forma ao Instituto Nexus. Sua visão técnica e compromisso com a qualidade estabeleceram padrões que perduram até hoje."
         },
@@ -183,23 +199,17 @@ export default function Team() {
 
       <main className="container mx-auto px-6 py-10 md:py-10 max-w-8xl flex flex-col items-center justify-center">
         {/* Hero Section */}
-       
+
         <div className="mb-20 flex flex-col items-center justify-center">
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight text-center">
             Pessoas por trás
             <br />
             do{" "}
-            <b
-              style={{
-                background:
-                  "linear-gradient(to right,rgb(146, 198, 247), #0a2e4f)",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
+            <span
+              className="bg-gradient-to-br from-[#0a2e4f] to-primary bg-clip-text text-transparent"
             >
               Nexus
-            </b>
+            </span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8 text-center">
             Somos um time de <strong>{teamMembers.length} pessoas</strong> que acreditam em construir projetos que inspiram e transformam a experiência universitária.
@@ -248,9 +258,9 @@ export default function Team() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {formerMembersByYear.flatMap((yearGroup) =>
               yearGroup.members.map((member) => (
-                <FormerMemberCard 
-                  key={member.id} 
-                  member={member} 
+                <FormerMemberCard
+                  key={member.id}
+                  member={member}
                   year={yearGroup.year}
                   onClick={() => handleMemberClick({ ...member, year: yearGroup.year })}
                 />
@@ -269,10 +279,10 @@ export default function Team() {
               <div className="flex flex-col items-center text-center space-y-6 py-4">
                 {/* Avatar */}
                 <Avatar className="w-32 h-32 border-4 border-border shadow-lg">
-                  <AvatarImage 
-                    src={selectedMember.image} 
-                    alt={selectedMember.name} 
-                    className="object-cover" 
+                  <AvatarImage
+                    src={selectedMember.image}
+                    alt={selectedMember.name}
+                    className="object-cover"
                   />
                   <AvatarFallback className="bg-muted text-muted-foreground text-2xl font-bold">
                     {selectedMember.name.slice(0, 2).toUpperCase()}
@@ -304,11 +314,11 @@ export default function Team() {
                     rel="noopener noreferrer"
                     className="w-full"
                   >
-                    <Button 
+                    <Button
                       className="w-full bg-[#0077b5] hover:bg-[#006399] text-white gap-2"
                     >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                       </svg>
                       Ver perfil no LinkedIn
                     </Button>
@@ -327,7 +337,7 @@ export default function Team() {
 
 function MemberCard({ member, onClick }: { member: any; onClick: () => void }) {
   return (
-    <div 
+    <div
       className="group rounded-2xl border border-border bg-card shadow-sm hover:shadow-lg transition-all duration-300 p-6 cursor-pointer"
       onClick={onClick}
     >
@@ -356,7 +366,7 @@ function MemberCard({ member, onClick }: { member: any; onClick: () => void }) {
                 {member.role}
               </p>
             </div>
-            
+
             {/* Social Icon */}
             <a
               href={member.linkedin}
@@ -366,7 +376,7 @@ function MemberCard({ member, onClick }: { member: any; onClick: () => void }) {
               onClick={(e) => e.stopPropagation()}
             >
               <svg className="w-5 h-5 text-muted-foreground hover:text-blue-600 transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </a>
           </div>
@@ -383,7 +393,7 @@ function MemberCard({ member, onClick }: { member: any; onClick: () => void }) {
 
 function FormerMemberCard({ member, year, onClick }: { member: any; year: string; onClick: () => void }) {
   return (
-    <div 
+    <div
       className="group rounded-2xl border border-border bg-card shadow-sm hover:shadow-lg transition-all duration-300 p-6 cursor-pointer"
       onClick={onClick}
     >
@@ -412,7 +422,7 @@ function FormerMemberCard({ member, year, onClick }: { member: any; year: string
                 Ex-membro • {year}
               </p>
             </div>
-            
+
             {/* Social Icon */}
             <a
               href={member.linkedin}
@@ -422,7 +432,7 @@ function FormerMemberCard({ member, year, onClick }: { member: any; year: string
               onClick={(e) => e.stopPropagation()}
             >
               <svg className="w-5 h-5 text-muted-foreground hover:text-blue-600 transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </a>
           </div>

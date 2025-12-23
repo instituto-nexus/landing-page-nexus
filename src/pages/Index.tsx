@@ -41,7 +41,7 @@ const LandingPage = () => {
       id: 1,
       title: "UFABC next",
       description: "Construímos uma plataforma de avaliação de professores, disciplinas e programas com base na experiência dos alunos",
-      icon: "./projects/next-logo.png",
+      icon: "./projects/next-logo.jpg",
       link: "/404"
     },
     {
@@ -60,8 +60,8 @@ const LandingPage = () => {
     },
     {
       id: 4,
-      title: "WhatsApp Bot AI",
-      description: "Criamos um bot do WhatsApp para facilitar o acesso dos alunos a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
+      title: "next AI",
+      description: "Assistente inteligente com IA para responder dúvidas acadêmicas de forma personalizada",
       icon: "./projects/Ai.png",
       link: "/404"
     },
