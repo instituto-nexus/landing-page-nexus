@@ -13,6 +13,8 @@ import { useState } from "react";
 export default function Team() {
   const [selectedMember, setSelectedMember] = useState<any>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   const handleMemberClick = (member: any) => {
     setSelectedMember(member);
@@ -39,7 +41,7 @@ export default function Team() {
     {
       id: 3,
       name: "Nicolas Greco",
-      role: "Desenvolvedor",
+      role: "Diretor de Comunidade e Tecnologia",
       image: "/members/nicolas.jpeg",
       linkedin: "https://www.linkedin.com/in/nicolas-greco-160a5b258/",
       bio: "Diretor de Tecnologia do Nexus. Lidera as iniciativas técnicas e garante que nossa infraestrutura funcione de forma suave e confiável. É apaixonado por automação e boas práticas de desenvolvimento.",
@@ -71,7 +73,7 @@ export default function Team() {
     {
       id: 7,
       name: "Rafael Evangelista",
-      role: "Desenvolvedor",
+      role: "Engenheiro de Software",
       image: "/members/rafael.jpg",
       linkedin: "#",
       bio: "Desenvolvedor full-stack versátil. Contribui em diversos projetos do Instituto Nexus, sempre buscando entregar código de qualidade e soluções elegantes para problemas complexos.",
@@ -87,7 +89,7 @@ export default function Team() {
     {
       id: 9,
       name: "Carlos Alencar",
-      role: "Desenvolvedor",
+      role: "Engenheiro de Software",
       image: "/members/carlos-profile-pic.jpeg",
       linkedin: "https://www.linkedin.com/in/alencarlima/",
       bio: "Desenvolvedor full-stack versátil. Contribui em diversos projetos do Instituto Nexus, sempre buscando entregar código de qualidade e soluções elegantes para problemas complexos.",
@@ -98,101 +100,121 @@ export default function Team() {
     {
       id: 1,
       name: "Renan Zago",
-      role: "Consultor Estratégico",
+      role: "Consultor Técnico Frontend",
       image: "/specs/renan-zago.png",
       linkedin: "https://www.linkedin.com/in/renanzagolorijola/",
-      bio: "Consultor estratégico com vasta experiência em gestão de projetos e inovação. Auxilia o Instituto Nexus com insights valiosos sobre direcionamento estratégico e desenvolvimento organizacional.",
+      bio: "Consultor técnico com experiência em performance, escalabilidade e melhores práticas do desenvolvimento frontend. Durante a graduação, aplicou seu projeto de conclusão de curso com uma abordagem de refatoração orientada a Microfrontends no projeto UFABC next. Sua trajetória conta com passagens pelo Banco Itaú e pela gigante nacional Boticário",
     },
     {
       id: 2,
       name: "Brian Andreossi",
-      role: "Consultor Técnico",
+      role: "Consultor Técnico Backend",
       image: "/specs/brian.png",
       linkedin: "https://www.linkedin.com/in/brian-andreossi/",
-      bio: "Consultor técnico especializado em arquitetura de software e escalabilidade. Contribui com expertise técnica avançada para garantir que as soluções do Nexus sejam robustas e preparadas para o crescimento.",
+      bio: "Consultor técnico especializado em arquitetura de software e sistemas de alta volumetria. Durante a graduação foi monitor de disciplinas de Redes e Algoritimos, além de desenvolver uma pesquisa a respeito das heurísticas computacionais baseadas em grafos para identificação e redução de conflitos de interesse em bancas de concursos. Sua experiência profissional conta com passagens pelo Banco Itaú e Mercado Livre",
     },
   ]
 
   const formerMembersByYear = [
     {
-      year: "2024",
+      year: "2019",
       members: [
         {
-          id: 1,
+          id: "2019-1",
           name: "Felipe Silva",
           period: "2019",
           image: "/former-members/felipe-silva.png",
           linkedin: "https://www.linkedin.com/in/feosilva/",
           side: "left",
-          bio: "Desenvolvedor full-stack que contribuiu significativamente para a evolução das plataformas Nexus. Trabalhou em projetos-chave que melhoraram a experiência de milhares de usuários da UFABC."
+          bio: "Founder team do projeto UFABC next. Empreendedor e cofundador da BeConfident. Como CPO, ajudou a transformar a visão em produto, liderando desenvolvimento de soluções educacionais que impactam milhares de alunos globalmente. Apaixonado por tecnologia, educação e experiências que democratizam oportunidades de aprendizado para todos."
         },
         {
-          id: 2,
+          id: "2019-2",
           name: "Felipe Tiozo",
-          period: "2024",
+          period: "2019",
           image: "/former-members/felipe-tiozo.png",
           linkedin: "https://www.linkedin.com/in/felipetiozo/",
           side: "right",
-          bio: "Especialista em frontend que ajudou a modernizar as interfaces do Instituto Nexus. Suas contribuições em UX/UI continuam impactando positivamente a comunidade acadêmica."
+          bio: "Founder team do projeto UFABC next. Empreendedor e engenheiro de software, Co-Founder e CTO da BeConfident, plataforma de aprendizado de inglês baseada em IA com atuação global. Experiência em liderança técnica, produtos digitais e edtech, com passagem por startups e empresas de tecnologia.Apaixonado por construir soluções escaláveis, centradas no usuário e com impacto real em educação e tecnologia."
         },
-      ]
-    },
-    {
-      year: "2023",
-      members: [
         {
-          id: 3,
+          id: "2019-3",
           name: "Felipe Augusto",
-          period: "2023",
+          period: "2019",
           image: "/former-members/felipe-augusto.png",
           linkedin: "https://www.linkedin.com/in/felipeaugustodev/",
           side: "left",
-          bio: "Desenvolvedor talentoso que liderou importantes iniciativas de backend. Suas implementações robustas estabeleceram bases sólidas para o crescimento do Nexus."
-        },
-        {
-          id: 4,
-          name: "Vinicius Santana",
-          period: "2023",
-          image: "/former-members/vinicius-santana.png",
-          linkedin: "https://www.linkedin.com/in/vinicius-santana-santos/",
-          side: "right",
-          bio: "Engenheiro de software versátil que contribuiu em múltiplas frentes do projeto. Sua dedicação e expertise técnica foram fundamentais para diversos lançamentos importantes."
+          bio: "Founder team do projeto UFABC next. Software engineer na QA Wolf construindos a nova era dos testes de software. Apaixonado por criar, projetar e implementar novas ideias, aprendiz ao longo da vida, leitor assíduo e entusiasta de TypeScript."
         },
       ]
     },
     {
-      year: "2022",
+      year: "2024",
       members: [
+        
         {
-          id: 5,
-          name: "Pedro Birais",
-          period: "2022",
-          image: "/former-members/pedro-birais.png",
-          linkedin: "https://www.linkedin.com/in/phbirais/",
-          side: "left",
-          bio: "Um dos pioneiros do Instituto Nexus, ajudou a estabelecer os primeiros processos e cultura de desenvolvimento. Suas contribuições iniciais foram essenciais para o sucesso do projeto."
-        },
-        {
-          id: 6,
-          name: "Lucas Grippa",
-          period: "2022",
-          image: "/former-members/lucas-grippa.png",
-          linkedin: "https://www.linkedin.com/in/lucas-grippa-5269366a/",
+          id: "2024-1",
+          name: "Vinicius Santana",
+          period: "2024",
+          image: "/former-members/vinicius-santana.png",
+          linkedin: "https://www.linkedin.com/in/vinicius-santana-santos/",
           side: "right",
-          bio: "Desenvolvedor criativo que trouxe ideias inovadoras para as plataformas Nexus. Participou ativamente na construção de features que transformaram a experiência dos estudantes."
-        },
-        {
-          id: 7,
-          name: "Rafael Telles",
-          period: "2022",
-          image: "/former-members/rafael-telles.png",
-          linkedin: "https://www.linkedin.com/in/rafael-telles/",
-          side: "left",
-          bio: "Membro fundador que ajudou a dar forma ao Instituto Nexus. Sua visão técnica e compromisso com a qualidade estabeleceram padrões que perduram até hoje."
+          bio: "Atuou como engenheiro de software no projeto UFABC next, com foco em soluções backend. Atualmente, capacita decisões mais inteligentes com dados sobre profissionais, empresas e tendências de mercado na empresa internacionalMixRank"
         },
       ]
     },
+    {
+      year: "2025",
+      members: [
+        
+        {
+          id: "2025-1",
+          name: "Felipe Sckurzenski",
+          period: "2024",
+          image: "",
+          linkedin: "",
+          side: "right",
+          bio: "Aulões next"
+        },
+      ]
+    },
+    {
+      year: "2025",
+      members: [
+        
+        {
+          id: 5,
+          name: "Vitória Polato",
+          period: "2024",
+          image: "",
+          linkedin: "",
+          side: "right",
+          bio: "Aulões next"
+        },
+      ]
+    }
   ];
+
+  // Flatten all former members into a single array
+  const allFormerMembers = formerMembersByYear.flatMap((yearGroup) =>
+    yearGroup.members.map((member) => ({ ...member, year: yearGroup.year }))
+  );
+
+  // Calculate pagination
+  const totalPages = Math.ceil(allFormerMembers.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentMembers = allFormerMembers.slice(startIndex, endIndex);
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    // Scroll to the former members section
+    const section = document.getElementById('former-members-section');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <NavBar />
@@ -244,29 +266,70 @@ export default function Team() {
         </div>
 
         {/* Former Members Section */}
-        <div className="mt-25 mb-20 w-full">
+        <div id="former-members-section" className="mt-25 mb-20 w-full">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-foreground mb-4">
               Ex-Membros
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Agradecimento especial aos ex-membros que fizeram contribuições valiosas para o projeto.
+              Que deixaram seu legado na missão de construir soluções para a comunidade acadêmica
             </p>
           </div>
 
           {/* Former Members Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {formerMembersByYear.flatMap((yearGroup) =>
-              yearGroup.members.map((member) => (
-                <FormerMemberCard
-                  key={member.id}
-                  member={member}
-                  year={yearGroup.year}
-                  onClick={() => handleMemberClick({ ...member, year: yearGroup.year })}
-                />
-              ))
-            )}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
+            {currentMembers.map((member) => (
+              <FormerMemberCard
+                key={member.id}
+                member={member}
+                year={member.year}
+                onClick={() => handleMemberClick(member)}
+              />
+            ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="hover:bg-blue-50 hover:text-blue-600"
+              >
+                Anterior
+              </Button>
+              
+              <div className="flex gap-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <Button
+                    key={page}
+                    variant={currentPage === page ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => goToPage(page)}
+                    className={
+                      currentPage === page
+                        ? "bg-gradient-to-br from-[#0a2e4f] to-primary text-white"
+                        : "hover:bg-blue-50 hover:text-blue-600"
+                    }
+                  >
+                    {page}
+                  </Button>
+                ))}
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="hover:bg-blue-50 hover:text-blue-600"
+              >
+                Próxima
+              </Button>
+            </div>
+          )}
         </div>
 
         {/* Member Profile Dialog */}
