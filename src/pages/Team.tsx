@@ -1,5 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import SubmitDialog from "@/components/SubmitDialog";
+
 import {
   Dialog,
   DialogContent,
@@ -28,7 +30,7 @@ export default function Team() {
       role: "Presidente e Fundador",
       image: "/members/gabriel.jpeg",
       linkedin: "https://www.linkedin.com/in/gabriel-monteiro-rocha7/",
-      bio: "Fundador e CEO do Instituto Nexus. Apaixonado por construir ferramentas que capacitam estudantes e lidera o time na criação de soluções inovadoras para a comunidade acadêmica da UFABC.",
+      bio: "Fundador e CEO do Nexus. Apaixonado por gerar impacto positivo através da tecnologia, lidera o time na missão de mudar o cenário educacional da UFABC, e em breve do Brasil. Também atua como Engenheiro de software na área de pagamentos do Banco Itaú, construindo soluções de alta performance e volumetria.",
     },
     {
       id: 2,
@@ -36,7 +38,7 @@ export default function Team() {
       role: "Vice-Presidente e Cofundador",
       image: "/members/joabe.jpeg",
       linkedin: "https://www.linkedin.com/in/joabesv/",
-      bio: "Cofundador e CTO do Instituto Nexus. Especialista em construir soluções robustas e escaláveis no backend. Adora resolver problemas complexos e garantir a estabilidade da infraestrutura.",
+      bio: "Cofundador e CTO do Nexus. Mestre na arte de encontrar soluções para problemas complexos e entusiasta de novas tecnologias que trazem simplicidade. Faz parte do time da unicórnio brasileira QI Tech, constuindo soluções de insfraestrutura financeira",
     },
     {
       id: 3,
@@ -44,39 +46,7 @@ export default function Team() {
       role: "Diretor de Comunidade e Tecnologia",
       image: "/members/nicolas.jpeg",
       linkedin: "https://www.linkedin.com/in/nicolas-greco-160a5b258/",
-      bio: "Diretor de Tecnologia do Nexus. Lidera as iniciativas técnicas e garante que nossa infraestrutura funcione de forma suave e confiável. É apaixonado por automação e boas práticas de desenvolvimento.",
-    },
-    {
-      id: 4,
-      name: "Mateus Braga",
-      role: "Especialista Front-end",
-      image: "/members/mateus.png",
-      linkedin: "#",
-      bio: "Especialista em desenvolvimento frontend. Focado em criar interfaces modernas, intuitivas e acessíveis que proporcionam a melhor experiência possível para os usuários das plataformas Nexus.",
-    },
-    {
-      id: 5,
-      name: "Igor Santos",
-      role: "Especialista Back-end",
-      image: "/members/igor.jpeg",
-      linkedin: "#",
-      bio: "Especialista em desenvolvimento backend. Trabalha na construção de APIs robustas e escaláveis, garantindo performance e segurança para todas as aplicações do Instituto Nexus.",
-    },
-    {
-      id: 6,
-      name: "Pedro Rodrigues",
-      role: "Especialista DevOps",
-      image: "/members/pedro.jpg",
-      linkedin: "#",
-      bio: "Especialista em DevOps e infraestrutura. Responsável por manter nossos serviços no ar, otimizar pipelines de deployment e garantir a confiabilidade de toda a infraestrutura em nuvem.",
-    },
-    {
-      id: 7,
-      name: "Rafael Evangelista",
-      role: "Engenheiro de Software",
-      image: "/members/rafael.jpg",
-      linkedin: "#",
-      bio: "Desenvolvedor full-stack versátil. Contribui em diversos projetos do Instituto Nexus, sempre buscando entregar código de qualidade e soluções elegantes para problemas complexos.",
+      bio: "Entusiasta de usar tecnologia para unir pessoas. Lidera iniciativas para impulsionar o alcance do Nexus e encontrar gente boa. Atualmente, também faz parte do time internacional da Jeeves, forncendo infraestrutura bancária para startups.",
     },
     {
       id: 8,
@@ -84,15 +54,56 @@ export default function Team() {
       role: "Analista de estratégia",
       image: "/members/PTomaz.png",
       linkedin: "https://www.linkedin.com/in/pedro-tomaz-martins/",
-      bio: "Desenvolvedor full-stack versátil. Contribui em diversos projetos do Instituto Nexus, sempre buscando entregar código de qualidade e soluções elegantes para problemas complexos.",
+      bio: "Analista estratégico e de negócios, com foco em identificar oportunidades de projetos e alavancar a organização dentro das metas definidas no longo prazo. Graduando em engenharia de gestão, hoje também faz parte do time da KPMG",
     },
+    {
+      id: 4,
+      name: "Mateus Braga",
+      role: "Especialista Front-end",
+      image: "/members/mateus.png",
+      linkedin: "#",
+      bio: "Especialista em desenvolvimento frontend. Apaixonado por pixels, arquiteturas modernas e boas práticas de UI/UX, faz parte do time BeConfident como engenheiro de software.",
+    },
+    {
+      id: 5,
+      name: "Igor Santos",
+      role: "Especialista Back-end",
+      image: "/members/igor.jpeg",
+      linkedin: "#",
+      bio: "Especialista em desenvolvimento backend. Focado no desenolvimento de soluções robustas na nuvem, garantindo entregas inovadoras e automações que garantam qualidade. Também faz parte do time do Banco Itaú",
+    },
+    {
+      id: 6,
+      name: "Pedro Rodrigues",
+      role: "Especialista DevOps",
+      image: "/members/pedro.jpg",
+      linkedin: "#",
+      bio: "Especialista em DevOps e infraestrutura. Apaixonado por criar e manter insfraestruturas de tecnologia escaláveis, também atua como Cloud Engineer no BTG Pactual",
+    },
+    {
+      id: 7,
+      name: "Rafael Evangelista",
+      role: "Engenheiro de Software",
+      image: "/members/rafael.jpg",
+      linkedin: "#",
+      bio: "Engenheiro Fullstack com vocação para resolver problemas de todas as áreas. Graduando em ciência da computação na UFABC, compõe também o time internacional da Jeeves, forncendo infraestrutura bancária para startups.",
+    },
+    
     {
       id: 9,
       name: "Carlos Alencar",
       role: "Engenheiro de Software",
       image: "/members/carlos-profile-pic.jpeg",
       linkedin: "https://www.linkedin.com/in/alencarlima/",
-      bio: "Desenvolvedor full-stack versátil. Contribui em diversos projetos do Instituto Nexus, sempre buscando entregar código de qualidade e soluções elegantes para problemas complexos.",
+      bio: "Engenheiro Fullstack do projeto UFABC next, focado em construir soluções e experiências desde a interface ao servidor. Graduando na UFABC como cientista da computação, também faz parte do time de análise de dados, automação e modelagem do Banco Itaú",
+    },
+    {
+      id: 10,
+      name: "João Zanardo",
+      role: "Engenheiro de Software",
+      image: "/members/joao-zanardo.png",
+      linkedin: "https://www.linkedin.com/in/jo%C3%A3o-zanardo/",
+      bio: "Engenheiro de software com foco no desenvolvimento de soluções escaláveis e eficientes backend. Graduou-se no bacharelado de ciência e tencologia da UFABC e conta com passagens por empresas como Santander, BTG Pactual e Mercado Livre",
     },
   ];
 
@@ -236,12 +247,15 @@ export default function Team() {
           <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8 text-center">
             Somos um time de <strong>{teamMembers.length} pessoas</strong> que acreditam em construir projetos que inspiram e transformam a experiência universitária.
           </p>
-          <Button
-            size="lg"
-            className="text-white hover:text-white hover:scale-105 transactions-all duration-300 bg-gradient-to-br from-[#0a2e4f] to-primary border-0"
-          >
-            Adicione seu nome a essa lista
-          </Button>
+        
+
+             <SubmitDialog
+                            type="volunteer"
+                            buttonText={"Quero adicionar meu nome a lista"}
+                            buttonClassName="text-white hover:text-white hover:scale-105 transactions-all duration-300 bg-gradient-to-br from-[#0a2e4f] to-primary border-0"
+                          />
+
+
         </div>
 
         {/* Team Grid */}
