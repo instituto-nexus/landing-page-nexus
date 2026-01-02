@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useTranslation } from "react-i18next";
 
 interface SubmitDialogProps {
   type: "mentor" | "volunteer";
@@ -22,12 +21,11 @@ export default function SubmitDialog({
   buttonText, 
   buttonClassName 
 }: SubmitDialogProps) {
-  const { t } = useTranslation();
   const isMentor = type === "mentor";
-  const title = isMentor ? t('submitDialog.mentor.title') : t('submitDialog.volunteer.title');
+  const title = isMentor ? "Cadastro de Mentor" : "Cadastro de Voluntário";
   const description = isMentor
-    ? t('submitDialog.mentor.description')
-    : t('submitDialog.volunteer.description');
+    ? "Preencha os detalhes abaixo para se cadastrar como mentor no Nexus."
+    : "Preencha os detalhes abaixo para se cadastrar como voluntário no Nexus.";
   const idSuffix = isMentor ? "" : "-vol";
 
   return (
@@ -44,35 +42,35 @@ export default function SubmitDialog({
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
-            <Label htmlFor={`name${idSuffix}`}>{t('submitDialog.form.name')}</Label>
+            <Label htmlFor={`name${idSuffix}`}>Nome completo</Label>
             <Input
               id={`name${idSuffix}`}
-              placeholder={t('submitDialog.form.namePlaceholder')}
+              placeholder="Digite seu nome"
               className="col-span-3"
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor={`email${idSuffix}`}>{t('submitDialog.form.email')}</Label>
+            <Label htmlFor={`email${idSuffix}`}>Email</Label>
             <Input
               id={`email${idSuffix}`}
               type="email"
-              placeholder={t('submitDialog.form.emailPlaceholder')}
+              placeholder="seu.email@exemplo.com"
               className="col-span-3"
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor={`phone${idSuffix}`}>{t('submitDialog.form.phone')}</Label>
+            <Label htmlFor={`phone${idSuffix}`}>Telefone</Label>
             <Input
               id={`phone${idSuffix}`}
               type="tel"
-              placeholder={t('submitDialog.form.phonePlaceholder')}
+              placeholder="(11) 99999-9999"
               className="col-span-3"
             />
           </div>
         </div>
         <div className="flex justify-end">
           <Button type="submit" className="bg-primary text-white hover:bg-primary/90">
-            {t('submitDialog.form.submit')}
+            Enviar cadastro
           </Button>
         </div>
       </DialogContent>

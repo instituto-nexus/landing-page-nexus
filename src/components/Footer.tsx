@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 export default function Footer() {
-  const { t } = useTranslation();
-  
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3" style={{ gap: '15rem' }}>
           <div>
             <div className="flex items-center mb-4">
               <div className="w-8 h-8 mr-2">
@@ -20,26 +17,26 @@ export default function Footer() {
               <span className="text-xl font-bold">Nexus</span>
             </div>
             <p className="text-gray-400 mb-4">
-              {t('footer.description')}
+              Uma iniciativa acadêmica para melhorar a experiência universitária na UFABC.
             </p>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">{t('footer.quickLinks')}</h3>
+            <h3 className="text-lg font-semibold mb-4">Links Rápidos</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/#sobre" className="text-gray-400 hover:text-white transition-colors">
-                  {t('footer.about')}
+                  Sobre
                 </Link>
               </li>
               <li>
                 <Link to="/#iniciativas" className="text-gray-400 hover:text-white transition-colors">
-                  {t('footer.initiatives')}
+                  Iniciativas
                 </Link>
               </li>
               <li>
                 <Link to="/team" className="text-gray-400 hover:text-white transition-colors">
-                  {t('footer.team')}
+                  Time
                 </Link>
               </li>
               <li>
@@ -49,16 +46,16 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {t('footer.platform')}
+                  Plataforma
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">{t('footer.contact')}</h3>
+            <h3 className="text-lg font-semibold mb-4">Contato</h3>
             <p className="text-gray-400 mb-2">contato@fundacaonexus.com</p>
-            <p className="text-gray-400 mb-4">{t('footer.location')}</p>
+            <p className="text-gray-400 mb-4">Santo André, SP - Brasil</p>
             <div className="flex space-x-4">
               <a
                 href="https://www.instagram.com/ufabc_next/"
@@ -106,7 +103,7 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400">
-            {t('footer.copyright')}
+            © 2025 Nexus. Todos os direitos reservados.
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -9,14 +9,48 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "./LanguageSwitcher";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-function NavBarLink({ to, children }: { to: string; children: React.ReactNode }) {
+interface NavLinkProps {
+  to: string;
+  children: React.ReactNode;
+  hasDropdown?: boolean;
+}
+
+function NavBarLink({ to, children, hasDropdown }: NavLinkProps) {
   return (
-    <a href={to} className="text-muted-foreground hover:text-foreground hover:scale-105 transition-all duration-300 text-md">
+    <a 
+      href={to} 
+      className="relative text-[15px] font-medium text-foreground/70 hover:text-foreground transition-colors duration-200 px-1 py-1"
+    >
       {children}
+      {hasDropdown && <ChevronDown className="inline-block h-3.5 w-3.5 ml-1 opacity-60" />}
     </a>
+  );
+}
+
+function NavDropdown({ label, items }: { label: string; items: { label: string; href: string }[] }) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className="relative text-[15px] font-medium text-foreground/70 hover:text-foreground transition-colors duration-200 outline-none px-1 py-1">
+        {label}
+        <ChevronDown className="inline-block h-3.5 w-3.5 ml-1 opacity-60" />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="start" className="w-52 mt-2 shadow-lg border">
+        {items.map((item) => (
+          <DropdownMenuItem key={item.href} asChild>
+            <a href={item.href} className="cursor-pointer text-[14px] py-2.5">
+              {item.label}
+            </a>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
@@ -25,7 +59,7 @@ function MobileNavLink({ to, onClick, children }: { to: string; onClick: () => v
     <a 
       href={to} 
       onClick={onClick}
-      className="text-foreground hover:text-primary text-lg font-medium transition-colors py-2"
+      className="text-foreground/80 hover:text-foreground text-[15px] font-medium transition-colors duration-200 py-2 block"
     >
       {children}
     </a>
@@ -34,83 +68,174 @@ function MobileNavLink({ to, onClick, children }: { to: string; onClick: () => v
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useTranslation();
 
-  const navBarLinks = [
-    {
-      to: "/",
-      children: t('nav.home')
-    },
-    {
-      to: "/#projetos",
-      children: t('nav.projects')
-    },
-    { 
-      to: "/#comunidade",
-      children: t('nav.community')
-    },
-    {
-      to: "/team",
-      children: t('nav.team')
-    }
+  const productsDropdown = [
+    { label: "Projetos", href: "/#projetos" },
+    { label: "UFABC Next", href: "/404" },
+    { label: "UFABC Parser", href: "/404" },
+  ];
+
+  const resourcesDropdown = [
+    { label: "Blog", href: "/blog" },
+    { label: "Comunidade", href: "/#comunidade" },
+  ];
+
+  const projectsDropdown = [
+    { label: "WhatsApp Bot", href: "/404" },
+    { label: "next AI", href: "/404" },
+    { label: "ufabc parser", href: "/404" },
+    { label: "ufabc next", href: "/404" },
+    { label: "aulões next", href: "/404" },
+
+
+  ];
+
+  const docsDropdown = [  
+    { label: "Ufabc parser", href: "https://ufabc-parser.com/docs" },
+  
   ];
 
   return (
-    <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
-      <div className="container mx-auto px-4 h-16 flex items-center">
-        {/* Logo */}
-        <div className="flex-shrink-0">
-          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 hover:scale-105 transition-all duration-300">
-            <img src="/nexus-logo-gradient.svg" alt="Nexus Logo" className="w-6 h-6 md:h-10 md:w-10" />
-            <span className="font-semibold text-foreground text-lg md:text-xl">Nexus</span>
-          </Link>
-        </div>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-16 flex-1 justify-center">
-          {navBarLinks.map((link) => (
-            <NavBarLink key={link.to} to={link.to}>
-              {link.children}
-            </NavBarLink>
-          ))}
-        </nav>
-        
-        {/* Language Switcher - Desktop */}
-        <div className="hidden md:block">
-          <LanguageSwitcher />
-        </div>
+    <header className="bg-background/95 backdrop-blur-sm supports-[backdrop-filter]:bg-background/80 sticky top-0 z-50 border-b border-border/40">
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+        <div className="flex items-center justify-between h-[72px]">
+          {/* Logo - Bold & Left Aligned */}
+          <div className="flex items-center">
+            <Link 
+              to="/" 
+              className="flex items-center gap-3 hover:opacity-90 transition-opacity duration-200"
+            >
+              <img 
+                src="/nexus-logo-gradient.svg" 
+                alt="Nexus Logo" 
+                className="h-7 w-7" 
+              />
+              <span className="text-[19px] font-bold tracking-tight text-foreground">
+                Nexus
+              </span>
+            </Link>
+          </div>
+          
+          {/* Center Navigation - Generous Spacing */}
+          <nav className="hidden lg:flex items-center gap-10">
 
-        {/* Mobile Menu */}
-        <div className="flex-1 flex justify-end md:hidden">
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                {isOpen ? <X className="h-10 w-10" /> : <Menu className="h-8 w-8" />}
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <SheetHeader>
-                <SheetTitle className="flex items-center space-x-2">
-                  <a href="/" className="flex flex-row items-center gap-2 hover:scale-105 transition-all duration-300">
-                    <img src="/nexus-logo-gradient.svg" alt="Nexus Logo" className="w-8 h-8" />
-                    <span>Nexus</span>
-                  </a>
-                </SheetTitle>
-              </SheetHeader>
-              <nav className="flex flex-col space-y-6 mt-8">
-                {navBarLinks.map((link) => (
-                  <MobileNavLink key={link.to} to={link.to} onClick={() => setIsOpen(false)}>
-                    {link.children}
-                  </MobileNavLink>
-                ))}
-                <div className="pt-4 border-t">
-                  <LanguageSwitcher />
-                </div>
-              </nav>
-            </SheetContent>
-          </Sheet>
+           <NavDropdown label="Projetos" items={projectsDropdown} />
+            
+            <span className="h-4 w-px bg-border/60" aria-hidden="true" />
+
+            <NavDropdown label="Documentação" items={docsDropdown} />
+            
+            <span className="h-4 w-px bg-border/60" aria-hidden="true" />
+            
+
+            <NavBarLink to="/team">Time</NavBarLink>
+
+
+            <span className="h-4 w-px bg-border/60" aria-hidden="true" />
+
+            <NavBarLink to="/blog">Blog</NavBarLink>
+            
+            {/*  <span className="h-4 w-px bg-border/60" aria-hidden="true" /> */}
+            
+           {/* Center Navigation - Generous Spacing  <NavDropdown label="Recursos" items={resourcesDropdown} /> */}
+          </nav>
+          
+          {/* Right Side - Clean Interaction Area */}
+          <div className="hidden lg:flex items-center gap-6">
+            {/* GitHub Link - Minimal */}
+            <a 
+              href="https://github.com/ufabc-next" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2.5 px-4 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 text-[14px] font-medium"
+            >
+              <Github className="h-4 w-4 opacity-70" />
+              <span>1.2k</span>
+            </a>
+
+            {/* CTA Button - Clean */}
+            <Button 
+              size="sm" 
+              className="rounded-lg px-5 py-2 font-medium text-[14px] shadow-sm hover:shadow transition-all duration-200"
+              asChild
+            >
+              <a href="/#comunidade">Cadastrar</a>
+            </Button>
+          </div>
+
+          {/* Mobile Menu */}
+          <div className="flex items-center gap-3 lg:hidden">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-lg">
+                  {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[320px] sm:w-[400px]">
+                <SheetHeader className="border-b pb-6">
+                  <SheetTitle className="flex items-center gap-3">
+                    <img src="/nexus-logo-gradient.svg" alt="Nexus Logo" className="h-7 w-7" />
+                    <span className="text-[19px] font-bold">Nexus</span>
+                  </SheetTitle>
+                </SheetHeader>
+                  <nav className="flex flex-col gap-6 mt-8">
+                    <div className="space-y-2">
+                      <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                        Produtos
+                      </p>
+                      {productsDropdown.map((item) => (
+                        <MobileNavLink key={item.href} to={item.href} onClick={() => setIsOpen(false)}>
+                          {item.label}
+                        </MobileNavLink>
+                      ))}
+                    </div>
+
+                    <div className="border-t pt-6 space-y-2">
+                       <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                        Documentação
+                      </p>
+                      {docsDropdown.map((item) => (
+                        <MobileNavLink key={item.href} to={item.href} onClick={() => setIsOpen(false)}>
+                          {item.label}
+                        </MobileNavLink>
+                      ))}
+                    </div>
+
+                    <div className="border-t pt-6 space-y-2">
+                      <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                        Projetos
+                      </p>
+                      {projectsDropdown.map((item) => (
+                        <MobileNavLink key={item.href} to={item.href} onClick={() => setIsOpen(false)}>
+                          {item.label}
+                        </MobileNavLink>
+                      ))}
+                    </div>
+
+                    <div className="border-t pt-6 space-y-2">
+                      <MobileNavLink to="/blog" onClick={() => setIsOpen(false)}>
+                        Blog
+                      </MobileNavLink>
+                      {resourcesDropdown.map((item) => (
+                        <MobileNavLink key={item.href} to={item.href} onClick={() => setIsOpen(false)}>
+                          {item.label}
+                        </MobileNavLink>
+                      ))}
+                    </div>
+
+                    <div className="border-t pt-6">
+                      <Button className="w-full rounded-lg font-medium shadow-sm" asChild>
+                        <a href="/#comunidade" onClick={() => setIsOpen(false)}>
+                          Cadastrar
+                        </a>
+                      </Button>
+                    </div>
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
         </div>
-      </div>
-    </header>
-  );
-}
+      </header>
+    );
+  }

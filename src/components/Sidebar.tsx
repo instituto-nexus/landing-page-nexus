@@ -29,8 +29,8 @@ const SidebarItem = ({ icon, label, to, active }: SidebarItemProps) => {
         className={cn(
           "flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors",
           active 
-            ? "bg-primary/10 text-primary" 
-            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+            ? "bg-blue-50 text-blue-600" 
+            : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
         )}
       >
         {icon}
