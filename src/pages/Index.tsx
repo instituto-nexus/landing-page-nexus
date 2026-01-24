@@ -67,6 +67,13 @@ const LandingPage = () => {
     },
     {
       id: 5,
+      title: "cronos",
+      description: "Planejador de graduação personalizado para ajudar os alunos a montarem a grade que mais vai gerar valor para a sua carreira e vida pessoal",
+      icon: "./projects/cronos-project.png",
+      link: "/404"
+    },
+    {
+      id: 6,
       title: "Aulões Next",
       description: "Criamos aulões para conectar veteranos e calouros",
       icon: "./projects/aulao-logo.png",
