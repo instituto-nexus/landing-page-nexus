@@ -49,6 +49,14 @@ export default function Team() {
       bio: "Entusiasta de usar tecnologia para unir pessoas. Lidera iniciativas para impulsionar o alcance do Nexus e encontrar gente boa. Atualmente, também faz parte do time internacional da Jeeves, forncendo infraestrutura bancária para startups.",
     },
     {
+      id: 11,
+      name: "Bruno Pereira",
+      role: "Diretor de Tecnologia e Produto",
+      image: "/members/bruno.png",
+      linkedin: "https://www.linkedin.com/in/bruno-pereira-21390526/",
+      bio: "Apaixonado por soluções de tecnologia para impactar o público da UFABC. Criou o primeiro planejador de graduação da universidade com o projeto Cronos, levando análises estatísticas para auxiliar na tomada de decisão dos alunos",
+    },
+    {
       id: 8,
       name: "Pedro Tomaz",
       role: "Analista de estratégia",

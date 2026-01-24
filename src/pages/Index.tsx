@@ -55,7 +55,7 @@ const LandingPage = () => {
       id: 3,
       title: "WhatsApp Bot",
       description: "Criamos um bot do WhatsApp para facilitar o acesso dos alunos a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
-      icon: "./projects/whatsapp-bot.webp",
+      icon: "./projects/whatsapp-icon.jpg",
       link: "/404"
     },
     {
