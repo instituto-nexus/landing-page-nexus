@@ -112,6 +112,13 @@ export default function Team() {
       image: "/members/joao-zanardo.png",
       linkedin: "https://www.linkedin.com/in/jo%C3%A3o-zanardo/",
       bio: "Engenheiro de software com foco no desenvolvimento de soluções escaláveis e eficientes backend. Graduou-se no bacharelado de ciência e tencologia da UFABC e conta com passagens por empresas como Santander, BTG Pactual e Mercado Livre",
+    },    {
+      id: 15,
+      name: "Vitor Facioni",
+      role: "Engenheiro de Software",
+      image: "/members/vitor-facioni.png",
+      linkedin: "https://www.linkedin.com/in/vitor-facioni/",
+      bio: "Engenheiro fullstack com experiência e desenvolvimento de soluções inovadoras para a comunidade acadêmica. Graduando em ciência da computação na UFABC, também faz parte do time de Inovaçao da Claro",
     },
   ];
 
