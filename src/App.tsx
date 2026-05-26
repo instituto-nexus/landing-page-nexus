@@ -13,6 +13,8 @@ import UfabcParser from "./pages/UfabcParser";
 import WhatsAppBot from "./pages/WhatsAppBot";
 import WhatsAppBotAI from "./pages/WhatsAppBotAI";
 import AuloesNext from "./pages/AuloesNext";
+import Cronos from "./pages/Cronos";
+import Status from "./pages/Status";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 
@@ -29,11 +31,13 @@ const App = () => (
           <Route path="/team" element={<Team />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          {/* <Route path="/projetos/ufabc-next" element={<UfabcNext />} />
+          <Route path="/projetos/ufabc-next" element={<UfabcNext />} />
           <Route path="/projetos/ufabc-parser" element={<UfabcParser />} />
           <Route path="/projetos/whatsapp-bot" element={<WhatsAppBot />} />
           <Route path="/projetos/whatsapp-bot-ai" element={<WhatsAppBotAI />} />
-          <Route path="/projetos/auloes-next" element={<AuloesNext />} /> */}
+          <Route path="/projetos/auloes-next" element={<AuloesNext />} />
+          <Route path="/projetos/cronos" element={<Cronos />} />
+          <Route path="/status" element={<Status />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
