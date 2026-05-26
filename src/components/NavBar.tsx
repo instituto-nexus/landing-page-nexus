@@ -71,8 +71,8 @@ export default function NavBar() {
 
   const productsDropdown = [
     { label: "Projetos", href: "/#projetos" },
-    { label: "UFABC Next", href: "/404" },
-    { label: "UFABC Parser", href: "/404" },
+    { label: "UFABC Next", href: "/projetos/ufabc-next" },
+    { label: "UFABC Parser", href: "/projetos/ufabc-parser" },
   ];
 
   const resourcesDropdown = [
@@ -81,13 +81,11 @@ export default function NavBar() {
   ];
 
   const projectsDropdown = [
-    { label: "WhatsApp Bot", href: "/404" },
-    { label: "next AI", href: "/404" },
-    { label: "ufabc parser", href: "/404" },
-    { label: "ufabc next", href: "/404" },
-    { label: "aulões next", href: "/404" },
-
-
+    { label: "WhatsApp Bot", href: "/projetos/whatsapp-bot" },
+    { label: "next AI", href: "/projetos/whatsapp-bot-ai" },
+    { label: "ufabc parser", href: "/projetos/ufabc-parser" },
+    { label: "ufabc next", href: "/projetos/ufabc-next" },
+    { label: "aulões next", href: "/projetos/auloes-next" },
   ];
 
   const docsDropdown = [  
