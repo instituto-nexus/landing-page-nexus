@@ -42,42 +42,42 @@ const LandingPage = () => {
       title: "UFABC next",
       description: "Construímos uma plataforma de avaliação de professores, disciplinas e programas com base na experiência dos alunos",
       icon: "./projects/next-logo.jpg",
-      link: "/404"
+      link: "/projetos/ufabc-next"
     },
     {
       id: 2,
       title: "UFABC parser",
       description: "Fornecemos todas as informações relevantes para o desenvolvimento universitário da UFABC em formato de API",
       icon: "./projects/parser-logo.png",
-      link: "/404"
+      link: "/projetos/ufabc-parser"
     },
     {
       id: 3,
       title: "WhatsApp Bot",
       description: "Criamos um bot do WhatsApp para facilitar o acesso dos alunos a informações acadêmicas importantes e manter a comunidade acadêmica conectada",
       icon: "./projects/whatsapp-icon.jpg",
-      link: "/404"
+      link: "/projetos/whatsapp-bot"
     },
     {
       id: 4,
       title: "next AI",
       description: "Assistente inteligente com IA para responder dúvidas acadêmicas de forma personalizada",
       icon: "./projects/Ai.png",
-      link: "/404"
+      link: "/projetos/whatsapp-bot-ai"
     },
     {
       id: 5,
       title: "cronos",
       description: "Planejador de graduação personalizado para ajudar os alunos a montarem a grade que mais vai gerar valor para a sua carreira e vida pessoal",
       icon: "./projects/cronos-project.png",
-      link: "/404"
+      link: "/projetos/cronos"
     },
     {
       id: 6,
       title: "Aulões Next",
       description: "Criamos aulões para conectar veteranos e calouros",
       icon: "./projects/aulao-logo.png",
-      link: "/404"
+      link: "/projetos/auloes-next"
     },
   ];
   return (
